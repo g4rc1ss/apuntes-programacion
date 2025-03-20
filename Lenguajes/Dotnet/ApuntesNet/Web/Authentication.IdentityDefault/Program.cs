@@ -1,7 +1,8 @@
+using Authentication.IdentityDefault;
 using Authentication.IdentityDefault.Extensions;
 using Authentication.IdentityDefault.OpenAPI;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.OpenApi.Models;
+using Microsoft.EntityFrameworkCore;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -12,20 +13,34 @@ builder.Services.InitAndConfigureSwagger();
 builder.Services.AddAuthenticationProtocol(builder.Configuration);
 builder.AddDatabase();
 
+builder.Services.AddSingleton<IEmailSender<IdentityUser<int>>, EmailSender>();
+
 WebApplication app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
+
+using (IServiceScope scope = app.Services.CreateScope())
+{
+    DatabaseDbContext context = scope.ServiceProvider.GetRequiredService<DatabaseDbContext>();
+    await context.Database.MigrateAsync();
+}
+app.UseDeveloperExceptionPage();
+app.UseHttpsRedirection();
+app.UseAuthentication();
+app.UseAuthorization();
+
 
 app.MapGroup("auth-manager")
     .MapIdentityApi<IdentityUser<int>>();
 
-app.MapGet("/prueba-auth", () => Results.Ok("Hola"))
-    .RequireAuthorization();
+app.MapGroup("authentication")
+    .RequireAuthorization()
+    .MapGet("/prueba-auth", () => Results.Ok("Hola"));
 
-app.UseHttpsRedirection();
 
 await app.RunAsync();

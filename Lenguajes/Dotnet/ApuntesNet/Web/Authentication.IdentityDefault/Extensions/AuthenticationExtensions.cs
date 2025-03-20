@@ -16,7 +16,22 @@ internal static class AuthenticationExtensions
                 options.DefaultSignInScheme = IdentityConstants.ExternalScheme;
             })
             .AddBearerToken(IdentityConstants.BearerScheme)
-            .AddIdentityCookies();
+            .AddIdentityCookies(builder =>
+            {
+                builder.ApplicationCookie?.Configure(options =>
+                {
+                    options.Events.OnRedirectToLogin = context =>
+                    {
+                        context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+                        return Task.CompletedTask;
+                    };
+                    options.Events.OnRedirectToAccessDenied = context =>
+                    {
+                        context.Response.StatusCode = StatusCodes.Status403Forbidden;
+                        return Task.CompletedTask;
+                    };
+                });
+            });
 
         services.AddIdentityCore<IdentityUser<int>>(options =>
             {
@@ -30,6 +45,7 @@ internal static class AuthenticationExtensions
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
             })
             .AddUserManager<UserManager<IdentityUser<int>>>()
+            .AddSignInManager()
             .AddRoles<IdentityRole<int>>()
             .AddRoleManager<RoleManager<IdentityRole<int>>>()
             .AddDefaultTokenProviders()
