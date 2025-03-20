@@ -1,9 +1,0 @@
-﻿@page "/authentication/logout"
-@inject AuthenticationStateProvider _authenticationState
-
-@code {
-    protected override async Task OnInitializedAsync()
-    {
-        await ((AuthenticationProvider)_authenticationState).SetLogoutAsync();
-    }
-}

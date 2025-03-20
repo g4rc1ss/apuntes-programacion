@@ -1,0 +1,14 @@
+services:
+  postgresql:
+    image: "postgres:latest"
+    container_name: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-123456}
+      - POSTGRES_DB=Apuntes
+    ##### En principio solo es para el server de DEV porque tenemos recursos limitados ####
+    mem_limit: 2GB # Limitar la memoria a 512 megabytes
+    cpus: 0.5 # Limitar el uso de CPU a 0.5 núcleos (50% de un núcleo)
+    #######################################################################################
