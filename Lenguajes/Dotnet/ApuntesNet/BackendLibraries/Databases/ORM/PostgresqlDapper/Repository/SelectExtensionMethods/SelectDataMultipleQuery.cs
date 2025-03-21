@@ -1,7 +1,4 @@
-﻿using System.Data;
-
-
-using Dapper;
+﻿using Dapper;
 
 
 using PostgresqlDapper.Entities;

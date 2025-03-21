@@ -1,6 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Net.Mime;
-
 using Avalonia.Controls;
 
 namespace Calculadora;

@@ -1,5 +1,4 @@
 using ApiJwt.Entities;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace ApiJwt;

@@ -23,14 +23,10 @@ if (app.Environment.IsDevelopment())
 }
 
 
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.UseDefault();
-
 app.UseError();
-
+app.UseHttpsRedirection();
+app.UseAuthorization();
+app.UseDefault();
 app.MapControllers();
 
 app.Run();

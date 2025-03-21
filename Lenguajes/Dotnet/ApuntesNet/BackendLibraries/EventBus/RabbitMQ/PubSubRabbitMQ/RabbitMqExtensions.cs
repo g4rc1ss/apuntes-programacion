@@ -1,8 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
-using Microsoft.Extensions.Options;
-
 using PubSubCommunication;
 using PubSubCommunication.Consumers;
 using PubSubCommunication.Messages;
@@ -11,8 +8,6 @@ using PubSubCommunication.Publisher;
 using PubSubRabbitMQ.Consumer;
 using PubSubRabbitMQ.Publisher;
 using PubSubRabbitMQ.Serialization;
-
-using RabbitMQ.Client;
 
 namespace PubSubRabbitMQ;
 

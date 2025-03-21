@@ -1,8 +1,9 @@
 ﻿namespace MiddlewaresApi.Middlewares;
 
-public class ErrorMiddleware(ILogger<ErrorMiddleware> logger) : IMiddleware
+public class ErrorMiddleware(
+    ILogger<ErrorMiddleware> logger
+) : IMiddleware
 {
-
     public async Task InvokeAsync(HttpContext context, RequestDelegate next)
     {
         try

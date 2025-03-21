@@ -1,7 +1,5 @@
 ﻿using Avalonia;
 
-using System;
-
 namespace Calculadora;
 
 class Program
