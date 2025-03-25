@@ -319,6 +319,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authentication.IdentityDefa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiJwt", "Web\ApiJwt\ApiJwt.csproj", "{829111D2-D0C6-43F5-8D9C-297386CF9248}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcServerApp", "Web\GrpcServerApp\GrpcServerApp.csproj", "{C13A2890-1885-42B0-9294-D20F39A34A35}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -757,6 +759,10 @@ Global
 		{829111D2-D0C6-43F5-8D9C-297386CF9248}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{829111D2-D0C6-43F5-8D9C-297386CF9248}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{829111D2-D0C6-43F5-8D9C-297386CF9248}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C13A2890-1885-42B0-9294-D20F39A34A35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C13A2890-1885-42B0-9294-D20F39A34A35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C13A2890-1885-42B0-9294-D20F39A34A35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C13A2890-1885-42B0-9294-D20F39A34A35}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -912,6 +918,7 @@ Global
 		{0F88299F-BDD5-4FD8-95C1-7979CB101C78} = {1DA159C8-90C4-4281-BD8E-514EF1B0CF3E}
 		{222613B6-8BFB-463C-A037-08057DF17709} = {6177943A-F1A0-4ABA-87CC-43BD275D78FE}
 		{829111D2-D0C6-43F5-8D9C-297386CF9248} = {13D1BC8D-CD31-4D58-BF03-3A7E5C00C53D}
+		{C13A2890-1885-42B0-9294-D20F39A34A35} = {1DA159C8-90C4-4281-BD8E-514EF1B0CF3E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E490D0C8-C5A7-4F24-8A9B-CE1635508778}
