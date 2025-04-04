@@ -29,13 +29,14 @@ using (IServiceScope scope = app.Services.CreateScope())
     DatabaseDbContext context = scope.ServiceProvider.GetRequiredService<DatabaseDbContext>();
     await context.Database.MigrateAsync();
 }
+
 app.UseDeveloperExceptionPage();
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
 
-app.MapGroup("auth-manager")
+app.MapGroup("auth")
     .MapIdentityApi<IdentityUser<int>>();
 
 app.MapGroup("authentication")
