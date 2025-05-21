@@ -155,5 +155,50 @@ public static async Task ReadContainerMetadataAsync(BlobContainerClient containe
 ```
 
 ## Establecer y recuperar propiedades y metadatos de Blobs
+Los contenedores y blobs pueden tener metadatos personalizados, que son representados como headers HTTP. Estos se pueden establecer al crear el recurso de contenedor o blob o agregandolos mas adelante.
 
+El formato se establecen como pares clave-valor:
+```
+x-ms-meta-name:string-value
+```
+> A partir de la version 2009 los nombres deben cumplir las reglas de nomenclatura de los identificaciones de C#
+
+### Operaciones con metadatos
+Los metadatos se puede establecer o recuperar directamente sin leer o modificar el recurso en si.
+
+Las operaciones GET y HEAD devuelven los metadatos de un blob o contenedor.
+```
+# Para recuperar los metadatos de un contenedor
+GET/HEAD https://myaccount.blob.core.windows.net/mycontainer?restype=container
+
+# Para recuperar los metadatos de un blob
+GET/HEAD https://myaccount.blob.core.windows.net/mycontainer/myblob?comp=metadata
+```
+
+Con la operacion PUT se pueden establecer los metadatos de un blob o contenedor. 
+```
+# Para establecer los metadatos de un contenedor
+PUT https://myaccount.blob.core.windows.net/mycontainer?comp=metadata&restype=container
+
+# Para establecer los metadatos de un blob
+PUT https://myaccount.blob.core.windows.net/mycontainer/myblob?comp=metadata
+```
+
+La diferencia entre un encabezado estandar y personalizado, entre otras cosas, es que los personalizados tienen que tener el prefijo `x-ms-meta-{nombre}`. 
+
+Los standard headers son:
+
+Para contenedores y Blobs:
+- **ETag**
+- **Last-Modified**
+
+Para Blobs:
+- **Content-Length**
+- **Content-Type**
+- **Content-MD5**
+- **Content-Encoding**
+- **Content-Language**
+- **Cache-Control**
+- **Origin**   
+- **Range**
 
