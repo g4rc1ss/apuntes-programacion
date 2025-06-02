@@ -20,11 +20,7 @@ public static class ManualProfile
 
     public static UserDTO ToUserModelEntity(this User user)
     {
-        return new()
-        {
-            Nombre = user.Name,
-            Apellidos = user.LastName
-        };
+        return new() { Nombre = user.Name, Apellidos = user.LastName };
     }
 
     public static PropertyDTO ToPropertyModelEntity(this Propiedad propiedad)

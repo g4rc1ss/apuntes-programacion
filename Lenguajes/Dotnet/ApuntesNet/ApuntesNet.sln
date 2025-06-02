@@ -8,7 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Desktop", "Desktop", "{8FC7
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{1DA159C8-90C4-4281-BD8E-514EF1B0CF3E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{BC3CFAEF-A9A3-4BA7-A01B-6A45AEB04392}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BC3CFAEF-A9A3-4BA7-A01B-6A45AEB04392}"
 	ProjectSection(SolutionItems) = preProject
 		Directory.build.props = Directory.build.props
 		.editorconfig = .editorconfig

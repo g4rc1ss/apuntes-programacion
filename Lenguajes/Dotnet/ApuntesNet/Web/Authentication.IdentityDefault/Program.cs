@@ -35,13 +35,10 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
-
-app.MapGroup("auth")
-    .MapIdentityApi<IdentityUser<int>>();
+app.MapGroup("auth").MapIdentityApi<IdentityUser<int>>();
 
 app.MapGroup("authentication")
     .RequireAuthorization()
     .MapGet("/prueba-auth", () => Results.Ok("Hola"));
-
 
 await app.RunAsync();

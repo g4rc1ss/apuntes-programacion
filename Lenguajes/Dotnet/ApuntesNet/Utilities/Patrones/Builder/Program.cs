@@ -5,7 +5,6 @@ PatronBuilder? claseImplementaBuilder1 = new();
 PatronBuilder? claseImplementaBuilder2 = new();
 PatronBuilder? claseImplementaBuilder3 = new();
 
-
 string? query1 = claseImplementaBuilder1
     .Select("Id")
     .From("table")
@@ -13,14 +12,9 @@ string? query1 = claseImplementaBuilder1
     .OrderBy("Id")
     .Build();
 
-string? query2 = claseImplementaBuilder2
-    .From("table")
-    .Build();
+string? query2 = claseImplementaBuilder2.From("table").Build();
 
-string? query3 = claseImplementaBuilder3
-    .Select("Hola")
-    .From("tableFrom")
-    .Build();
+string? query3 = claseImplementaBuilder3.Select("Hola").From("tableFrom").Build();
 
 Console.WriteLine(query1);
 Console.WriteLine(query2);

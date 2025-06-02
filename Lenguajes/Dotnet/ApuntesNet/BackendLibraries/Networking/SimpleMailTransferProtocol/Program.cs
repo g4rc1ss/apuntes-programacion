@@ -1,9 +1,6 @@
 ﻿using SimpleMailTransferProtocol.Email;
 
-
-new EnviarEmail()
-    .EnvioMail();
-
+new EnviarEmail().EnvioMail();
 
 Console.WriteLine("Pulsa un boton para terminar...");
 Console.ReadKey();

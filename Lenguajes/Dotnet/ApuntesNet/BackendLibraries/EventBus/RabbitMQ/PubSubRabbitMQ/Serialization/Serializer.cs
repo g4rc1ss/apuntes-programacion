@@ -1,7 +1,5 @@
 ﻿using System.Text;
-
 using Newtonsoft.Json;
-
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace PubSubRabbitMQ.Serialization;
@@ -10,27 +8,26 @@ internal class Serializer(JsonSerializerSettings serializerSettings) : ISerializ
 {
     private static readonly Encoding Encoding = new UTF8Encoding(false);
 
-    private static readonly JsonSerializerSettings DefaultSerializerSettings =
-        new()
-        {
-            TypeNameHandling = TypeNameHandling.Auto
-        };
+    private static readonly JsonSerializerSettings DefaultSerializerSettings = new()
+    {
+        TypeNameHandling = TypeNameHandling.Auto,
+    };
 
     private const int DEFAULTBUFFERSIZE = 1024;
 
-    private readonly Newtonsoft.Json.JsonSerializer _jsonSerializer = Newtonsoft.Json.JsonSerializer.Create(serializerSettings);
+    private readonly Newtonsoft.Json.JsonSerializer _jsonSerializer =
+        Newtonsoft.Json.JsonSerializer.Create(serializerSettings);
 
-    public Serializer() : this(DefaultSerializerSettings)
-    {
-    }
+    public Serializer()
+        : this(DefaultSerializerSettings) { }
 
     public T DeserializeObject<T>(string input)
     {
-        return JsonSerializer.Deserialize<T>(input)
-            ?? throw new InvalidOperationException();
+        return JsonSerializer.Deserialize<T>(input) ?? throw new InvalidOperationException();
     }
 
-    public T DeserializeObject<T>(byte[] input) where T : class
+    public T DeserializeObject<T>(byte[] input)
+        where T : class
     {
         return (DeserializeObject(input, typeof(T)) as T)!;
     }
@@ -38,7 +35,13 @@ internal class Serializer(JsonSerializerSettings serializerSettings) : ISerializ
     public object DeserializeObject(byte[] input, Type type)
     {
         using MemoryStream? memoryStream = new(input, false);
-        using StreamReader? streamReader = new(memoryStream, Encoding, false, DEFAULTBUFFERSIZE, true);
+        using StreamReader? streamReader = new(
+            memoryStream,
+            Encoding,
+            false,
+            DEFAULTBUFFERSIZE,
+            true
+        );
         using JsonTextReader? reader = new(streamReader);
         return _jsonSerializer.Deserialize(reader, type) ?? throw new InvalidOperationException();
     }
@@ -61,4 +64,3 @@ internal class Serializer(JsonSerializerSettings serializerSettings) : ISerializ
         return memoryStream.ToArray();
     }
 }
-

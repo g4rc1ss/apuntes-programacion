@@ -1,5 +1,4 @@
 ﻿using System.Text;
-
 using static Wiry.Base32.Base32Encoding;
 
 namespace Totp.Libs;

@@ -22,10 +22,22 @@ public class AesDecryptFile
 
                 // Create an encryptor to perform the stream transform.
                 using ICryptoTransform? decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
-                using FileStream? fileStreamCrypt = new(_archivoAES_TXT_Cifrado, FileMode.Open, FileAccess.Read);
-                using FileStream? fileStreamOut = new(_archivoAES_TXT, FileMode.OpenOrCreate, FileAccess.Write);
-                using CryptoStream? decryptStream = new(fileStreamCrypt, decryptor, CryptoStreamMode.Read);
-                for (int data; (data = decryptStream.ReadByte()) != -1;)
+                using FileStream? fileStreamCrypt = new(
+                    _archivoAES_TXT_Cifrado,
+                    FileMode.Open,
+                    FileAccess.Read
+                );
+                using FileStream? fileStreamOut = new(
+                    _archivoAES_TXT,
+                    FileMode.OpenOrCreate,
+                    FileAccess.Write
+                );
+                using CryptoStream? decryptStream = new(
+                    fileStreamCrypt,
+                    decryptor,
+                    CryptoStreamMode.Read
+                );
+                for (int data; (data = decryptStream.ReadByte()) != -1; )
                 {
                     fileStreamOut.WriteByte((byte)data);
                 }

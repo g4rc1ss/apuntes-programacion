@@ -35,7 +35,6 @@ public class HashTables<TKey, TValue>
         uint indexHash = GetIndexHash(hash);
         int dataIndex = hashIndex[indexHash];
 
-
         data[size].key = key;
         data[size].value = value;
         data[size].hashCode = (uint)hash;
@@ -154,13 +153,11 @@ public class HashTables<TKey, TValue>
         return EqualityComparer<TKey>.Default.GetHashCode(key);
     }
 
-
     // Metodo copiado de la clase Dictionary
     private uint GetIndexHash(int hash)
     {
         return (uint)hash % (uint)hashIndex.Length;
     }
-
 
     private struct ObjectKeyValue
     {

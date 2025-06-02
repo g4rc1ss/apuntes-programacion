@@ -1,13 +1,10 @@
 ﻿using HttpRequests.Internal;
-
-
 using Microsoft.Extensions.DependencyInjection;
 
 namespace HttpRequests;
 
 internal class HelperDI
 {
-
     internal static IServiceProvider GetServideProvider()
     {
         IServiceCollection services = new ServiceCollection();
@@ -15,7 +12,12 @@ internal class HelperDI
         services.AddTransient<MessageHandler>();
         services.AddTransient<UsarHttpClient>();
 
-        services.AddHttpClient("clientePrueba", (client) => client.BaseAddress = new Uri("https://pokeapi.co/api/v2/")).AddHttpMessageHandler<MessageHandler>();
+        services
+            .AddHttpClient(
+                "clientePrueba",
+                (client) => client.BaseAddress = new Uri("https://pokeapi.co/api/v2/")
+            )
+            .AddHttpMessageHandler<MessageHandler>();
 
         return services.BuildServiceProvider();
     }

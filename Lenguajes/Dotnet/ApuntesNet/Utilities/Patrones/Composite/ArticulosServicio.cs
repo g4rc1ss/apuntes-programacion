@@ -2,7 +2,6 @@
 
 public class ArticulosServicio(ILogger logger)
 {
-
     public void GuardarArticulo(string contenido, string titulo)
     {
         logger.LogInfo($"vamos a insertar el articulo {titulo} con el contenido {contenido}");

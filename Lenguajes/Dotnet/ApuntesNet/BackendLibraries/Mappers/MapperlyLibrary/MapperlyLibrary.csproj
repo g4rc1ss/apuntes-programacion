@@ -1,8 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
@@ -10,5 +8,4 @@
   <ItemGroup>
     <PackageReference Include="Riok.Mapperly" Version="4.1.1" />
   </ItemGroup>
-
 </Project>

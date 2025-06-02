@@ -1,5 +1,4 @@
 ﻿using System.Linq.Expressions;
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 
@@ -9,13 +8,15 @@ namespace UnitOfWork.Repository.Interfaces;
 /// Define los metodos asincronos de repositorio que añaden, modifican ,eliminan y buscan
 /// </summary>
 /// <typeparam name="T"></typeparam>
-public interface IRepositoryAsync<T> where T : class
+public interface IRepositoryAsync<T>
+    where T : class
 {
     /// <summary>
     /// Devuelve el contexto
     /// </summary>
     /// <returns></returns>
     DbContext GetContext();
+
     /// <summary>
     /// Devuelve una entidad a partir de los parametros
     /// </summary>
@@ -27,9 +28,13 @@ public interface IRepositoryAsync<T> where T : class
     /// <param name="ignoreQueryFilter">activa o desactiva ignorar la query global para el tenant y baja</param>
     /// <returns></returns>
     Task<T> SingleAsync(
-        Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
-        Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null, bool disableTracking = true,
-        IQueryable<T> queryCustom = null, bool ignoreQueryFilter = false);
+        Expression<Func<T, bool>> predicate = null,
+        Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
+        Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null,
+        bool disableTracking = true,
+        IQueryable<T> queryCustom = null,
+        bool ignoreQueryFilter = false
+    );
 
     /// <summary>
     /// Obtiene una lista a apartir del predicado
@@ -81,7 +86,11 @@ public interface IRepositoryAsync<T> where T : class
     /// <param name="predicate"></param>
     /// <param name="selector"></param>
     /// <returns></returns>
-    Task<TK> MaxAsync<TK>(Expression<Func<T, bool>> predicate = null, Expression<Func<T, TK>> selector = null);
+    Task<TK> MaxAsync<TK>(
+        Expression<Func<T, bool>> predicate = null,
+        Expression<Func<T, TK>> selector = null
+    );
+
     /// <summary>
     /// Devuelve el Min de los registros seleccionadod
     /// </summary>
@@ -89,21 +98,33 @@ public interface IRepositoryAsync<T> where T : class
     /// <param name="predicate"></param>
     /// <param name="selector"></param>
     /// <returns></returns>
-    Task<TK> MinAsync<TK>(Expression<Func<T, bool>> predicate = null, Expression<Func<T, TK>> selector = null);
+    Task<TK> MinAsync<TK>(
+        Expression<Func<T, bool>> predicate = null,
+        Expression<Func<T, TK>> selector = null
+    );
+
     /// <summary>
     /// Devueve la media de los registros seleccionados
     /// </summary>
     /// <param name="predicate"></param>
     /// <param name="selector"></param>
     /// <returns></returns>
-    Task<decimal> AverageAsync(Expression<Func<T, bool>> predicate = null, Expression<Func<T, decimal>> selector = null);
+    Task<decimal> AverageAsync(
+        Expression<Func<T, bool>> predicate = null,
+        Expression<Func<T, decimal>> selector = null
+    );
+
     /// <summary>
     /// Devuelve la suma de los registros seleccionado
     /// </summary>
     /// <param name="predicate"></param>
     /// <param name="selector"></param>
     /// <returns></returns>
-    Task<decimal> SumAsync(Expression<Func<T, bool>> predicate = null, Expression<Func<T, decimal>> selector = null);
+    Task<decimal> SumAsync(
+        Expression<Func<T, bool>> predicate = null,
+        Expression<Func<T, decimal>> selector = null
+    );
+
     /// <summary>
     /// Nos indica si existe algñun registro
     /// </summary>

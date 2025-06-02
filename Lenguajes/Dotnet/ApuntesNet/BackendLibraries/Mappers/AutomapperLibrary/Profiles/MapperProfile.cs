@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-
 using AutomapperLibrary.Internal;
 
 namespace AutomapperLibrary.Profiles;

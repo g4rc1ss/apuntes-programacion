@@ -6,7 +6,9 @@ UsarAppConfig? localizacionArchivoAppConfig = new();
 localizacionArchivoAppConfig.ArchivosConfiguracion();
 Console.WriteLine(localizacionArchivoAppConfig.LocalizacionArchivo);
 
-Console.WriteLine("---------------------------------------------------------------------------------------");
+Console.WriteLine(
+    "---------------------------------------------------------------------------------------"
+);
 
 UsarAppSettingsJson? localizacionArchivoAppSettings = new();
 localizacionArchivoAppSettings.ArchivosConfiguracion();

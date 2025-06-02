@@ -77,7 +77,8 @@ public class Totp : Otp
     /// <returns></returns>
     public static int RemainingSeconds(int tiempo = 30)
     {
-        return tiempo - (int)((DateTime.UtcNow.Ticks - UNIX_EPOCH_TICKS) / TICKS_TO_SECONDS % tiempo);
+        return tiempo
+            - (int)((DateTime.UtcNow.Ticks - UNIX_EPOCH_TICKS) / TICKS_TO_SECONDS % tiempo);
     }
 
     /// <summary>
@@ -90,8 +91,12 @@ public class Totp : Otp
     /// <returns>
     /// Código TOTP
     /// </returns>
-    public static string GeneraTotp
-        (string claveSecreta, int tiempo = 30, int otpSize = 6, OtpHashMode hashMode = OtpHashMode.SHA1)
+    public static string GeneraTotp(
+        string claveSecreta,
+        int tiempo = 30,
+        int otpSize = 6,
+        OtpHashMode hashMode = OtpHashMode.SHA1
+    )
     {
         return GeneraTotp(Base32Encoding.Standard.ToBytes(claveSecreta), tiempo, otpSize, hashMode);
     }
@@ -106,8 +111,12 @@ public class Totp : Otp
     /// <returns>
     /// Código TOTP
     /// </returns>
-    private static string GeneraTotp(byte[] claveSecreta, int tiempo = 30, int otpSize = 6,
-        OtpHashMode hashMode = OtpHashMode.SHA1)
+    private static string GeneraTotp(
+        byte[] claveSecreta,
+        int tiempo = 30,
+        int otpSize = 6,
+        OtpHashMode hashMode = OtpHashMode.SHA1
+    )
     {
         ValidaParametrosEntrada(claveSecreta, tiempo, otpSize);
 
@@ -128,11 +137,21 @@ public class Totp : Otp
     /// Válido = true/false
     /// Intervalo = nº de intervalo validado para guardarlo y que no se pueda volver a usar
     /// </returns>
-    public static (bool Valido, long Intervalo) ValidaTotp
-    (string totp, string claveSecreta, int tiempo = 30, int otpSize = 6,
-        OtpHashMode hashMode = OtpHashMode.SHA1)
+    public static (bool Valido, long Intervalo) ValidaTotp(
+        string totp,
+        string claveSecreta,
+        int tiempo = 30,
+        int otpSize = 6,
+        OtpHashMode hashMode = OtpHashMode.SHA1
+    )
     {
-        return ValidaTotp(totp, Base32Encoding.Standard.ToBytes(claveSecreta), tiempo, otpSize, hashMode);
+        return ValidaTotp(
+            totp,
+            Base32Encoding.Standard.ToBytes(claveSecreta),
+            tiempo,
+            otpSize,
+            hashMode
+        );
     }
 
     /// <summary>
@@ -147,8 +166,13 @@ public class Totp : Otp
     /// Válido = true/false
     /// Intervalo = nº de intervalo validado para guardarlo y que no se pueda volver a usar
     /// </returns>
-    private static (bool Valido, long Intervalo) ValidaTotp(string totp, byte[] claveSecreta, int tiempo = 30,
-        int otpSize = 6, OtpHashMode hashMode = OtpHashMode.SHA1)
+    private static (bool Valido, long Intervalo) ValidaTotp(
+        string totp,
+        byte[] claveSecreta,
+        int tiempo = 30,
+        int otpSize = 6,
+        OtpHashMode hashMode = OtpHashMode.SHA1
+    )
     {
         ValidaParametrosEntrada(claveSecreta, tiempo, otpSize);
 
@@ -179,11 +203,21 @@ public class Totp : Otp
     /// <param name="otpSize">Tamaño del código TOTP a verificar</param>
     /// <param name="hashMode">Tipo de Hash a aplicar</param>
     /// <returns>true/false </returns>
-    public static bool ValidarTotp(string totp, string claveSecreta, int tiempo = 30, int otpSize = 6,
-        OtpHashMode hashMode = OtpHashMode.SHA1)
+    public static bool ValidarTotp(
+        string totp,
+        string claveSecreta,
+        int tiempo = 30,
+        int otpSize = 6,
+        OtpHashMode hashMode = OtpHashMode.SHA1
+    )
     {
-        (bool valido, _) = ValidaTotp(totp, Base32Encoding.Standard.ToBytes(claveSecreta), tiempo, otpSize,
-            hashMode);
+        (bool valido, _) = ValidaTotp(
+            totp,
+            Base32Encoding.Standard.ToBytes(claveSecreta),
+            tiempo,
+            otpSize,
+            hashMode
+        );
 
         return valido;
     }

@@ -8,8 +8,7 @@ internal class Context
     // work with all strategies via the Strategy interface.
     private IStrategy? strategy;
 
-    public Context()
-    { }
+    public Context() { }
 
     // Usually, the Context accepts a strategy through the constructor, but
     // also provides a setter to change it at runtime.

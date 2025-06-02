@@ -1,7 +1,5 @@
 ﻿using System.Runtime;
-
 using ManageMemoryGarbageCollect;
-
 
 Console.WriteLine($"GC en ejecucion: IsServer? {GCSettings.IsServerGC}");
 Console.WriteLine($"Latencia configurada de GC {GCSettings.LatencyMode}");
@@ -23,7 +21,9 @@ objetos.Clear();
 GC.Collect();
 Console.WriteLine($"Memoria después de recolectar elementos {getMemory():F2}MB");
 
-Console.WriteLine("Redimensionamos la lista reservada al espacio real que ocupa y volvemos a ejecutar el GC");
+Console.WriteLine(
+    "Redimensionamos la lista reservada al espacio real que ocupa y volvemos a ejecutar el GC"
+);
 objetos.TrimExcess();
 GC.Collect();
 Console.WriteLine($"Memoria después de recolectar elementos {getMemory():F2}MB");

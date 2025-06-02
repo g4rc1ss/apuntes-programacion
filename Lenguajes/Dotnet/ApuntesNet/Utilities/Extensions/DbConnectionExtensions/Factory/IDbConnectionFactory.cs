@@ -7,7 +7,4 @@ public interface IDbConnectionFactory
     DbConnection CreateDbConnection();
 }
 
-public interface IDbConnectionFactory<TDatabaseNameContext> : IDbConnectionFactory
-{
-
-}
+public interface IDbConnectionFactory<TDatabaseNameContext> : IDbConnectionFactory { }

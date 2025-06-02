@@ -40,7 +40,9 @@ public static class UnmanagedMemoryMarshal
                 Console.WriteLine("La memoria no administrada ha sido liberada.");
             }
 
-            Console.WriteLine($"Memoria que usa el proceso: {Process.GetCurrentProcess().PrivateMemorySize64}");
+            Console.WriteLine(
+                $"Memoria que usa el proceso: {Process.GetCurrentProcess().PrivateMemorySize64}"
+            );
         }
     }
 }

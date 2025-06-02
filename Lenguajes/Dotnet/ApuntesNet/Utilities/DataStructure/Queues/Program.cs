@@ -10,7 +10,6 @@ List<int>? list = [.. queue];
 
 Console.WriteLine(string.Join(", ", list));
 
-
 Queues.Queue<int>? queue2 = new();
 queue2.Enqueue(1);
 queue2.Enqueue(2);

@@ -1,16 +1,18 @@
 ﻿WebApplicationBuilder? builder = WebApplication.CreateBuilder(args);
 
-
-builder.Services.AddAuthentication("Cookies").AddCookie(option => option.Cookie = new CookieBuilder
-{
-    Name = "Authentication",
-    HttpOnly = true,
-    SecurePolicy = CookieSecurePolicy.Always,
-    SameSite = SameSiteMode.Strict,
-    IsEssential = true,
-    Path = "/"
-
-});
+builder
+    .Services.AddAuthentication("Cookies")
+    .AddCookie(option =>
+        option.Cookie = new CookieBuilder
+        {
+            Name = "Authentication",
+            HttpOnly = true,
+            SecurePolicy = CookieSecurePolicy.Always,
+            SameSite = SameSiteMode.Strict,
+            IsEssential = true,
+            Path = "/",
+        }
+    );
 
 IMvcBuilder? razorPages = builder.Services.AddRazorPages();
 

@@ -25,7 +25,7 @@ public class AesEncryptText
                 aesAlg.Key = hash.ComputeHash(Encoding.UTF8.GetBytes(contraseña));
 
                 // Create an encryptor to perform the stream transform.
-                using ICryptoTransform? encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);                     // Create the streams used for encryption.
+                using ICryptoTransform? encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV); // Create the streams used for encryption.
                 using MemoryStream? msEncrypt = new();
                 using CryptoStream? csEncrypt = new(msEncrypt, encryptor, CryptoStreamMode.Write);
                 using (StreamWriter? swEncrypt = new(csEncrypt))

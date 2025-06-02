@@ -4,7 +4,12 @@ namespace TextFiles.ClaseFile;
 
 internal class ReadFile
 {
-    public ReadFile(string nombreArchivoText, string nombreArchivoTextAsync, string nombreArchivoBytes, string nombreArchivoAllLines)
+    public ReadFile(
+        string nombreArchivoText,
+        string nombreArchivoTextAsync,
+        string nombreArchivoBytes,
+        string nombreArchivoAllLines
+    )
     {
         string? textoArchivoText = File.ReadAllText(nombreArchivoText);
         Task<string>? textoArchivoTextAsync = File.ReadAllTextAsync(nombreArchivoTextAsync);
@@ -15,7 +20,9 @@ internal class ReadFile
         Console.WriteLine($"{nameof(textoArchivoText)}: {textoArchivoText}\n \n");
         Console.WriteLine($"{nameof(textoArchivoTextAsync)}: {textoArchivoTextAsync}\n \n");
 
-        Console.WriteLine($"{nameof(textoArchivoBytes)}: {Encoding.UTF8.GetString(textoArchivoBytes)}\n \n");
+        Console.WriteLine(
+            $"{nameof(textoArchivoBytes)}: {Encoding.UTF8.GetString(textoArchivoBytes)}\n \n"
+        );
 
         foreach (string? texto in textoArchivoLines)
         {

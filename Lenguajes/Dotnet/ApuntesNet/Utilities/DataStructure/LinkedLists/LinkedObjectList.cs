@@ -5,10 +5,7 @@ public class LinkedObjectList<TValue>
     private TValue? value;
     private LinkedObjectList<TValue>? nextNode;
 
-
-    public LinkedObjectList()
-    {
-    }
+    public LinkedObjectList() { }
 
     private LinkedObjectList(TValue newValue)
     {

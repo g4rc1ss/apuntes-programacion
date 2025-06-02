@@ -6,8 +6,5 @@ namespace HttpContextAuthentication.Pages;
 [Authorize]
 public class IndexModel : PageModel
 {
-    public void OnGet()
-    {
-
-    }
+    public void OnGet() { }
 }

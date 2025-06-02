@@ -1,9 +1,9 @@
+using System.Security.Claims;
+using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Primitives;
-using System.Security.Claims;
-using System.Text.Encodings.Web;
 
 namespace AuthWithApiKey;
 
@@ -25,7 +25,12 @@ internal class ApiKeyAuthHandler(
                 return Task.FromResult(AuthenticateResult.NoResult());
             }
 
-            if (!Request.Headers.TryGetValue(Constants.ApiKeyHeaderName, out StringValues headerApiKey))
+            if (
+                !Request.Headers.TryGetValue(
+                    Constants.ApiKeyHeaderName,
+                    out StringValues headerApiKey
+                )
+            )
             {
                 return Task.FromResult(AuthenticateResult.Fail("No api key provided"));
             }

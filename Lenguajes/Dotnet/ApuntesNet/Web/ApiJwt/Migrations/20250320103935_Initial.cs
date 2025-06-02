@@ -16,18 +16,21 @@ public partial class Initial : Migration
             {
                 Id = table.Column<string>(type: "text", nullable: false),
                 UserId = table.Column<int>(type: "integer", nullable: false),
-                ExpirationUtc = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                ExpirationUtc = table.Column<DateTime>(
+                    type: "timestamp with time zone",
+                    nullable: false
+                ),
             },
             constraints: table =>
             {
                 table.PrimaryKey("PK_UserJwtTokens", x => x.Id);
-            });
+            }
+        );
     }
 
     /// <inheritdoc />
     protected override void Down(MigrationBuilder migrationBuilder)
     {
-        migrationBuilder.DropTable(
-            name: "UserJwtTokens");
+        migrationBuilder.DropTable(name: "UserJwtTokens");
     }
 }

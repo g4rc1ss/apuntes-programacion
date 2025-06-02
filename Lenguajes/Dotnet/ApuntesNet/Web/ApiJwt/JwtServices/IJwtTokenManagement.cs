@@ -16,4 +16,5 @@ public record JwtData(
     string UserName,
     string UserEmail,
     string RefreshToken,
-    IEnumerable<Claim>? AdditionalClaims);
+    IEnumerable<Claim>? AdditionalClaims
+);

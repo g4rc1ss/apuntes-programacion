@@ -2,7 +2,6 @@ using OpenTelemetry.Exporter;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
-
 using Serilog;
 using Serilog.Events;
 
@@ -12,7 +11,8 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-builder.Services.AddOpenTelemetry()
+builder
+    .Services.AddOpenTelemetry()
     .ConfigureResource(resource => resource.AddService(builder.Configuration["AppName"]!))
     .WithTracing(trace =>
     {
@@ -20,8 +20,9 @@ builder.Services.AddOpenTelemetry()
         trace.AddHttpClientInstrumentation();
         // trace.AddSource("MongoDB.Driver.Core.Extensions.DiagnosticSources");
         // trace.AddSource(nameof(IDistributedCache));
-        trace.AddOtlpExporter(
-            exporter => exporter.Endpoint = new Uri(builder.Configuration["ConnectionStrings:OpenTelemetry"]!));
+        trace.AddOtlpExporter(exporter =>
+            exporter.Endpoint = new Uri(builder.Configuration["ConnectionStrings:OpenTelemetry"]!)
+        );
     })
     .WithMetrics(metric =>
     {
@@ -38,18 +39,22 @@ builder.Services.AddOpenTelemetry()
         });
     });
 
-builder.Host.UseSerilog((context, loggerConfiguration) =>
-{
-    loggerConfiguration
-        .MinimumLevel.Information()
-        .Enrich.WithProperty("Application", "HostWebApi")
-        .WriteTo.OpenTelemetry(options => options.Endpoint = builder.Configuration["ConnectionStrings:OpenTelemetry"]!);
-
-    if (context.HostingEnvironment.IsDevelopment())
+builder.Host.UseSerilog(
+    (context, loggerConfiguration) =>
     {
-        loggerConfiguration.WriteTo.Console(LogEventLevel.Debug);
+        loggerConfiguration
+            .MinimumLevel.Information()
+            .Enrich.WithProperty("Application", "HostWebApi")
+            .WriteTo.OpenTelemetry(options =>
+                options.Endpoint = builder.Configuration["ConnectionStrings:OpenTelemetry"]!
+            );
+
+        if (context.HostingEnvironment.IsDevelopment())
+        {
+            loggerConfiguration.WriteTo.Console(LogEventLevel.Debug);
+        }
     }
-});
+);
 
 WebApplication app = builder.Build();
 
@@ -61,11 +66,14 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/", (ILogger<Program> logger) =>
-{
-    logger.LogInformation("Hello World!");
+app.MapGet(
+    "/",
+    (ILogger<Program> logger) =>
+    {
+        logger.LogInformation("Hello World!");
 
-    return Results.Ok();
-});
+        return Results.Ok();
+    }
+);
 
 await app.RunAsync();

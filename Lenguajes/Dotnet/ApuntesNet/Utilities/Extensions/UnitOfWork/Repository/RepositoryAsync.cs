@@ -1,14 +1,13 @@
 ﻿using System.Linq.Expressions;
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Query;
-
 using UnitOfWork.Repository.Interfaces;
 
 namespace UnitOfWork.Repository;
 
-internal class RepositoryAsync<T> : IRepositoryAsync<T> where T : class
+internal class RepositoryAsync<T> : IRepositoryAsync<T>
+    where T : class
 {
     protected readonly DbContext _dbContext;
     protected readonly DbSet<T> _dbSet;
@@ -24,11 +23,14 @@ internal class RepositoryAsync<T> : IRepositoryAsync<T> where T : class
         return _dbContext;
     }
 
-    public Task<T> SingleAsync(Expression<Func<T, bool>> predicate = null,
+    public Task<T> SingleAsync(
+        Expression<Func<T, bool>> predicate = null,
         Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
-        Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null, bool disableTracking = true,
+        Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null,
+        bool disableTracking = true,
         IQueryable<T> queryCustom = null,
-        bool ignoreQueryFilter = false)
+        bool ignoreQueryFilter = false
+    )
     {
         IQueryable<T> query;
         if (queryCustom == null)
@@ -60,7 +62,9 @@ internal class RepositoryAsync<T> : IRepositoryAsync<T> where T : class
             query = query.IgnoreQueryFilters();
         }
 
-        return orderBy != null ? orderBy(query).SingleOrDefaultAsync() : query.SingleOrDefaultAsync();
+        return orderBy != null
+            ? orderBy(query).SingleOrDefaultAsync()
+            : query.SingleOrDefaultAsync();
     }
 
     public async Task<T> AddAsync(T entity, CancellationToken cancellationToken = default)
@@ -69,8 +73,7 @@ internal class RepositoryAsync<T> : IRepositoryAsync<T> where T : class
         return addEntity.Entity;
     }
 
-    public Task AddAsync(IEnumerable<T> entities,
-        CancellationToken cancellationToken = default)
+    public Task AddAsync(IEnumerable<T> entities, CancellationToken cancellationToken = default)
     {
         return _dbSet.AddRangeAsync(entities, cancellationToken);
     }
@@ -90,24 +93,44 @@ internal class RepositoryAsync<T> : IRepositoryAsync<T> where T : class
         return predicate == null ? _dbSet.LongCountAsync() : _dbSet.LongCountAsync(predicate);
     }
 
-    public virtual Task<K> MaxAsync<K>(Expression<Func<T, bool>> predicate = null, Expression<Func<T, K>> selector = null)
+    public virtual Task<K> MaxAsync<K>(
+        Expression<Func<T, bool>> predicate = null,
+        Expression<Func<T, K>> selector = null
+    )
     {
-        return predicate == null ? _dbSet.MaxAsync(selector) : _dbSet.Where(predicate).MaxAsync(selector);
+        return predicate == null
+            ? _dbSet.MaxAsync(selector)
+            : _dbSet.Where(predicate).MaxAsync(selector);
     }
 
-    public virtual Task<K> MinAsync<K>(Expression<Func<T, bool>> predicate = null, Expression<Func<T, K>> selector = null)
+    public virtual Task<K> MinAsync<K>(
+        Expression<Func<T, bool>> predicate = null,
+        Expression<Func<T, K>> selector = null
+    )
     {
-        return predicate == null ? _dbSet.MinAsync(selector) : _dbSet.Where(predicate).MaxAsync(selector);
+        return predicate == null
+            ? _dbSet.MinAsync(selector)
+            : _dbSet.Where(predicate).MaxAsync(selector);
     }
 
-    public virtual Task<decimal> AverageAsync(Expression<Func<T, bool>> predicate = null, Expression<Func<T, decimal>> selector = null)
+    public virtual Task<decimal> AverageAsync(
+        Expression<Func<T, bool>> predicate = null,
+        Expression<Func<T, decimal>> selector = null
+    )
     {
-        return predicate == null ? _dbSet.AverageAsync(selector) : _dbSet.Where(predicate).AverageAsync(selector);
+        return predicate == null
+            ? _dbSet.AverageAsync(selector)
+            : _dbSet.Where(predicate).AverageAsync(selector);
     }
 
-    public virtual Task<decimal> SumAsync(Expression<Func<T, bool>> predicate = null, Expression<Func<T, decimal>> selector = null)
+    public virtual Task<decimal> SumAsync(
+        Expression<Func<T, bool>> predicate = null,
+        Expression<Func<T, decimal>> selector = null
+    )
     {
-        return predicate == null ? _dbSet.SumAsync(selector) : _dbSet.Where(predicate).SumAsync(selector);
+        return predicate == null
+            ? _dbSet.SumAsync(selector)
+            : _dbSet.Where(predicate).SumAsync(selector);
     }
 
     public Task<bool> ExistsAsync(Expression<Func<T, bool>> selector = null)

@@ -8,5 +8,4 @@ internal class Helper
     internal static IMongoClient GetMongoClient => new MongoClient(ConnectionString);
 
     internal static IMongoDatabase GetConnectionDatabase => GetMongoClient.GetDatabase("prueba");
-
 }

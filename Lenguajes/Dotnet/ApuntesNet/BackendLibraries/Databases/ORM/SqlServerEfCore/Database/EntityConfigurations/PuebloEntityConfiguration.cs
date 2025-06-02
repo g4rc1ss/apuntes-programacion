@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
 using SqlServerEfCore.Database.Entities;
 
 namespace SqlServerEfCore.Database.EntityConfigurations;
@@ -23,7 +22,8 @@ public class PuebloEntityConfiguration : IEntityTypeConfiguration<Pueblo>
         builder.HasQueryFilter(x => !x.IsDeleted);
 
         // Un pueblo puede tener varios usuarios, 1 usuario solo puede pertenecer a un pueblo
-        builder.HasMany<Usuario>(x => x.Usuarios)
+        builder
+            .HasMany<Usuario>(x => x.Usuarios)
             .WithOne(x => x.PuebloNavigation)
             .HasForeignKey(usuario => usuario.PuebloId)
             .OnDelete(DeleteBehavior.Cascade);
@@ -33,10 +33,8 @@ public class PuebloEntityConfiguration : IEntityTypeConfiguration<Pueblo>
         //     v => JsonSerializer.Deserialize<List<object>>(v, _jsonSerializerOptions) ?? new List<object>()
         // );
 
-        builder.Property(x => x.Nombre)
-            .IsRequired()
-            .HasColumnType("varchar(100)");
-        // Creamos una conversion automatica, por ejemplo, cuando guardamos un JSON en BBDD. 
+        builder.Property(x => x.Nombre).IsRequired().HasColumnType("varchar(100)");
+        // Creamos una conversion automatica, por ejemplo, cuando guardamos un JSON en BBDD.
         // HasConversion(referencesConverter);
     }
 }

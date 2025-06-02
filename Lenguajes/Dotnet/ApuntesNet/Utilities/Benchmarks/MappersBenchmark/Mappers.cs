@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
-
 using BenchmarkDotNet.Attributes;
-
 using MappersBenchmark.ClassToMap;
 using MappersBenchmark.MappersProfiles;
 
@@ -15,7 +13,9 @@ public class Mappers
 
     public Mappers()
     {
-        _autoMapper = new MapperConfiguration(x => x.AddProfile(new AutoMapperProfile())).CreateMapper();
+        _autoMapper = new MapperConfiguration(x =>
+            x.AddProfile(new AutoMapperProfile())
+        ).CreateMapper();
         _mapperly = new MapperlyProfile();
     }
 

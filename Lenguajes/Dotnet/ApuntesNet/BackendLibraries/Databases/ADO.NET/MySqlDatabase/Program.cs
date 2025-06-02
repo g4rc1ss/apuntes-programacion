@@ -1,6 +1,7 @@
 ﻿using MySqlDatabase.MySQL;
 
-const string CONNECTION_STRING = "server=localhost;user=root;database=AdoNetMySqlDatabase;port=3306;password=123456";
+const string CONNECTION_STRING =
+    "server=localhost;user=root;database=AdoNetMySqlDatabase;port=3306;password=123456";
 
 _ = new CreateDatabaseAndTables(CONNECTION_STRING);
 _ = new InsertMysql(CONNECTION_STRING);

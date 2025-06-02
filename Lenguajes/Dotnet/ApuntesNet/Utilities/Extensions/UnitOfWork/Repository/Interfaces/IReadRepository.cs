@@ -1,8 +1,6 @@
 ﻿using System.Linq.Expressions;
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
-
 
 namespace UnitOfWork.Repository.Interfaces;
 
@@ -10,13 +8,15 @@ namespace UnitOfWork.Repository.Interfaces;
 /// Implementa los métodos de lectura del repositorio
 /// </summary>
 /// <typeparam name="T"></typeparam>
-public interface IReadRepository<T> where T : class
+public interface IReadRepository<T>
+    where T : class
 {
     /// <summary>
     /// Devuelve el contexto de base de datos
     /// </summary>
     /// <returns></returns>
     DbContext GetContext();
+
     /// <summary>
     /// Ejecuta una raw sql
     /// </summary>
@@ -42,10 +42,12 @@ public interface IReadRepository<T> where T : class
     /// <param name="queryCustom">Se le puede indicar un query inicial, por ejemplo para join</param>
     /// <param name="ignoreQueryFilter">activa o desactiva ignorar la query global para el tenant y baja</param>
     /// <returns></returns>
-    T SelectSingle(Expression<Func<T, bool>> predicate = null,
+    T SelectSingle(
+        Expression<Func<T, bool>> predicate = null,
         Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
         Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null,
         bool disableTracking = true,
         IQueryable<T> queryCustom = null,
-        bool ignoreQueryFilter = false);
+        bool ignoreQueryFilter = false
+    );
 }

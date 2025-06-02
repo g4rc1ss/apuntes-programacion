@@ -25,7 +25,8 @@ internal class UsoParallelLINQ
         int[]? parallelQuery2 = (
             from num in source.AsParallel()
             where num % 10 == 0
-            select num).ToArray();
+            select num
+        ).ToArray();
 
         foreach (int x in parallelQuery2)
         {
@@ -33,7 +34,10 @@ internal class UsoParallelLINQ
         }
 
         // Method syntax is also supported
-        ParallelQuery<int>? parallelQuery3 = source.AsParallel().Where(n => n % 10 == 0).Select(n => n);
+        ParallelQuery<int>? parallelQuery3 = source
+            .AsParallel()
+            .Where(n => n % 10 == 0)
+            .Select(n => n);
 
         foreach (int z in parallelQuery3)
         {

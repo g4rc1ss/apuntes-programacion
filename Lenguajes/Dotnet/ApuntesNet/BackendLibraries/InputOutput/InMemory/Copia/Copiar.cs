@@ -2,9 +2,7 @@
 
 internal class Copiar
 {
-    public Copiar()
-    {
-    }
+    public Copiar() { }
 
     internal static async Task Copy(MemoryStream streamEscrito)
     {

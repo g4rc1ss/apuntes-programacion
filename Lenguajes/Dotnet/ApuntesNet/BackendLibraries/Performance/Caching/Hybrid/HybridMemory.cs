@@ -25,11 +25,13 @@ internal class HybridMemory
             async x => await Task.FromResult(Enumerable.Empty<int>())
         );
 
-        listaCacheRecuperada.Select(x =>
-        {
-            Console.WriteLine(x);
-            return x;
-        }).ToList();
+        listaCacheRecuperada
+            .Select(x =>
+            {
+                Console.WriteLine(x);
+                return x;
+            })
+            .ToList();
 
         await _hybridCache.RemoveAsync(ObjectsToCaching.cacheKey);
     }

@@ -6,7 +6,6 @@ namespace Decorator;
 // way.
 internal sealed class ConcreteDecoratorA(Component comp) : PatronDecorator(comp)
 {
-
     // Decorators may call parent implementation of the operation, instead
     // of calling the wrapped object directly. This approach simplifies
     // extension of decorator classes.

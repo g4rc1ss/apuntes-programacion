@@ -1,5 +1,4 @@
 ﻿using MappersBenchmark.ClassToMap;
-
 using Riok.Mapperly.Abstractions;
 
 namespace MappersBenchmark.MappersProfiles;

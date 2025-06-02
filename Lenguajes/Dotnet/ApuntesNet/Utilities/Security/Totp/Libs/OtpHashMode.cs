@@ -18,5 +18,5 @@ public enum OtpHashMode
     /// <summary>
     /// Algoritmo Sha512
     /// </summary>
-    SHA512 = 2
+    SHA512 = 2,
 }

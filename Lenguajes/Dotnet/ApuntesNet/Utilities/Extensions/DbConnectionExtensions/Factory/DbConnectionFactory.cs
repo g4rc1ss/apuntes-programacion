@@ -17,9 +17,11 @@ internal class DbConnectionFactory : IDbConnectionFactory
     }
 }
 
-internal class DbConnectionFactory<TDatabaseNameContext> : DbConnectionFactory, IDbConnectionFactory<TDatabaseNameContext> where TDatabaseNameContext : class
+internal class DbConnectionFactory<TDatabaseNameContext>
+    : DbConnectionFactory,
+        IDbConnectionFactory<TDatabaseNameContext>
+    where TDatabaseNameContext : class
 {
-    internal DbConnectionFactory(Func<DbConnection> connection) : base(connection)
-    {
-    }
+    internal DbConnectionFactory(Func<DbConnection> connection)
+        : base(connection) { }
 }

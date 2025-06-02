@@ -2,11 +2,16 @@
 
 namespace PubSubCommunication.Consumers.Handler;
 
-public class MessageHandlerRegistry(IEnumerable<IMessageHandler> messageHandlers) : IMessageHandlerRegistry
+public class MessageHandlerRegistry(IEnumerable<IMessageHandler> messageHandlers)
+    : IMessageHandlerRegistry
 {
-    private readonly ConcurrentDictionary<string, IEnumerable<IMessageHandler>> _cachedHandlers = new();
+    private readonly ConcurrentDictionary<string, IEnumerable<IMessageHandler>> _cachedHandlers =
+        new();
 
-    public IEnumerable<IMessageHandler> GetMessageHandlersForType(Type messageHandlerType, Type messageType)
+    public IEnumerable<IMessageHandler> GetMessageHandlersForType(
+        Type messageHandlerType,
+        Type messageType
+    )
     {
         string? key = $"{messageHandlerType}-{messageType}";
         if (_cachedHandlers.TryGetValue(key, out IEnumerable<IMessageHandler>? existingHandlers))
@@ -22,7 +27,13 @@ public class MessageHandlerRegistry(IEnumerable<IMessageHandler> messageHandlers
 
     private IList<IMessageHandler> GetMessageHandlersInternal(Type messageHandlerType)
     {
-        return [.. messageHandlers.Where(messageHandler => messageHandler.GetType().GetInterfaces().Contains(messageHandlerType)).Distinct()];
+        return
+        [
+            .. messageHandlers
+                .Where(messageHandler =>
+                    messageHandler.GetType().GetInterfaces().Contains(messageHandlerType)
+                )
+                .Distinct(),
+        ];
     }
 }
-

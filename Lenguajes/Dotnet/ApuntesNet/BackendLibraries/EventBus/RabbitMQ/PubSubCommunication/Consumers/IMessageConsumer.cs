@@ -1,12 +1,8 @@
-﻿
-namespace PubSubCommunication.Consumers;
+﻿namespace PubSubCommunication.Consumers;
 
 public interface IMessageConsumer : IDisposable
 {
     Task StartAsync(CancellationToken cancellationToken = default);
 }
 
-public interface IMessageConsumer<T> : IMessageConsumer
-{
-
-}
+public interface IMessageConsumer<T> : IMessageConsumer { }

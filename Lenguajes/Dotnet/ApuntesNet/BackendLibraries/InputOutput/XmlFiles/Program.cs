@@ -1,7 +1,6 @@
 ﻿using XmlFiles.Read;
 using XmlFiles.Write;
 
-
 const string NOMBRE_ARCHIVO_XML = "archivo.xml";
 const string NOMBRE_ARCHIVO_XML_LINQ = "archivoLinq.xml";
 
@@ -22,7 +21,6 @@ try
 
     Console.WriteLine("\n--------------------------------------------------------------------\n");
     _ = new ReadXmlWithXpath(NOMBRE_ARCHIVO_XML);
-
 }
 finally
 {
@@ -36,4 +34,3 @@ finally
     Console.WriteLine(File.ReadAllText(NOMBRE_ARCHIVO_XML_LINQ));
     File.Delete(NOMBRE_ARCHIVO_XML_LINQ);
 }
-

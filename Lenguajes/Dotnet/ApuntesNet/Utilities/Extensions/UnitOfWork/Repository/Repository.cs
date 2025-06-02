@@ -1,14 +1,13 @@
 ﻿using System.Linq.Expressions;
 using System.Reflection;
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-
 using UnitOfWork.Repository.Interfaces;
 
 namespace UnitOfWork.Repository;
 
-internal class Repository<T>(DbContext context) : BaseRepository<T>(context), IRepository<T> where T : class
+internal class Repository<T>(DbContext context) : BaseRepository<T>(context), IRepository<T>
+    where T : class
 {
     public void Add(T entity)
     {
@@ -20,12 +19,10 @@ internal class Repository<T>(DbContext context) : BaseRepository<T>(context), IR
         _dbSet.AddRange(entities);
     }
 
-
     public void Add(IEnumerable<T> entities)
     {
         _dbSet.AddRange(entities);
     }
-
 
     public void Delete(T entity)
     {
@@ -36,11 +33,13 @@ internal class Repository<T>(DbContext context) : BaseRepository<T>(context), IR
         }
     }
 
-
     public void Delete(object id)
     {
         TypeInfo? typeInfo = typeof(T).GetTypeInfo();
-        IProperty? key = dbContext.Model.FindEntityType(typeInfo).FindPrimaryKey().Properties.FirstOrDefault();
+        IProperty? key = dbContext
+            .Model.FindEntityType(typeInfo)
+            .FindPrimaryKey()
+            .Properties.FirstOrDefault();
         PropertyInfo? property = typeInfo.GetProperty(key?.Name);
         if (property != null)
         {
@@ -78,7 +77,6 @@ internal class Repository<T>(DbContext context) : BaseRepository<T>(context), IR
         _dbSet.UpdateRange(entities);
     }
 
-
     public void Update(IEnumerable<T> entities)
     {
         _dbSet.UpdateRange(entities);
@@ -99,22 +97,36 @@ internal class Repository<T>(DbContext context) : BaseRepository<T>(context), IR
         return predicate == null ? _dbSet.LongCount() : _dbSet.LongCount(predicate);
     }
 
-    public virtual TK Max<TK>(Expression<Func<T, bool>> predicate = null, Expression<Func<T, TK>> selector = null)
+    public virtual TK Max<TK>(
+        Expression<Func<T, bool>> predicate = null,
+        Expression<Func<T, TK>> selector = null
+    )
     {
         return predicate == null ? _dbSet.Max(selector) : _dbSet.Where(predicate).Max(selector);
     }
 
-    public virtual TK Min<TK>(Expression<Func<T, bool>> predicate = null, Expression<Func<T, TK>> selector = null)
+    public virtual TK Min<TK>(
+        Expression<Func<T, bool>> predicate = null,
+        Expression<Func<T, TK>> selector = null
+    )
     {
         return predicate == null ? _dbSet.Min(selector) : _dbSet.Where(predicate).Min(selector);
     }
 
-    public virtual decimal Average(Expression<Func<T, bool>> predicate = null, Expression<Func<T, decimal>> selector = null)
+    public virtual decimal Average(
+        Expression<Func<T, bool>> predicate = null,
+        Expression<Func<T, decimal>> selector = null
+    )
     {
-        return predicate == null ? _dbSet.Average(selector) : _dbSet.Where(predicate).Average(selector);
+        return predicate == null
+            ? _dbSet.Average(selector)
+            : _dbSet.Where(predicate).Average(selector);
     }
 
-    public virtual decimal Sum(Expression<Func<T, bool>> predicate = null, Expression<Func<T, decimal>> selector = null)
+    public virtual decimal Sum(
+        Expression<Func<T, bool>> predicate = null,
+        Expression<Func<T, decimal>> selector = null
+    )
     {
         return predicate == null ? _dbSet.Sum(selector) : _dbSet.Where(predicate).Sum(selector);
     }

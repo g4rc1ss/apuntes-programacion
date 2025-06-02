@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-
 using Paging.Internal;
 
 namespace Paging.PaginateExtensions;
@@ -17,11 +16,19 @@ public static class PaginateExtensions
     /// <param name="from"></param>
     /// <returns></returns>
     /// <exception cref="ArgumentException"></exception>
-    public static IPaginate<T> ToPaginate<T>(this IEnumerable<T> source, int index, int size, int from = 0) where T : class
+    public static IPaginate<T> ToPaginate<T>(
+        this IEnumerable<T> source,
+        int index,
+        int size,
+        int from = 0
+    )
+        where T : class
     {
         if (from > index)
         {
-            throw new ArgumentException($"indexFrom: {from} > pageIndex: {index}, must indexFrom <= pageIndex");
+            throw new ArgumentException(
+                $"indexFrom: {from} > pageIndex: {index}, must indexFrom <= pageIndex"
+            );
         }
 
         int count = source.Count();
@@ -39,7 +46,7 @@ public static class PaginateExtensions
     }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="source"></param>
@@ -48,11 +55,19 @@ public static class PaginateExtensions
     /// <param name="from"></param>
     /// <returns></returns>
     /// <exception cref="ArgumentException"></exception>
-    public static IPaginate<T> ToPaginate<T>(this IQueryable<T> source, int index, int size, int from = 0) where T : class
+    public static IPaginate<T> ToPaginate<T>(
+        this IQueryable<T> source,
+        int index,
+        int size,
+        int from = 0
+    )
+        where T : class
     {
         if (from > index)
         {
-            throw new ArgumentException($"indexFrom: {from} > pageIndex: {index}, must indexFrom <= pageIndex");
+            throw new ArgumentException(
+                $"indexFrom: {from} > pageIndex: {index}, must indexFrom <= pageIndex"
+            );
         }
 
         int count = source.Count();
@@ -69,9 +84,8 @@ public static class PaginateExtensions
         };
     }
 
-
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="source"></param>
@@ -81,8 +95,14 @@ public static class PaginateExtensions
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     /// <exception cref="ArgumentException"></exception>
-    public static async Task<IPaginate<T>> ToPaginateAsync<T>(this IQueryable<T> source, int index, int size, int from = 0,
-        CancellationToken cancellationToken = default) where T : class
+    public static async Task<IPaginate<T>> ToPaginateAsync<T>(
+        this IQueryable<T> source,
+        int index,
+        int size,
+        int from = 0,
+        CancellationToken cancellationToken = default
+    )
+        where T : class
     {
         if (from > index)
         {
@@ -90,7 +110,10 @@ public static class PaginateExtensions
         }
 
         int count = await source.CountAsync(cancellationToken);
-        List<T>? items = await source.Skip((index - from) * size).Take(size).ToListAsync(cancellationToken);
+        List<T>? items = await source
+            .Skip((index - from) * size)
+            .Take(size)
+            .ToListAsync(cancellationToken);
 
         return new Paginate<T>
         {
@@ -99,7 +122,7 @@ public static class PaginateExtensions
             From = from,
             Count = count,
             Items = items,
-            Pages = (int)Math.Ceiling(count / (double)size)
+            Pages = (int)Math.Ceiling(count / (double)size),
         };
     }
 }

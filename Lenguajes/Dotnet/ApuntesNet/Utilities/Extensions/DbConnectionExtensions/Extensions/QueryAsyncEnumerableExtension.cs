@@ -4,12 +4,12 @@ using System.Data.Common;
 namespace DbConnectionExtensions.Extensions;
 
 /// <summary>
-/// 
+///
 /// </summary>
 public static class QueryAsyncEnumerableExtension
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="connection"></param>
@@ -17,13 +17,18 @@ public static class QueryAsyncEnumerableExtension
     /// <param name="parameters"></param>
     /// <param name="mapper"></param>
     /// <returns></returns>
-    public static IAsyncEnumerable<T> ExecuteQueryAsync<T>(this DbConnection connection, string sql, IEnumerable<DbParameter> parameters, Func<DbDataReader, T> mapper)
+    public static IAsyncEnumerable<T> ExecuteQueryAsync<T>(
+        this DbConnection connection,
+        string sql,
+        IEnumerable<DbParameter> parameters,
+        Func<DbDataReader, T> mapper
+    )
     {
         return ExecuteSelectQueryAsync(connection, sql, parameters, mapper, CommandType.Text);
     }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="connection"></param>
@@ -31,12 +36,29 @@ public static class QueryAsyncEnumerableExtension
     /// <param name="parameters"></param>
     /// <param name="mapper"></param>
     /// <returns></returns>
-    public static IAsyncEnumerable<T> ExecuteProcedureAsync<T>(this DbConnection connection, string nameOfProcedure, IEnumerable<DbParameter> parameters, Func<DbDataReader, T> mapper)
+    public static IAsyncEnumerable<T> ExecuteProcedureAsync<T>(
+        this DbConnection connection,
+        string nameOfProcedure,
+        IEnumerable<DbParameter> parameters,
+        Func<DbDataReader, T> mapper
+    )
     {
-        return ExecuteSelectQueryAsync(connection, nameOfProcedure, parameters, mapper, CommandType.StoredProcedure);
+        return ExecuteSelectQueryAsync(
+            connection,
+            nameOfProcedure,
+            parameters,
+            mapper,
+            CommandType.StoredProcedure
+        );
     }
 
-    private static async IAsyncEnumerable<T> ExecuteSelectQueryAsync<T>(DbConnection dbConnection, string sql, IEnumerable<DbParameter> parameters, Func<DbDataReader, T> mapper, CommandType typeOfCommand)
+    private static async IAsyncEnumerable<T> ExecuteSelectQueryAsync<T>(
+        DbConnection dbConnection,
+        string sql,
+        IEnumerable<DbParameter> parameters,
+        Func<DbDataReader, T> mapper,
+        CommandType typeOfCommand
+    )
     {
         using (dbConnection)
         {
@@ -58,5 +80,4 @@ public static class QueryAsyncEnumerableExtension
             }
         }
     }
-
 }

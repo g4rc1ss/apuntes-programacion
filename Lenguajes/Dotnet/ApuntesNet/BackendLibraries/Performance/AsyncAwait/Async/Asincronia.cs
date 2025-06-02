@@ -20,9 +20,7 @@ public class Asincronia
 
     internal async Task ExecuteIEnumerableAsync()
     {
-        await foreach (int item in RangeAsync(0, int.MaxValue))
-        {
-        }
+        await foreach (int item in RangeAsync(0, int.MaxValue)) { }
         Console.WriteLine("Codigo asincrono IAsyncEnumerable terminado");
     }
 

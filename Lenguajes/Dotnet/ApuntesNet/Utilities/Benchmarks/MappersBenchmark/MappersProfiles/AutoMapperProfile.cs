@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-
 using MappersBenchmark.ClassToMap;
 
 namespace MappersBenchmark.MappersProfiles;
@@ -16,8 +15,7 @@ public class AutoMapperProfile : Profile
             .ForMember(x => x.IsRead, y => y.MapFrom(x => x.EstaLeido))
             .ReverseMap();
 
-        CreateMap<Propiedad, PropertyDTO>()
-            .ReverseMap();
+        CreateMap<Propiedad, PropertyDTO>().ReverseMap();
 
         CreateMap<User, UserDTO>()
             .ForMember(x => x.Nombre, y => y.MapFrom(x => x.Name))

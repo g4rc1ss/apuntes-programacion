@@ -6,4 +6,3 @@ public interface IConsumerManager<TMessage>
     void StopExecution();
     CancellationToken GetCancellationToken();
 }
-

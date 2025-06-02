@@ -1,8 +1,8 @@
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 
 namespace ApiJwt.JwtServices;
 
@@ -17,15 +17,15 @@ public class JwtTokenManagement(
     {
         SigningCredentials credentials = new(
             new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOptions.Value.Key)),
-            SecurityAlgorithms.HmacSha256Signature);
-
+            SecurityAlgorithms.HmacSha256Signature
+        );
 
         List<Claim> claims =
         [
             new(ClaimsKey.UserId, jwtData.UserId),
             new(ClaimsKey.UserName, jwtData.UserName),
             new(ClaimsKey.UserEmail, jwtData.UserEmail),
-            new(ClaimsKey.RefreshToken, jwtData.RefreshToken)
+            new(ClaimsKey.RefreshToken, jwtData.RefreshToken),
         ];
 
         if (jwtData.AdditionalClaims != null)
@@ -56,10 +56,14 @@ public class JwtTokenManagement(
             RequireExpirationTime = true,
             ValidIssuer = jwtOptions.Value.Issuer,
             ValidAudience = jwtOptions.Value.Audience,
-            IssuerSigningKey = key
+            IssuerSigningKey = key,
         };
         JwtSecurityTokenHandler? tokenHandler = new();
-        tokenHandler.ValidateToken(accessToken, validationParameters, out SecurityToken validatedToken);
+        tokenHandler.ValidateToken(
+            accessToken,
+            validationParameters,
+            out SecurityToken validatedToken
+        );
 
         JwtSecurityToken? token = tokenHandler.ReadJwtToken(accessToken);
 
@@ -80,12 +84,11 @@ public class JwtTokenManagement(
     {
         if (string.IsNullOrWhiteSpace(accessToken))
         {
-            return httpContextAccessor?.HttpContext?.User?.Claims ??
-                   throw new ArgumentNullException(nameof(accessToken));
+            return httpContextAccessor?.HttpContext?.User?.Claims
+                ?? throw new ArgumentNullException(nameof(accessToken));
         }
 
-        JwtSecurityToken? securityToken = new JwtSecurityTokenHandler()
-            .ReadJwtToken(accessToken);
+        JwtSecurityToken? securityToken = new JwtSecurityTokenHandler().ReadJwtToken(accessToken);
 
         return securityToken.Claims;
     }

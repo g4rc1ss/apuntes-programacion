@@ -1,12 +1,10 @@
 ﻿using AutoMapper;
-
 using AutomapperLibrary.Internal;
 
 namespace AutomapperLibrary;
 
 public class AutoMappingClasses(IMapper mapper)
 {
-
     public void Mapping()
     {
         PuebloEntity? entidad = new()

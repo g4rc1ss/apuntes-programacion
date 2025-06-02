@@ -16,7 +16,6 @@ public class EnviarEmail
         Console.WriteLine("Constraseña");
         string? contraseña = Console.ReadLine();
 
-
         Console.WriteLine("A quien quieres mandar el mensaje?");
         string? receptor = Console.ReadLine();
 
@@ -26,20 +25,12 @@ public class EnviarEmail
         Console.WriteLine("Cuerpo");
         string? cuerpo = Console.ReadLine();
 
-        MailMessage? mensaje = new(
-            emisor,
-            receptor,
-            asunto,
-            cuerpo
-        );
+        MailMessage? mensaje = new(emisor, receptor, asunto, cuerpo);
 
         using (SmtpClient? cliente = new(servidorDeEnvio))
         {
             cliente.EnableSsl = true;
-            cliente.Credentials = new NetworkCredential(
-                emisor,
-                contraseña
-            );
+            cliente.Credentials = new NetworkCredential(emisor, contraseña);
             cliente.Send(mensaje);
         }
         Console.WriteLine();

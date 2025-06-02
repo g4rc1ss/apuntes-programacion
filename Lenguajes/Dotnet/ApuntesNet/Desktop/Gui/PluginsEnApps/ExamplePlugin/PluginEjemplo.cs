@@ -18,4 +18,3 @@ public class PluginEjemplo : IPlugin
         ExportInterface = new ExportInterface(new RequestWindow().Content!, false);
     }
 }
-

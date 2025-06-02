@@ -8,10 +8,10 @@ public class LeerBinario
         // Muestra la información tal cual está escrita en el archivo binario:
         using FileStream? fs = new(nombreArchivo, FileMode.Open, FileAccess.Read);
         Console.Write(Environment.NewLine);
-        // Lectura y conversión de los datos binarios en el tipo de 
+        // Lectura y conversión de los datos binarios en el tipo de
         // correspondiente:
 
-        // Posiciona el cursor desde se iniciara la lectura del 
+        // Posiciona el cursor desde se iniciara la lectura del
         // archivo `ArchivoBinario`:
         fs.Position = 0;
         using BinaryReader? br = new(fs);

@@ -8,7 +8,12 @@ public class UsarAppSettingsJson
 
     internal void ArchivosConfiguracion()
     {
-        IConfigurationRoot? archivoConfiguracion = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
-        LocalizacionArchivo = archivoConfiguracion.GetSection("AppSettings").GetSection("LOCALIZACION_ARCHIVO").Value;
+        IConfigurationRoot? archivoConfiguracion = new ConfigurationBuilder()
+            .AddJsonFile("appsettings.json")
+            .Build();
+        LocalizacionArchivo = archivoConfiguracion
+            .GetSection("AppSettings")
+            .GetSection("LOCALIZACION_ARCHIVO")
+            .Value;
     }
 }

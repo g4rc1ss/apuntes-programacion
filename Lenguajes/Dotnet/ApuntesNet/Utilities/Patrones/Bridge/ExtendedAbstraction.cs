@@ -8,7 +8,7 @@ internal class ExtendedAbstraction(IImplementation implementation) : Abstraction
 {
     public override string Operation()
     {
-        return "ExtendedAbstraction: Extended operation with:\n" +
-            implementation.OperationImplementation();
+        return "ExtendedAbstraction: Extended operation with:\n"
+            + implementation.OperationImplementation();
     }
 }

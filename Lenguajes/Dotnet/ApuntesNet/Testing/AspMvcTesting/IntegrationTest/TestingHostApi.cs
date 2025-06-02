@@ -5,7 +5,6 @@ namespace AspMvcTesting.IntegrationTest;
 [Collection("Identificador")]
 public class TestingHostApi(TestConfigurationToFixture fixture)
 {
-
     [Fact]
     public async Task WhenGetAllApiWeatherForecastThenReturnValueAsync()
     {

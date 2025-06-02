@@ -15,10 +15,12 @@ public class AesEncryptFile
             if (!File.Exists(_archivoAES_TXT))
             {
                 StreamWriter? archivoEscritura = File.CreateText(_archivoAES_TXT);
-                archivoEscritura.Write("Esto es una prueba de escritura en un archivo de " +
-                    "texto. \n" +
-                   "Siguiente Linea jajajaja");
-                archivoEscritura.Close();//guardamos y cerramos el archivo
+                archivoEscritura.Write(
+                    "Esto es una prueba de escritura en un archivo de "
+                        + "texto. \n"
+                        + "Siguiente Linea jajajaja"
+                );
+                archivoEscritura.Close(); //guardamos y cerramos el archivo
             }
 
             Console.WriteLine("Escribe la contraseña");
@@ -30,10 +32,22 @@ public class AesEncryptFile
                 aesAlg.Key = hash.ComputeHash(Encoding.UTF8.GetBytes(contraseña));
 
                 using ICryptoTransform? encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
-                using FileStream? fileStreamOutput = new(_archivoAES_TXT_Cifrado, FileMode.OpenOrCreate, FileAccess.Write);
-                using CryptoStream? cryptStream = new(fileStreamOutput, encryptor, CryptoStreamMode.Write);
-                using FileStream? fileStreamInput = new(_archivoAES_TXT, FileMode.Open, FileAccess.Read);
-                for (int data; (data = fileStreamInput.ReadByte()) != -1;)
+                using FileStream? fileStreamOutput = new(
+                    _archivoAES_TXT_Cifrado,
+                    FileMode.OpenOrCreate,
+                    FileAccess.Write
+                );
+                using CryptoStream? cryptStream = new(
+                    fileStreamOutput,
+                    encryptor,
+                    CryptoStreamMode.Write
+                );
+                using FileStream? fileStreamInput = new(
+                    _archivoAES_TXT,
+                    FileMode.Open,
+                    FileAccess.Read
+                );
+                for (int data; (data = fileStreamInput.ReadByte()) != -1; )
                 {
                     cryptStream.WriteByte((byte)data);
                 }

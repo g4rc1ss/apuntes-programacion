@@ -4,7 +4,9 @@ namespace DataProtectionLibrary.Protections;
 
 internal class DataProtectionExample(IDataProtectionProvider dataProtection)
 {
-    private readonly IDataProtector _dataProtector = dataProtection.CreateProtector("purpose.para.encriptar.identificar.los.datos");
+    private readonly IDataProtector _dataProtector = dataProtection.CreateProtector(
+        "purpose.para.encriptar.identificar.los.datos"
+    );
 
     public void ProtectingData()
     {
@@ -16,6 +18,5 @@ internal class DataProtectionExample(IDataProtectionProvider dataProtection)
 
         string? valorDesencriptado = _dataProtector.Unprotect(valorEncriptado);
         Console.WriteLine($"{valorDesencriptado}");
-
     }
 }

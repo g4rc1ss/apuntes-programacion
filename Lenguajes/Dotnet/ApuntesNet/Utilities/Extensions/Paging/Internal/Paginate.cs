@@ -1,6 +1,7 @@
 ﻿namespace Paging.Internal;
 
-internal class Paginate<T> : IPaginate<T> where T : class
+internal class Paginate<T> : IPaginate<T>
+    where T : class
 {
     public int From { get; set; }
     public int Index { get; set; }

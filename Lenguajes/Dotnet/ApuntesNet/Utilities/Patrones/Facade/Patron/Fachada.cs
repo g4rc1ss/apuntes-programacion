@@ -17,12 +17,13 @@ public class Fachada
     // Esto ejecuta de forma invisible al usuario un proceso mas complejo de clases, etc.
     public string Operation()
     {
-        string? result = $"Facade initializes subsystems:\n" +
-                         $"{subsystem1.Operation1()}" +
-                         $"{subsystem2.Operation1()}" +
-                         $"Facade orders subsystems to perform the action:\n" +
-                         $"{subsystem1.OperationN()}" +
-                         $"{subsystem2.OperationZ()}";
+        string? result =
+            $"Facade initializes subsystems:\n"
+            + $"{subsystem1.Operation1()}"
+            + $"{subsystem2.Operation1()}"
+            + $"Facade orders subsystems to perform the action:\n"
+            + $"{subsystem1.OperationN()}"
+            + $"{subsystem2.OperationZ()}";
         return result;
     }
 }

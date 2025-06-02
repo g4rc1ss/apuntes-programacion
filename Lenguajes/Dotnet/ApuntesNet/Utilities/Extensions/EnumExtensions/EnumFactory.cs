@@ -5,17 +5,17 @@ namespace EnumExtensions;
 /// <summary>
 /// Muchas de nuestras enumeraciones correspondería con una clave Alfanumérica, no una clave númerica.
 /// Para aprovechar la comodidad del trabajo con enumeraciones se ha creado la clase EnumFactory
-/// que lo que hará es dada una enumeración y un array de claves devolverá la clave correspondiente a un 
+/// que lo que hará es dada una enumeración y un array de claves devolverá la clave correspondiente a un
 /// EnumItem y vicersa.
-/// 
+///
 /// -- R E S T R I C C I O N E S --
-/// 
+///
 /// 1) Toda enumeración que tenga asociada una clave alfanumerica se debe crear y asociado a la misma un array
 /// con las claves, que se llamará por convención CONST_NombredelaEnumeracion
 ///   El indice de la clave dentro del array debe corresponder con el valor de la enumeración.
-/// 2) Toda enumeración de este tipo debería tener una clave Unknown = -1 
+/// 2) Toda enumeración de este tipo debería tener una clave Unknown = -1
 /// 3) La clave asociada al EnumItem Unknown será " "
-/// 
+///
 /// </summary>
 /// <example>
 ///  public enum SiNo
@@ -25,7 +25,7 @@ namespace EnumExtensions;
 ///    Unkwown = -1
 ///  }
 ///  public string[] CONST_Sino={"S","N"}
-/// 
+///
 /// -- Uso --
 /// EnumItemFromKey/<SiNo/>(CONST_SiNo,"S") devolverá Sino.Si
 /// KeyFromEnumItem/<SiNo/>(CONST_SiNo, Sino.Si) devolverá "S"
@@ -34,7 +34,6 @@ namespace EnumExtensions;
 /// </example>
 public static class EnumFactory
 {
-
     /// <example> Métodos sin Array de constantes
     /// <code>
     /// public enum SiNo {
@@ -45,7 +44,7 @@ public static class EnumFactory
     /// [EnumDescription(@"desconocido")]
     /// desconocido = -1
     /// }
-    /// 
+    ///
     /// -- Uso --
     /// EnumItemFromKey/<SiNo/>("S") // devolverá Sino.Si
     /// KeyFromEnumItem/<SiNo/>(Sino.Si) // devolverá "S"
@@ -53,20 +52,20 @@ public static class EnumFactory
     /// KeyFromEnumItem/<Sino/>(SiNo.desconocido) // devolverá " "
     /// </code>
     /// </example>
-
     /// <summary>
     /// Devuelve el EnumItem correspondiente a una Clave
     /// </summary>
     /// <typeparam name="TEnum">Enumeración</typeparam>
     /// <param name="clave">Clave</param>
-    /// <returns>EnumItem de la Enumeración TEnum que corresponde con la clave. 
+    /// <returns>EnumItem de la Enumeración TEnum que corresponde con la clave.
     ///    Si el elemento de la enumeracion tiene una descripción, se utilizará esta para
     ///    la búsqueda del elemento a devolver. En caso contrario, se utilizará la clave
     ///    del elemento de la enumeración.
     ///    (Si la clave pasada como parámetro NO ESTÁ entre los nombres y las descripciones de los elementos
     ///    de la enumeración, entonces devuelve -1 que corresponde con el valor "desconocido" de la enumeración.)
     /// </returns>
-    public static TEnum EnumItemFromKey<TEnum>(string clave) where TEnum : struct, IConvertible
+    public static TEnum EnumItemFromKey<TEnum>(string clave)
+        where TEnum : struct, IConvertible
     {
         Type? enumToTranslate = typeof(TEnum);
         if (enumToTranslate.IsEnum)
@@ -74,8 +73,12 @@ public static class EnumFactory
             foreach (object? valor in Enum.GetValues(enumToTranslate))
             {
                 MemberInfo[]? miembro = enumToTranslate.GetMember(valor.ToString());
-                object[]? attrs = miembro[0].GetCustomAttributes(typeof(EnumDescriptionAttribute), false);
-                string? nombre = attrs.Length > 0 ? ((EnumDescriptionAttribute)attrs[0]).Text : Enum.GetName(enumToTranslate, valor);
+                object[]? attrs = miembro[0]
+                    .GetCustomAttributes(typeof(EnumDescriptionAttribute), false);
+                string? nombre =
+                    attrs.Length > 0
+                        ? ((EnumDescriptionAttribute)attrs[0]).Text
+                        : Enum.GetName(enumToTranslate, valor);
                 if (nombre == clave)
                 {
                     return (TEnum)valor;
@@ -91,11 +94,12 @@ public static class EnumFactory
     /// <typeparam name="TEnum">Enumeración</typeparam>
     /// <param name="constates">Array que contiene las claves de esa enumeración</param>
     /// <param name="clave">Clave</param>
-    /// <returns>EnumItem de la Enumeración TEnum que corresponde con la clave. 
+    /// <returns>EnumItem de la Enumeración TEnum que corresponde con la clave.
     ///    (Si la clave NO ESTÁ dentro del array de constantes, entoneces devuelve -1 que
     ///    corresponde con el valor Unkwown de la enumeración.)
     /// </returns>
-    public static TEnum EnumItemFromKey<TEnum>(string[] constates, string clave) where TEnum : struct, IConvertible
+    public static TEnum EnumItemFromKey<TEnum>(string[] constates, string clave)
+        where TEnum : struct, IConvertible
     {
         int posicion = Array.IndexOf(constates, clave);
         if (posicion < 0)
@@ -115,7 +119,8 @@ public static class EnumFactory
     ///   Si ese EnumItem tiene descripción asociada, se devolverá la misma, en caso contrario, la clave asociada.
     ///   Si ese EnumItem no tiene clave asociada devolverá " "
     /// </returns>
-    public static string KeyFromEnumItem<TEnum>(TEnum enumItem) where TEnum : struct, IConvertible
+    public static string KeyFromEnumItem<TEnum>(TEnum enumItem)
+        where TEnum : struct, IConvertible
     {
         string? retorno = string.Empty;
         if (!typeof(TEnum).IsEnum)
@@ -131,7 +136,10 @@ public static class EnumFactory
             {
                 MemberInfo[]? m = enumToSearch.GetMember(value.ToString());
                 object[]? attrs = m[0].GetCustomAttributes(typeof(EnumDescriptionAttribute), false);
-                string? key = attrs.Length > 0 ? ((EnumDescriptionAttribute)attrs[0]).Text : Enum.GetName(enumToSearch, value);
+                string? key =
+                    attrs.Length > 0
+                        ? ((EnumDescriptionAttribute)attrs[0]).Text
+                        : Enum.GetName(enumToSearch, value);
                 return key == "desconocido" ? retorno : key;
             }
         }
@@ -147,7 +155,8 @@ public static class EnumFactory
     /// <returns>Clave asociada a ese EnumItem.
     ///   Si ese EnumItem no tiene clave asociada devolverá " "
     /// </returns>
-    public static string KeyFromEnumItem<TEnum>(string[] constantes, TEnum t) where TEnum : struct, IConvertible
+    public static string KeyFromEnumItem<TEnum>(string[] constantes, TEnum t)
+        where TEnum : struct, IConvertible
     {
         string? retorno = " ";
         if (!typeof(TEnum).IsEnum)
@@ -156,7 +165,9 @@ public static class EnumFactory
         }
 
         int num = Convert.ToInt32(t);
-        return num > constantes.GetUpperBound(0) || num < constantes.GetLowerBound(0) ? retorno : constantes[num];
+        return num > constantes.GetUpperBound(0) || num < constantes.GetLowerBound(0)
+            ? retorno
+            : constantes[num];
     }
 
     /// <summary>
@@ -167,12 +178,12 @@ public static class EnumFactory
     /// <returns>Valor de la enumeración correspondiente</returns>
     /// <exception cref="ArgumentException">Si el valor a copnvertir no se encuentra en la enumeración</exception>
     /// <exception cref="ArgumentNullException">Si el valor a copnvertir es null</exception>
-    public static TEnum ParseEnum<TEnum>(string value) where TEnum : struct, IConvertible
+    public static TEnum ParseEnum<TEnum>(string value)
+        where TEnum : struct, IConvertible
     {
-        return value == null
-            ? throw new ArgumentNullException(nameof(value))
+        return value == null ? throw new ArgumentNullException(nameof(value))
             : !Enum.TryParse(value, true, out TEnum retorno)
-            ? throw new ArgumentException("El valor no existe en la enumeración", nameof(value))
+                ? throw new ArgumentException("El valor no existe en la enumeración", nameof(value))
             : retorno;
     }
 
@@ -183,9 +194,12 @@ public static class EnumFactory
     /// <param name="value">Valor a convertir. no se diferencia entre mayúsculas y minúsculas y se admiten nulos</param>
     /// <returns>Valor de la enumeración correspondiente o nada si el valor de entrada es null</returns>
     /// <exception cref="ArgumentException">Si el valor a copnvertir no se encuentra en la enumeración</exception>
-    public static TEnum? ParseEnumNullable<TEnum>(string value) where TEnum : struct, IConvertible
+    public static TEnum? ParseEnumNullable<TEnum>(string value)
+        where TEnum : struct, IConvertible
     {
-        return value == null ? null : !Enum.TryParse(value, true, out TEnum retorno) ? null : retorno;
+        return value == null ? null
+            : !Enum.TryParse(value, true, out TEnum retorno) ? null
+            : retorno;
     }
 
     /// <summary>
@@ -196,7 +210,8 @@ public static class EnumFactory
     /// <returns>Valor de la enumeración correspondiente</returns>
     /// <exception cref="ArgumentException">Si el valor a copnvertir no se encuentra en la enumeración</exception>
     /// <exception cref="ArgumentNullException">Si el valor a copnvertir es null</exception>
-    public static TEnum ParseEnumValue<TEnum>(string value) where TEnum : struct, IConvertible
+    public static TEnum ParseEnumValue<TEnum>(string value)
+        where TEnum : struct, IConvertible
     {
         TEnum retorno = default(TEnum);
         Type? tp = typeof(TEnum);
@@ -228,13 +243,18 @@ public static class EnumFactory
                     return obj;
                 }
             }
-            throw new ArgumentException("El valor \"" + value + "\" no existe en la enumeración", nameof(value));
+            throw new ArgumentException(
+                "El valor \"" + value + "\" no existe en la enumeración",
+                nameof(value)
+            );
         }
         else if (!Enum.TryParse(value, true, out retorno))
         {
-            throw new ArgumentException("El valor \"" + value + "\" no existe en la enumeración", nameof(value));
+            throw new ArgumentException(
+                "El valor \"" + value + "\" no existe en la enumeración",
+                nameof(value)
+            );
         }
         return retorno;
     }
-
 }

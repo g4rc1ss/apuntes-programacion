@@ -31,7 +31,12 @@ public partial class MainWindow : Window
                 _numero[1] = int.Parse(mostrar.Text);
             }
         }
-        else if (respuesta.Equals("+") || respuesta.Equals("-") || respuesta.Equals("*") || respuesta.Equals("/"))
+        else if (
+            respuesta.Equals("+")
+            || respuesta.Equals("-")
+            || respuesta.Equals("*")
+            || respuesta.Equals("/")
+        )
         {
             if (mostrar.Text.Equals(""))
             {

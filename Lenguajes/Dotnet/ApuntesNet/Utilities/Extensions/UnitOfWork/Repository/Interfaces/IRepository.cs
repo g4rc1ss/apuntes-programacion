@@ -6,7 +6,8 @@ namespace UnitOfWork.Repository.Interfaces;
 /// Define los metodos de repositorio que añaden, modifican o eliminan
 /// </summary>
 /// <typeparam name="T"></typeparam>
-public interface IRepository<T> : IReadRepository<T>, IDisposable where T : class
+public interface IRepository<T> : IReadRepository<T>, IDisposable
+    where T : class
 {
     void Add(T entity);
     void Add(params T[] entities);
@@ -22,7 +23,13 @@ public interface IRepository<T> : IReadRepository<T>, IDisposable where T : clas
     long LongCount(Expression<Func<T, bool>> predicate = null);
     TK Max<TK>(Expression<Func<T, bool>> predicate = null, Expression<Func<T, TK>> selector = null);
     TK Min<TK>(Expression<Func<T, bool>> predicate = null, Expression<Func<T, TK>> selector = null);
-    decimal Average(Expression<Func<T, bool>> predicate = null, Expression<Func<T, decimal>> selector = null);
-    decimal Sum(Expression<Func<T, bool>> predicate = null, Expression<Func<T, decimal>> selector = null);
+    decimal Average(
+        Expression<Func<T, bool>> predicate = null,
+        Expression<Func<T, decimal>> selector = null
+    );
+    decimal Sum(
+        Expression<Func<T, bool>> predicate = null,
+        Expression<Func<T, decimal>> selector = null
+    );
     bool Exists(Expression<Func<T, bool>> selector = null);
 }

@@ -4,28 +4,26 @@ using Microsoft.Extensions.Hosting;
 using PubSubCommunication;
 using PubSubCommunication.Consumers.Handler;
 using PubSubCommunication.Messages;
-
 using PubSubRabbitMQ;
-
 
 IHostBuilder builder = Host.CreateDefaultBuilder(args);
 
-builder.ConfigureAppConfiguration(configuration =>
-{
-});
+builder.ConfigureAppConfiguration(configuration => { });
 
-builder.ConfigureServices((hostBuilder, serviceCollection) =>
-{
-    serviceCollection.AddHandlersInAssembly<Program>();
-    serviceCollection.AddRabbitMQ(hostBuilder.Configuration);
-    serviceCollection.AddRabbitMqConsumer<IntegrationMessage>();
+builder.ConfigureServices(
+    (hostBuilder, serviceCollection) =>
+    {
+        serviceCollection.AddHandlersInAssembly<Program>();
+        serviceCollection.AddRabbitMQ(hostBuilder.Configuration);
+        serviceCollection.AddRabbitMqConsumer<IntegrationMessage>();
 
-    serviceCollection.AddOpenTelemetry()
-        .WithMetrics()
-        .WithLogging()
-        .WithTracing(tracer => tracer.AddSource(nameof(IMessageHandler)));
-});
-
+        serviceCollection
+            .AddOpenTelemetry()
+            .WithMetrics()
+            .WithLogging()
+            .WithTracing(tracer => tracer.AddSource(nameof(IMessageHandler)));
+    }
+);
 
 IHost app = builder.Build();
 

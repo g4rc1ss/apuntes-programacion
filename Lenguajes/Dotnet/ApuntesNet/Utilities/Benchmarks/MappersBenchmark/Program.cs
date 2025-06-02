@@ -7,11 +7,9 @@ using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Loggers;
 using BenchmarkDotNet.Order;
 using BenchmarkDotNet.Running;
-
 using MappersBenchmark;
 
 BenchmarkRunner.Run<Mappers>(new Config());
-
 
 namespace MappersBenchmark
 {
@@ -36,11 +34,11 @@ namespace MappersBenchmark
             AddColumn(BaselineRatioColumn.RatioMean);
             AddColumnProvider(DefaultColumnProviders.Metrics);
 
-            AddJob(Job.ShortRun
-                .WithLaunchCount(1)
-                .WithWarmupCount(2)
-                .WithUnrollFactor(ITERATIONS)
-                .WithIterationCount(10)
+            AddJob(
+                Job.ShortRun.WithLaunchCount(1)
+                    .WithWarmupCount(2)
+                    .WithUnrollFactor(ITERATIONS)
+                    .WithIterationCount(10)
             );
             Orderer = new DefaultOrderer(SummaryOrderPolicy.FastestToSlowest);
             Options |= ConfigOptions.JoinSummary;

@@ -1,7 +1,5 @@
 ﻿using System.Text.Json;
-
 using Caching.ObjCaching;
-
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -31,17 +29,22 @@ internal class DistributedRedis
 
         await _distributedCache.SetStringAsync(ObjectsToCaching.cacheKey, listaSerializada);
 
-
-        string? listaSerializadaRecuperada = await _distributedCache.GetStringAsync(ObjectsToCaching.cacheKey);
-        IEnumerable<int>? listaCacheRecuperada = JsonSerializer.Deserialize<IEnumerable<int>>(listaSerializadaRecuperada)!;
+        string? listaSerializadaRecuperada = await _distributedCache.GetStringAsync(
+            ObjectsToCaching.cacheKey
+        );
+        IEnumerable<int>? listaCacheRecuperada = JsonSerializer.Deserialize<IEnumerable<int>>(
+            listaSerializadaRecuperada
+        )!;
 
         if (listaSerializadaRecuperada.Count() > 0)
         {
-            listaCacheRecuperada.Select(x =>
-            {
-                Console.WriteLine(x);
-                return x;
-            }).ToList();
+            listaCacheRecuperada
+                .Select(x =>
+                {
+                    Console.WriteLine(x);
+                    return x;
+                })
+                .ToList();
         }
         await _distributedCache.RemoveAsync(ObjectsToCaching.cacheKey);
     }

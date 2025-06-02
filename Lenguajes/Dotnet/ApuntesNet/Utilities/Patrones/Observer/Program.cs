@@ -15,6 +15,5 @@ subject.Detach(observerB);
 
 subject.SomeBusinessLogic();
 
-
 Console.WriteLine("Pulsa una tecla para finalizar");
 Console.ReadKey();

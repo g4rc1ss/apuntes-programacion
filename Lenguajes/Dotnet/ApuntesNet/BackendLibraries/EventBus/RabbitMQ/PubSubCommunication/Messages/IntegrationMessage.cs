@@ -1,5 +1,4 @@
-﻿
-namespace PubSubCommunication.Messages;
+﻿namespace PubSubCommunication.Messages;
 
 public record IntegrationMessage : IMessage
 {
@@ -15,10 +14,15 @@ public record IntegrationMessage : IMessage
     public MessageDiagnosticTraces Traces { get; }
 }
 
-
 public record IntegrationMessage<T> : IntegrationMessage
 {
-    public IntegrationMessage(string messageIdentifier, string name, MessageDiagnosticTraces traces, T content, Metadata metadata)
+    public IntegrationMessage(
+        string messageIdentifier,
+        string name,
+        MessageDiagnosticTraces traces,
+        T content,
+        Metadata metadata
+    )
         : base(messageIdentifier, name, traces)
     {
         Content = content;

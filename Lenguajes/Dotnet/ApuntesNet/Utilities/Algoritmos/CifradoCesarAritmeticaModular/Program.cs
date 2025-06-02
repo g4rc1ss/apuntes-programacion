@@ -28,10 +28,11 @@ List<char> letrasSustitucion =
     'W',
     'X',
     'Y',
-    'Z'
+    'Z',
 ];
 
-string? frase = "Hola esta es la frase que va a ser encriptada con cifrado cesar abcdefghijklmnopqrstuvwxyz";
+string? frase =
+    "Hola esta es la frase que va a ser encriptada con cifrado cesar abcdefghijklmnopqrstuvwxyz";
 Console.WriteLine(frase);
 
 string? fraseCifrada = CifrarFraseCesar(frase);
@@ -39,8 +40,6 @@ Console.WriteLine(fraseCifrada);
 
 string? fraseDescifrada = DescifrarFrase(fraseCifrada);
 Console.WriteLine(fraseDescifrada);
-
-
 
 string CifrarFraseCesar(string frase)
 {
@@ -50,7 +49,8 @@ string CifrarFraseCesar(string frase)
     {
         if (letrasSustitucion.Contains(frase[i]))
         {
-            int letraToAdd = (letrasSustitucion.IndexOf(frase[i]) + NUM_SUSTITUCION) % letrasSustitucion.Count;
+            int letraToAdd =
+                (letrasSustitucion.IndexOf(frase[i]) + NUM_SUSTITUCION) % letrasSustitucion.Count;
             cifrarFrase.Append(letrasSustitucion[letraToAdd]);
         }
         else
@@ -69,7 +69,9 @@ string DescifrarFrase(string frase)
     {
         if (letrasSustitucion.Contains(frase[i]))
         {
-            Dictionary<char, char>? diccionarioDescifrados = CrearDiccionarioDescifrado(NUM_SUSTITUCION);
+            Dictionary<char, char>? diccionarioDescifrados = CrearDiccionarioDescifrado(
+                NUM_SUSTITUCION
+            );
             descifrarFrase.Append(diccionarioDescifrados[frase[i]]);
         }
         else

@@ -1,5 +1,4 @@
 ﻿using BenchmarkDotNet.Attributes;
-
 using YieldBenchmark.Fakes;
 
 namespace YieldBenchmark.Benchmarks;
@@ -7,9 +6,7 @@ namespace YieldBenchmark.Benchmarks;
 [MemoryDiagnoser]
 public class YieldVsList
 {
-    public YieldVsList()
-    {
-    }
+    public YieldVsList() { }
 
     [Benchmark]
     public void ExpensiveObjectsWithList()

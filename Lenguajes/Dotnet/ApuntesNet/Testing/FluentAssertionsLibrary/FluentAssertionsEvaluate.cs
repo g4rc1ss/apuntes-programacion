@@ -1,6 +1,4 @@
 ﻿using FluentAssertions;
-
-
 using Xunit;
 
 namespace FluentAssertionsLibrary;
@@ -22,9 +20,10 @@ public class FluentAssertionsEvaluate
         "Expected".Should().Be("Expected");
         "ABCDEFGHIJKLMNOPQRSTUVWXYZ".Should().StartWith("AB");
 
-        "".Invoking(x => throw new NotImplementedException("Excepcion lanzada de prueba")).Should()
-        .Throw<NotImplementedException>()
-        .WithMessage("Excepcion lanzada de prueba");
+        ""
+            .Invoking(x => throw new NotImplementedException("Excepcion lanzada de prueba"))
+            .Should()
+            .Throw<NotImplementedException>()
+            .WithMessage("Excepcion lanzada de prueba");
     }
-
 }

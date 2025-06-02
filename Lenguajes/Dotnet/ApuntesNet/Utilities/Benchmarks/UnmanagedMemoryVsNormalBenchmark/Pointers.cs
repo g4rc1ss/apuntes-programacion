@@ -7,7 +7,6 @@ public class Pointers
 {
     private readonly int[] _dataMock = [.. Enumerable.Range(0, 1000)];
 
-
     [Benchmark]
     public unsafe void ModifyArrayDataWithPointers()
     {

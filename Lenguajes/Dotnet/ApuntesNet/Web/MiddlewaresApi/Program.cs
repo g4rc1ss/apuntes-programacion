@@ -7,8 +7,8 @@ WebApplicationBuilder? builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSingleton<DefaultMiddleware>();
 builder.Services.AddSingleton<ErrorMiddleware>();
 
-
 builder.Services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -21,7 +21,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 
 app.UseError();
 app.UseHttpsRedirection();

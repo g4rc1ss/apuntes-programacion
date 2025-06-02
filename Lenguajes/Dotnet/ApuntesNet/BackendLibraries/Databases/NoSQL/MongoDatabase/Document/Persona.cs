@@ -8,5 +8,4 @@ internal class Persona
     public string? Name { get; set; }
     public string? SubName { get; set; }
     public DateTime FechaNacimiento { get; set; }
-
 }

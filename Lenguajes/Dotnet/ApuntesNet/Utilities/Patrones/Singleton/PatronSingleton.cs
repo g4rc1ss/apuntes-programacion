@@ -6,10 +6,7 @@ public class PatronSingleton
 
     public string? Nombre { get; set; }
 
-    private PatronSingleton()
-    {
-
-    }
+    private PatronSingleton() { }
 
     public static PatronSingleton GetInstance()
     {

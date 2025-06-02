@@ -1,6 +1,5 @@
 ﻿namespace Decorator.ClasesBase;
 
-
 // The base Decorator class follows the same interface as the other
 // components. The primary purpose of this class is to define the wrapping
 // interface for all concrete decorators. The default implementation of the

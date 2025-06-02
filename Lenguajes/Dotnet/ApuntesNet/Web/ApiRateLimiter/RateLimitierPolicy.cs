@@ -1,5 +1,5 @@
-using Microsoft.AspNetCore.RateLimiting;
 using System.Threading.RateLimiting;
+using Microsoft.AspNetCore.RateLimiting;
 
 namespace ApiRateLimiter;
 
@@ -12,8 +12,9 @@ public class RateLimitierPolicy : IRateLimiterPolicy<string>
             _ => new FixedWindowRateLimiterOptions
             {
                 PermitLimit = 10,
-                Window = TimeSpan.FromMinutes(60)
-            });
+                Window = TimeSpan.FromMinutes(60),
+            }
+        );
     }
 
     public Func<OnRejectedContext, CancellationToken, ValueTask>? OnRejected { get; } =

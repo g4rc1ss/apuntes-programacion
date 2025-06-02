@@ -1,6 +1,5 @@
 ﻿using ArbolBinario.Clase;
 
-
 BinaryTree<int>? arbolParaPrueba = CrearArbolConDatosPrueba();
 List<int>? path5 = arbolParaPrueba.GetPathOfValue(5);
 List<int>? path4 = arbolParaPrueba.GetPathOfValue(4);

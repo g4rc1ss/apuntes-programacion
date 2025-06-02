@@ -8,7 +8,7 @@ namespace Totp.Libs;
 public class Hotp : Otp
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <param name="claveSecreta">Clave del hash</param>
     /// <param name="otpSize">Tamaño del código TOTP entre 1 y 9</param>
@@ -35,9 +35,13 @@ public class Hotp : Otp
     /// <returns>
     /// Código HOTP
     /// </returns>
-    /// 
-    public static string GeneraHotp(long contador, string claveSecreta, int otpSize = 6,
-        OtpHashMode hashMode = OtpHashMode.SHA1)
+    ///
+    public static string GeneraHotp(
+        long contador,
+        string claveSecreta,
+        int otpSize = 6,
+        OtpHashMode hashMode = OtpHashMode.SHA1
+    )
     {
         byte[]? key = Base32Encoding.Standard.ToBytes(claveSecreta);
 
@@ -55,10 +59,15 @@ public class Hotp : Otp
     /// <param name="hashMode">Tipo de Hash a aplicar</param>
     /// <param name="otpSize">Tamaño del código TOTP a verificar</param>
     /// <returns>
-    /// true/false 
+    /// true/false
     /// </returns>
-    public static bool ValidaHotp(long contador, string hotp, string claveSecreta, int otpSize = 6,
-        OtpHashMode hashMode = OtpHashMode.SHA1)
+    public static bool ValidaHotp(
+        long contador,
+        string hotp,
+        string claveSecreta,
+        int otpSize = 6,
+        OtpHashMode hashMode = OtpHashMode.SHA1
+    )
     {
         byte[]? secretKey = Base32Encoding.Standard.ToBytes(claveSecreta);
 

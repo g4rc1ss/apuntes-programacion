@@ -1,6 +1,5 @@
 ﻿using Memento;
 
-
 Originator? originator = new("Super-duper-super-puper-super.");
 Caretaker? caretaker = new(originator);
 

@@ -1,8 +1,6 @@
 ﻿namespace MiddlewaresApi.Middlewares;
 
-public class ErrorMiddleware(
-    ILogger<ErrorMiddleware> logger
-) : IMiddleware
+public class ErrorMiddleware(ILogger<ErrorMiddleware> logger) : IMiddleware
 {
     public async Task InvokeAsync(HttpContext context, RequestDelegate next)
     {
@@ -12,11 +10,7 @@ public class ErrorMiddleware(
         }
         catch (Exception ex)
         {
-            var messageResponse = new
-            {
-                Detalle = ex.Message,
-                ex.StackTrace,
-            };
+            var messageResponse = new { Detalle = ex.Message, ex.StackTrace };
 
             await context.Response.WriteAsJsonAsync(messageResponse);
         }

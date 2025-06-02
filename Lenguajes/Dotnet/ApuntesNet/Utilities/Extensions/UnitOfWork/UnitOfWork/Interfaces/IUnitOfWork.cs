@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-
 using UnitOfWork.Repository.Interfaces;
 
 namespace UnitOfWork.UnitOfWork.Interfaces;
@@ -14,14 +13,19 @@ public interface IUnitOfWork : IDisposable
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
     /// <returns></returns>
-    IRepository<TEntity> GetRepository<TEntity>() where TEntity : class;
+    IRepository<TEntity> GetRepository<TEntity>()
+        where TEntity : class;
+
     /// <summary>
     /// Obtiene el repositorio de la entidad asincrono
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
     /// <returns></returns>
-    IRepositoryAsync<TEntity> GetRepositoryAsync<TEntity>() where TEntity : class;
-    IRepositoryReadOnly<TEntity> GetReadOnlyRepository<TEntity>() where TEntity : class;
+    IRepositoryAsync<TEntity> GetRepositoryAsync<TEntity>()
+        where TEntity : class;
+    IRepositoryReadOnly<TEntity> GetReadOnlyRepository<TEntity>()
+        where TEntity : class;
+
     /// <summary>
     /// Realiza el commit
     /// </summary>
@@ -36,10 +40,11 @@ public interface IUnitOfWork : IDisposable
 }
 
 /// <summary>
-/// 
+///
 /// </summary>
 /// <typeparam name="TContext"></typeparam>
-public interface IUnitOfWork<TContext> : IUnitOfWork where TContext : DbContext
+public interface IUnitOfWork<TContext> : IUnitOfWork
+    where TContext : DbContext
 {
     TContext Context { get; }
 }

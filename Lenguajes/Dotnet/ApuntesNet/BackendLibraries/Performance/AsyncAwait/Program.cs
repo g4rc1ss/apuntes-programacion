@@ -1,7 +1,5 @@
 ﻿using AsyncAwait.Async;
 
-
-
 Asincronia? asincronia = new();
 
 Console.WriteLine("Ejemplo de codigo asincrono enlazado a CPU");

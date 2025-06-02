@@ -1,7 +1,6 @@
 ﻿namespace Prototype;
 
-public class ClasePrototype(string password)
-    : ICloneable
+public class ClasePrototype(string password) : ICloneable
 {
     public string? Name { get; set; }
     public string? Description { get; set; }

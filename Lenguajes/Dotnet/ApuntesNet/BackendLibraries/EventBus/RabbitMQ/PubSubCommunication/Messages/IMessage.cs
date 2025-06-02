@@ -1,5 +1,4 @@
-﻿
-namespace PubSubCommunication.Messages;
+﻿namespace PubSubCommunication.Messages;
 
 public interface IMessage
 {
@@ -7,4 +6,3 @@ public interface IMessage
     public string Name { get; }
     public MessageDiagnosticTraces Traces { get; }
 }
-

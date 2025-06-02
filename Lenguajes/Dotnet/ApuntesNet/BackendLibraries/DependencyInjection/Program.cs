@@ -1,5 +1,4 @@
 ﻿using DependencyInjection;
-
 using Microsoft.Extensions.DependencyInjection;
 
 ServiceCollection? services = new();

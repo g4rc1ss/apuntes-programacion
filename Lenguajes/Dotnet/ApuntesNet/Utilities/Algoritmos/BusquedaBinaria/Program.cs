@@ -6,13 +6,15 @@ int numero = 1000_000_000 - 1;
 bool existeNumero = false;
 Stopwatch stopwatch = new();
 
-Console.WriteLine("\n----------------------- BUSQUEDA NORMAL POR ITERACION -----------------------");
+Console.WriteLine(
+    "\n----------------------- BUSQUEDA NORMAL POR ITERACION -----------------------"
+);
 stopwatch.Start();
 existeNumero = BusquedaTradicional(in arrayOrdenado, numero);
 stopwatch.Stop();
-Console.WriteLine($"{existeNumero} \n" +
-    $"El tiempo de busqueda es: {stopwatch.Elapsed.TotalMilliseconds}");
-
+Console.WriteLine(
+    $"{existeNumero} \n" + $"El tiempo de busqueda es: {stopwatch.Elapsed.TotalMilliseconds}"
+);
 
 stopwatch.Reset();
 
@@ -20,8 +22,9 @@ Console.WriteLine("\n----------------------- BUSQUEDA BINARIA ITERADA ----------
 stopwatch.Start();
 existeNumero = BuscarValorIteracion(in arrayOrdenado, numero);
 stopwatch.Stop();
-Console.WriteLine($"{existeNumero} \n" +
-    $"El tiempo de busqueda es: {stopwatch.Elapsed.TotalMilliseconds}");
+Console.WriteLine(
+    $"{existeNumero} \n" + $"El tiempo de busqueda es: {stopwatch.Elapsed.TotalMilliseconds}"
+);
 
 stopwatch.Reset();
 
@@ -29,9 +32,9 @@ Console.WriteLine("\n----------------------- BUSQUEDA BINARIA RECURSIVA --------
 stopwatch.Start();
 existeNumero = BuscarValorRecurviso(in arrayOrdenado, numero, 0, arrayOrdenado.Count - 1);
 stopwatch.Stop();
-Console.WriteLine($"{existeNumero} \n" +
-    $"El tiempo de busqueda es: {stopwatch.Elapsed.TotalMilliseconds}");
-
+Console.WriteLine(
+    $"{existeNumero} \n" + $"El tiempo de busqueda es: {stopwatch.Elapsed.TotalMilliseconds}"
+);
 
 bool BusquedaTradicional(in List<int> arrayOrdenado, long numero)
 {
@@ -78,7 +81,6 @@ bool BuscarValorIteracion(in List<int> arrayOrdenado, long numero)
     Console.WriteLine($"El numero de iteraciones son: {iteraciones}");
     return false;
 }
-
 
 bool BuscarValorRecurviso(in List<int> arrayOrdenado, long numero, int left, int right)
 {

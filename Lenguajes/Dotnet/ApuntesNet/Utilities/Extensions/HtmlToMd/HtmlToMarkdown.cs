@@ -29,7 +29,8 @@ public static class HtmlToMarkdown
         string? result = Regex.Replace(
             source,
             string.Join("|", Replacements.Keys.Select(k => k.ToString()).ToArray()),
-            m => Replacements[m.Value]);
+            m => Replacements[m.Value]
+        );
 
         result = Regex.Replace(result, "<span[^>]*>", string.Empty);
         result = Regex.Replace(result, "\\[", "&#91;");

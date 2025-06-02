@@ -6,12 +6,14 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-builder.Services.AddAuthorization()
+builder
+    .Services.AddAuthorization()
     .AddAuthentication(options =>
     {
         options.DefaultAuthenticateScheme = Constants.API_KEY_SCHEME;
         options.DefaultChallengeScheme = Constants.API_KEY_SCHEME;
-    }).AddScheme<ApiKeyAuthOptions, ApiKeyAuthHandler>(Constants.API_KEY_SCHEME, options => { });
+    })
+    .AddScheme<ApiKeyAuthOptions, ApiKeyAuthHandler>(Constants.API_KEY_SCHEME, options => { });
 
 WebApplication app = builder.Build();
 
@@ -23,7 +25,5 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-
-app.MapGet("/", () => "Hello World!")
-    .RequireAuthorization();
+app.MapGet("/", () => "Hello World!").RequireAuthorization();
 app.Run();

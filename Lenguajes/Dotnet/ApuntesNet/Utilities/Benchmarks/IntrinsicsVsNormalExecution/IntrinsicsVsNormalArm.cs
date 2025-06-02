@@ -1,7 +1,6 @@
 using System.Runtime.InteropServices;
 using System.Runtime.Intrinsics;
 using System.Runtime.Intrinsics.Arm;
-
 using BenchmarkDotNet.Attributes;
 
 namespace IntrinsicsVsNormalExecution;
@@ -28,7 +27,11 @@ public class IntrinsicsVsNormalArm
         int len = paramA.Length;
         int[]? result = new int[len];
 
-        fixed (int* paramAPtr = paramA, paramBPtr = paramB, resultPtr = result)
+        fixed (
+            int* paramAPtr = paramA,
+                paramBPtr = paramB,
+                resultPtr = result
+        )
         {
             if (!AdvSimd.IsSupported)
             {
@@ -115,7 +118,10 @@ public class IntrinsicsVsNormalArm
                 throw new PlatformNotSupportedException();
             }
 
-            fixed (int* paramAPtr = paramA, paramBPtr = paramB)
+            fixed (
+                int* paramAPtr = paramA,
+                    paramBPtr = paramB
+            )
             {
                 for (int i = 0; i < len; i += Vector128<int>.Count)
                 {

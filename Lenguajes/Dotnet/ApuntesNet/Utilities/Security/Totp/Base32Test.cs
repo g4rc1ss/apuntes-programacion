@@ -48,7 +48,6 @@ public class Base32Test
         Assert.Equal("MZXW6YTBOI======", Encode("foobar"));
     }
 
-
     [Fact]
     public void Base32Test1Decode()
     {
@@ -146,15 +145,17 @@ public class Base32Test
 
     #region Complex tests
 
-    private const string COMPLEX1_TEXT = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
-                                         "sed eiusmod tempor incidunt ut labore et dolore magna aliqua. " +
-                                         "Ut enim ad minim veniam, quis nostrud exercitation...";
+    private const string COMPLEX1_TEXT =
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, "
+        + "sed eiusmod tempor incidunt ut labore et dolore magna aliqua. "
+        + "Ut enim ad minim veniam, quis nostrud exercitation...";
 
-    private const string COMPLEX1_BASE32 = "JRXXEZLNEBUXA43VNUQGI33MN5ZCA43JOQQGC3LFOQWCAY3PNZZWKY3UMV2H" +
-                                           "K4RAMFSGS4DJONRWS3THEBSWY2LUFQQHGZLEEBSWS5LTNVXWIIDUMVWXA33S" +
-                                           "EBUW4Y3JMR2W45BAOV2CA3DBMJXXEZJAMV2CAZDPNRXXEZJANVQWO3TBEBQW" +
-                                           "Y2LROVQS4ICVOQQGK3TJNUQGCZBANVUW42LNEB3GK3TJMFWSYIDROVUXGIDO" +
-                                           "N5ZXI4TVMQQGK6DFOJRWS5DBORUW63ROFYXA====";
+    private const string COMPLEX1_BASE32 =
+        "JRXXEZLNEBUXA43VNUQGI33MN5ZCA43JOQQGC3LFOQWCAY3PNZZWKY3UMV2H"
+        + "K4RAMFSGS4DJONRWS3THEBSWY2LUFQQHGZLEEBSWS5LTNVXWIIDUMVWXA33S"
+        + "EBUW4Y3JMR2W45BAOV2CA3DBMJXXEZJAMV2CAZDPNRXXEZJANVQWO3TBEBQW"
+        + "Y2LROVQS4ICVOQQGK3TJNUQGCZBANVUW42LNEB3GK3TJMFWSYIDROVUXGIDO"
+        + "N5ZXI4TVMQQGK6DFOJRWS5DBORUW63ROFYXA====";
 
     [Fact]
     public void Base32TestComplex1Encode()

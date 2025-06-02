@@ -4,7 +4,6 @@ using PubSubCommunication;
 using PubSubCommunication.Consumers;
 using PubSubCommunication.Messages;
 using PubSubCommunication.Publisher;
-
 using PubSubRabbitMQ.Consumer;
 using PubSubRabbitMQ.Publisher;
 using PubSubRabbitMQ.Serialization;
@@ -13,7 +12,10 @@ namespace PubSubRabbitMQ;
 
 public static class RabbitMqExtensions
 {
-    public static IServiceCollection AddRabbitMQ(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddRabbitMQ(
+        this IServiceCollection services,
+        IConfiguration configuration
+    )
     {
         services.Configure<RabbitMqSettings>(configuration.GetSection("RabbitMqData"));
         //services.AddRabbitMqHealthCheck();
@@ -53,7 +55,4 @@ public static class RabbitMqExtensions
     //         rabbitOptions.Connection = rabbitOptions.ConnectionFactory.CreateConnection();
     //     }, string.Empty, HealthStatus.Unhealthy);
     // }
-
-
 }
-

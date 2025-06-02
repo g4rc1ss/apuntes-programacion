@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-
 using SqlServerEfCore.Database;
 using SqlServerEfCore.Database.Entities;
 
 namespace SqlServerEfCore.Repository;
 
-public class InsertData(IDbContextFactory<EntityFrameworkSqlServerContext> frameworkSqlServerContext)
+public class InsertData(
+    IDbContextFactory<EntityFrameworkSqlServerContext> frameworkSqlServerContext
+)
 {
     internal Task<int> InsertDataAsync()
     {
@@ -16,7 +17,7 @@ public class InsertData(IDbContextFactory<EntityFrameworkSqlServerContext> frame
             Edad = 10,
             FechaHoy = DateTime.Now,
             PuebloId = 20,
-            PuebloNavigation = new Pueblo { Nombre = "Soria" }
+            PuebloNavigation = new Pueblo { Nombre = "Soria" },
         };
 
         dbContext.Usuarios.Add(usuarioAgregar);

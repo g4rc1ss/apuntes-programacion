@@ -16,27 +16,29 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/", async (CancellationToken ct) =>
-{
-    try
+app.MapGet(
+    "/",
+    async (CancellationToken ct) =>
     {
-        foreach (int i in Enumerable.Range(0, 1000))
+        try
         {
-            Console.WriteLine($"iteration: {i}");
+            foreach (int i in Enumerable.Range(0, 1000))
+            {
+                Console.WriteLine($"iteration: {i}");
 
-            await Task.Delay(i * 1000, ct); //this simulates a call to  a service
-            Console.WriteLine("Completed;");
+                await Task.Delay(i * 1000, ct); //this simulates a call to  a service
+                Console.WriteLine("Completed;");
+            }
+        }
+        catch (TaskCanceledException taskCanceledException)
+        {
+            Console.WriteLine(taskCanceledException);
+            if (ct.IsCancellationRequested)
+            {
+                Console.WriteLine("Cancelled;");
+            }
         }
     }
-    catch (TaskCanceledException taskCanceledException)
-    {
-        Console.WriteLine(taskCanceledException);
-        if (ct.IsCancellationRequested)
-        {
-            Console.WriteLine("Cancelled;");
-        }
-    }
-});
-
+);
 
 await app.RunAsync();

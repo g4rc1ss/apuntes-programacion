@@ -1,6 +1,4 @@
 ﻿using System.Text.Json;
-
-
 using JsonFiles.JSON;
 
 namespace JsonFiles.Write;

@@ -1,8 +1,6 @@
 ﻿namespace MiddlewaresApi.Middlewares;
 
-public class DefaultMiddleware(
-    ILogger<DefaultMiddleware> logger
-) : IMiddleware
+public class DefaultMiddleware(ILogger<DefaultMiddleware> logger) : IMiddleware
 {
     public async Task InvokeAsync(HttpContext context, RequestDelegate next)
     {

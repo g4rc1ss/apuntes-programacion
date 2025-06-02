@@ -5,7 +5,7 @@ Dictionary<char, char> simbolosAperturaCierre = new()
 {
     { '(', ')' },
     { '{', '}' },
-    { '[', ']' }
+    { '[', ']' },
 };
 
 bool resultado = false;
@@ -17,7 +17,6 @@ Console.WriteLine("------------------ PRUEBA DE SIMBOLOS INCORRECTOS -----------
 resultado = ComprobacionStringSimbolos(PRUEBA2);
 Console.WriteLine($"Resultado = {resultado}");
 
-
 bool ComprobacionStringSimbolos(string frase)
 {
     Stack<char>? stack = new();
@@ -27,7 +26,10 @@ bool ComprobacionStringSimbolos(string frase)
         {
             stack.Push(item);
         }
-        else if (simbolosAperturaCierre.ContainsValue(item) && simbolosAperturaCierre[stack.Peek()] == item)
+        else if (
+            simbolosAperturaCierre.ContainsValue(item)
+            && simbolosAperturaCierre[stack.Peek()] == item
+        )
         {
             stack.Pop();
         }

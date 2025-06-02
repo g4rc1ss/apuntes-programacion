@@ -2,8 +2,7 @@ using System.Collections;
 
 namespace Stacks;
 
-public class StackCollectionEnumerator<T>(T[] collection)
-    : IEnumerator<T>
+public class StackCollectionEnumerator<T>(T[] collection) : IEnumerator<T>
 {
     private int index;
     public T? Current { get; internal set; }

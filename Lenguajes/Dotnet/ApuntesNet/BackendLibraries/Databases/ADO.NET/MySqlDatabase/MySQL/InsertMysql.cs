@@ -10,7 +10,8 @@ internal class InsertMysql
         try
         {
             connection.Open();
-            string? insert = "INSERT INTO Empleado (Nombre, Apellidos, Salario) VALUES ('nombre','apellido', 20000.00)";
+            string? insert =
+                "INSERT INTO Empleado (Nombre, Apellidos, Salario) VALUES ('nombre','apellido', 20000.00)";
 
             using MySqlCommand? comandoInsert = new(insert, connection);
             int numeroCambios = comandoInsert.ExecuteNonQuery();
@@ -19,7 +20,6 @@ internal class InsertMysql
         finally
         {
             connection.Close();
-
         }
     }
 }

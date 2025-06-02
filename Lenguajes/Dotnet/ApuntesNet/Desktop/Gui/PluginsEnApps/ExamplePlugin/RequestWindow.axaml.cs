@@ -1,8 +1,6 @@
 using System.Net.Http.Json;
-
 using Avalonia.Controls;
 using Avalonia.Interactivity;
-
 using PluginAPI.ExportAPI;
 
 namespace ExamplePlugin;
@@ -24,9 +22,10 @@ public partial class RequestWindow : Window
     {
         try
         {
-            MyIp? ip = await new HttpClient().GetFromJsonAsync<MyIp>("https://api.ipify.org/?format=json");
+            MyIp? ip = await new HttpClient().GetFromJsonAsync<MyIp>(
+                "https://api.ipify.org/?format=json"
+            );
             return $"Direccion ip: {ip.Ip} \n";
-
         }
         catch (Exception ex)
         {

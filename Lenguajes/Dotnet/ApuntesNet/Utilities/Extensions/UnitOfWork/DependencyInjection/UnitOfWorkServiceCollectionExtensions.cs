@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-
 using UnitOfWork.Repository.Interfaces;
 using UnitOfWork.UnitOfWork;
 using UnitOfWork.UnitOfWork.Interfaces;
@@ -10,7 +9,7 @@ namespace UnitOfWork.DependencyInjection;
 public static class UnitOfWorkServiceCollectionExtensions
 {
     public static IServiceCollection AddUnitOfWork<TContext>(this IServiceCollection services)
-       where TContext : DbContext
+        where TContext : DbContext
     {
         services.AddScoped<IRepositoryFactory, UnitOfWork<TContext>>();
         services.AddScoped<IUnitOfWork, UnitOfWork<TContext>>();
@@ -18,7 +17,9 @@ public static class UnitOfWorkServiceCollectionExtensions
         return services;
     }
 
-    public static IServiceCollection AddUnitOfWork<TContext1, TContext2>(this IServiceCollection services)
+    public static IServiceCollection AddUnitOfWork<TContext1, TContext2>(
+        this IServiceCollection services
+    )
         where TContext1 : DbContext
         where TContext2 : DbContext
     {
@@ -28,7 +29,8 @@ public static class UnitOfWorkServiceCollectionExtensions
     }
 
     public static IServiceCollection AddUnitOfWork<TContext1, TContext2, TContext3>(
-        this IServiceCollection services)
+        this IServiceCollection services
+    )
         where TContext1 : DbContext
         where TContext2 : DbContext
         where TContext3 : DbContext

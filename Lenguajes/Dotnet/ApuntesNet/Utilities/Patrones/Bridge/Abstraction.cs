@@ -12,7 +12,6 @@ internal class Abstraction(IImplementation implementation)
 
     public virtual string Operation()
     {
-        return "Abstract: Base operation with:\n" +
-            implementation.OperationImplementation();
+        return "Abstract: Base operation with:\n" + implementation.OperationImplementation();
     }
 }

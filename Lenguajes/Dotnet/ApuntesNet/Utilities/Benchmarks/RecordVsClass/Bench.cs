@@ -57,13 +57,23 @@ public class Bench
     [Benchmark]
     public void Classes()
     {
-        _ = new BenchmarkClass { X = "Hola", Z = 200, Y = 1 };
+        _ = new BenchmarkClass
+        {
+            X = "Hola",
+            Z = 200,
+            Y = 1,
+        };
     }
 
     [Benchmark]
     public void ModifyClass()
     {
-        BenchmarkClass? benchmarkClass = new() { X = "Hola", Z = 200, Y = 1 };
+        BenchmarkClass? benchmarkClass = new()
+        {
+            X = "Hola",
+            Z = 200,
+            Y = 1,
+        };
         benchmarkClass.X = "Adios";
         benchmarkClass.Y = 50;
     }
@@ -71,8 +81,18 @@ public class Bench
     [Benchmark]
     public void CloneClass()
     {
-        BenchmarkClass? benchmarkClass = new() { X = "Hola", Z = 200, Y = 1 };
-        BenchmarkClass? cloned = new() { X = benchmarkClass.X, Z = benchmarkClass.Z, Y = benchmarkClass.Y, };
+        BenchmarkClass? benchmarkClass = new()
+        {
+            X = "Hola",
+            Z = 200,
+            Y = 1,
+        };
+        BenchmarkClass? cloned = new()
+        {
+            X = benchmarkClass.X,
+            Z = benchmarkClass.Z,
+            Y = benchmarkClass.Y,
+        };
     }
 
     [Benchmark]
@@ -80,7 +100,12 @@ public class Bench
     {
         for (int i = 0; i < 100; i++)
         {
-            _ = new BenchmarkClass { X = "Hola", Z = 200, Y = 1 };
+            _ = new BenchmarkClass
+            {
+                X = "Hola",
+                Z = 200,
+                Y = 1,
+            };
         }
     }
 
@@ -89,7 +114,12 @@ public class Bench
     {
         for (int i = 0; i < 100; i++)
         {
-            BenchmarkClass? benchmarkClass = new() { X = "Hola", Z = 200, Y = 1 };
+            BenchmarkClass? benchmarkClass = new()
+            {
+                X = "Hola",
+                Z = 200,
+                Y = 1,
+            };
             benchmarkClass.X = "Adios";
             benchmarkClass.Y = 50;
         }
@@ -100,8 +130,18 @@ public class Bench
     {
         for (int i = 0; i < 100; i++)
         {
-            BenchmarkClass? benchmarkClass = new() { X = "Hola", Z = 200, Y = 1 };
-            BenchmarkClass? cloned = new() { X = benchmarkClass.X, Z = benchmarkClass.Z, Y = benchmarkClass.Y, };
+            BenchmarkClass? benchmarkClass = new()
+            {
+                X = "Hola",
+                Z = 200,
+                Y = 1,
+            };
+            BenchmarkClass? cloned = new()
+            {
+                X = benchmarkClass.X,
+                Z = benchmarkClass.Z,
+                Y = benchmarkClass.Y,
+            };
         }
     }
 }

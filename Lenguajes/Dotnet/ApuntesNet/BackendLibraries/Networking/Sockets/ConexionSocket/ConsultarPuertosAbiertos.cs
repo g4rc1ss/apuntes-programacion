@@ -11,7 +11,11 @@ public class ConsultarPuertosAbiertos
 
         try
         {
-            using Socket? socket = new(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            using Socket? socket = new(
+                AddressFamily.InterNetwork,
+                SocketType.Stream,
+                ProtocolType.Tcp
+            );
             IPHostEntry? host = Dns.GetHostEntry("google.es");
             string? ip = host.AddressList[0]?.ToString();
             if (ip == null)

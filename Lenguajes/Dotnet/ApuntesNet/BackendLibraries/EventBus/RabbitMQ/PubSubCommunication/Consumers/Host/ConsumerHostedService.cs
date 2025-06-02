@@ -1,10 +1,12 @@
 ﻿using Microsoft.Extensions.Hosting;
-
 using PubSubCommunication.Consumers.Manager;
 
 namespace PubSubCommunication.Consumers.Host;
 
-public class ConsumerHostedService<TMessage>(IConsumerManager<TMessage> consumerManager, IMessageConsumer<TMessage> messageConsumer) : IHostedService
+public class ConsumerHostedService<TMessage>(
+    IConsumerManager<TMessage> consumerManager,
+    IMessageConsumer<TMessage> messageConsumer
+) : IHostedService
 {
     private readonly CancellationTokenSource _stoppingCancellationTokenSource = new();
     private Task? executingTask;
@@ -35,9 +37,6 @@ public class ConsumerHostedService<TMessage>(IConsumerManager<TMessage> consumer
             await messageConsumer.StartAsync(cancellationToken);
             await Task.Delay(1000, cancellationToken);
         }
-        catch (OperationCanceledException)
-        {
-        }
+        catch (OperationCanceledException) { }
     }
 }
-

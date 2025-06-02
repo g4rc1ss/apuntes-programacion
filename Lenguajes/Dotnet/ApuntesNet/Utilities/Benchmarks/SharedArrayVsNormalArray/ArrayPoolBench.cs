@@ -1,12 +1,13 @@
-using BenchmarkDotNet.Attributes;
 using System.Buffers;
+using BenchmarkDotNet.Attributes;
 
 namespace SharedArrayVsNormalArray;
 
 [MemoryDiagnoser]
 public class ArrayPoolBench
 {
-    [Params(1, 10, 100, 1000, 100000)] public int iterations;
+    [Params(1, 10, 100, 1000, 100000)]
+    public int iterations;
 
     // Un caracter tiene 2 bytes
     // 2 * 1024 = 2048kb

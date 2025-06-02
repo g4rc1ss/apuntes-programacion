@@ -2,9 +2,7 @@ namespace ConsoleApi;
 
 public static class ProgressBar
 {
-    internal static void ExecuteNormalProgressBar()
-    {
-    }
+    internal static void ExecuteNormalProgressBar() { }
 
     public static void ExecuteLoading()
     {

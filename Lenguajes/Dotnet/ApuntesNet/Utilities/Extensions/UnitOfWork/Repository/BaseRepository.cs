@@ -1,14 +1,12 @@
 ﻿using System.Linq.Expressions;
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
-
 using UnitOfWork.Repository.Interfaces;
-
 
 namespace UnitOfWork.Repository;
 
-internal abstract class BaseRepository<T> : IReadRepository<T> where T : class
+internal abstract class BaseRepository<T> : IReadRepository<T>
+    where T : class
 {
     public readonly DbContext dbContext;
     protected readonly DbSet<T> _dbSet;
@@ -34,11 +32,14 @@ internal abstract class BaseRepository<T> : IReadRepository<T> where T : class
         return _dbSet.Find(keyValues);
     }
 
-    public T SelectSingle(Expression<Func<T, bool>> predicate = null,
+    public T SelectSingle(
+        Expression<Func<T, bool>> predicate = null,
         Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
         Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null,
-        bool disableTracking = true, IQueryable<T> queryCustom = null,
-        bool ignoreQueryFilter = false)
+        bool disableTracking = true,
+        IQueryable<T> queryCustom = null,
+        bool ignoreQueryFilter = false
+    )
     {
         IQueryable<T> query = null;
         if (queryCustom == null)

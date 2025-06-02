@@ -9,7 +9,6 @@ public record DomainMessage : IMessage
         Traces = traces;
     }
 
-
     public string MessageIdentifier { get; }
 
     public string Name { get; }
@@ -19,7 +18,13 @@ public record DomainMessage : IMessage
 
 public record DomainMessage<T> : DomainMessage
 {
-    public DomainMessage(string messageIdentifier, string name, MessageDiagnosticTraces traces, T content, Metadata metadata)
+    public DomainMessage(
+        string messageIdentifier,
+        string name,
+        MessageDiagnosticTraces traces,
+        T content,
+        Metadata metadata
+    )
         : base(messageIdentifier, name, traces)
     {
         Content = content;
@@ -29,4 +34,3 @@ public record DomainMessage<T> : DomainMessage
     public T Content { get; }
     public Metadata Metadata { get; }
 }
-

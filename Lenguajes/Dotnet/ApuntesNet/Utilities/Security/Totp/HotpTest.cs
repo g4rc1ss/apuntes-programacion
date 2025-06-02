@@ -1,5 +1,5 @@
-﻿using static Totp.Libs.Hotp;
-using static Totp.Libs.Base32;
+﻿using static Totp.Libs.Base32;
+using static Totp.Libs.Hotp;
 
 namespace Totp;
 

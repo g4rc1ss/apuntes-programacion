@@ -2,7 +2,6 @@
 using System.Text;
 using System.Text.RegularExpressions;
 
-
 Stopwatch? stopWatch = new();
 string? stringToCount = GenerarStringToCount();
 
@@ -12,21 +11,23 @@ stopWatch.Start();
 long totalIteracionDiccionario = ContadorPalabras(cadenaArray);
 stopWatch.Stop();
 
-Console.WriteLine($"La instruccion con Diccionario tarda: {stopWatch.Elapsed.TotalMilliseconds}\n" +
-    $"Se han realizado {totalIteracionDiccionario} iteraciones.");
+Console.WriteLine(
+    $"La instruccion con Diccionario tarda: {stopWatch.Elapsed.TotalMilliseconds}\n"
+        + $"Se han realizado {totalIteracionDiccionario} iteraciones."
+);
 
 stopWatch.Reset();
 
 stopWatch.Start();
 long totalIteracionesCuadratico = ContadorTradicionalPalabras(cadenaArray);
 stopWatch.Stop();
-Console.WriteLine($"La instruccion con doble iteracion tarda: {stopWatch.Elapsed.TotalMilliseconds}\n" +
-    $"Se han realizado {totalIteracionesCuadratico} iteraciones.");
-
+Console.WriteLine(
+    $"La instruccion con doble iteracion tarda: {stopWatch.Elapsed.TotalMilliseconds}\n"
+        + $"Se han realizado {totalIteracionesCuadratico} iteraciones."
+);
 
 Console.WriteLine("Pulsa una tecla para finalizar...");
 Console.ReadKey();
-
 
 long ContadorTradicionalPalabras(string[] cadenaArray)
 {
@@ -77,16 +78,19 @@ void PrintDictionary(Dictionary<string, int> diccionario)
 {
     foreach (KeyValuePair<string, int> item in diccionario)
     {
-        Console.WriteLine($"La palabra: {item.Key} \n" +
-            $"repeticiones: {item.Value}\n" +
-            $"-----------------------------------------------------------------");
+        Console.WriteLine(
+            $"La palabra: {item.Key} \n"
+                + $"repeticiones: {item.Value}\n"
+                + $"-----------------------------------------------------------------"
+        );
     }
 }
 
 string GenerarStringToCount()
 {
-    string? cadena = "Hola, este es un mensaje para hacer la prueba de contador de palabras.\n" +
-                     "lo suyo es usar palabras que se repitan un poco para ver como funciona el metodo que vamos a realizar.";
+    string? cadena =
+        "Hola, este es un mensaje para hacer la prueba de contador de palabras.\n"
+        + "lo suyo es usar palabras que se repitan un poco para ver como funciona el metodo que vamos a realizar.";
     StringBuilder? cadenaToReturn = new();
     foreach (int item in Enumerable.Range(0, 100_000))
     {
@@ -100,4 +104,3 @@ string[] CleanAndConvertString(string stringToCount)
     string? replace = Regex.Replace(stringToCount, @"[,.]*", string.Empty);
     return Regex.Split(replace, @"\W");
 }
-

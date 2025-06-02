@@ -1,20 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk.Worker">
-
-    <PropertyGroup>
-        <Nullable>enable</Nullable>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <UserSecretsId>dotnet-ConsumerAzServiceBus-7d5733c0-c96f-43c4-a32f-bbaa8efd2b02</UserSecretsId>
-        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    </PropertyGroup>
-
-    <ItemGroup>
-        <PackageReference Include="Azure.Messaging.ServiceBus" Version="7.18.3"/>
-        <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.2"/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <Content Include="..\..\..\..\.dockerignore">
-            <Link>.dockerignore</Link>
-        </Content>
-    </ItemGroup>
+  <PropertyGroup>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dotnet-ConsumerAzServiceBus-7d5733c0-c96f-43c4-a32f-bbaa8efd2b02</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Azure.Messaging.ServiceBus" Version="7.18.3" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\..\..\..\.dockerignore">
+      <Link>.dockerignore</Link>
+    </Content>
+  </ItemGroup>
 </Project>

@@ -18,7 +18,6 @@ internal class DeleteMysql
         finally
         {
             connection.Close();
-
         }
     }
 }

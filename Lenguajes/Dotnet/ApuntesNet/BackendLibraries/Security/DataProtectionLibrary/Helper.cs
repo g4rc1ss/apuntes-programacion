@@ -1,5 +1,4 @@
 ﻿using DataProtectionLibrary.Protections;
-
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -13,7 +12,8 @@ internal class Helper
 
         services.AddTransient<DataProtectionExample>();
 
-        services.AddDataProtection()
+        services
+            .AddDataProtection()
             .PersistKeysToFileSystem(new DirectoryInfo(@"keysDataProtection"))
             .SetDefaultKeyLifetime(TimeSpan.FromDays(7));
 

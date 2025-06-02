@@ -2,6 +2,8 @@
 
 public interface IMessageHandlerRegistry
 {
-    IEnumerable<IMessageHandler> GetMessageHandlersForType(Type messageHandlerType, Type messageType);
+    IEnumerable<IMessageHandler> GetMessageHandlersForType(
+        Type messageHandlerType,
+        Type messageType
+    );
 }
-

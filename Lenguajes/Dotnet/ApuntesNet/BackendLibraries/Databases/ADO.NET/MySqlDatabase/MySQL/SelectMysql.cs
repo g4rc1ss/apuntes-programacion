@@ -22,18 +22,18 @@ internal class SelectMysql
                 // El 0 es la primera columna, el 1 la segunda, el 2 la tercera, etc.
                 Console.WriteLine(
                     leerSelect["ID"]
-                    + " -- " +
-                    leerSelect["Nombre"]
-                    + " -- " +
-                    leerSelect["Apellidos"]
-                    + " -- " +
-                    leerSelect["Salario"]);
+                        + " -- "
+                        + leerSelect["Nombre"]
+                        + " -- "
+                        + leerSelect["Apellidos"]
+                        + " -- "
+                        + leerSelect["Salario"]
+                );
             }
         }
         finally
         {
             connection.Close();
-
         }
     }
 }

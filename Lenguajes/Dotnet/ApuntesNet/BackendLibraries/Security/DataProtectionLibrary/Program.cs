@@ -1,8 +1,6 @@
 ﻿using DataProtectionLibrary;
 using DataProtectionLibrary.Protections;
-
 using Microsoft.Extensions.DependencyInjection;
-
 
 IServiceProvider? serviceProvider = Helper.GetServiceProvider();
 

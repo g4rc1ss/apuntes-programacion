@@ -12,7 +12,6 @@ List<int>? list = [.. queue];
 
 Console.WriteLine(string.Join(", ", list));
 
-
 StackCollection<int>? queue2 = new();
 queue2.Push(1);
 queue2.Push(2);

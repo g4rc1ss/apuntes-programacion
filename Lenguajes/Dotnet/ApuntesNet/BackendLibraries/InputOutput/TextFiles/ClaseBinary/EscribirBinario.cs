@@ -5,7 +5,7 @@ public class EscribirBinario
     public EscribirBinario(string nombreArchivo)
     {
         // Crea objeto `FileStream` para referenciar un archivo binario -ArchivoBinario.bin-:
-        // Escritura sobre el archivo binario `ArchivoBinario.bin` usando un 
+        // Escritura sobre el archivo binario `ArchivoBinario.bin` usando un
         // objeto de la clase `BinaryWriter`:
         using (FileStream? fs = new(nombreArchivo, FileMode.Create, FileAccess.Write))
         {

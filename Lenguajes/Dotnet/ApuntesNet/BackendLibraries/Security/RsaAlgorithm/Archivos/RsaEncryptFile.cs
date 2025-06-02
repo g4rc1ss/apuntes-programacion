@@ -15,10 +15,12 @@ public class RsaEncryptFile
             if (!File.Exists(_archivoRSA_TXT))
             {
                 StreamWriter? archivoEscrituraRSA = File.CreateText(_archivoRSA_TXT);
-                archivoEscrituraRSA.Write("Esto es una prueba de escritura en un archivo de " +
-                    "texto. \n" +
-                    "Siguiente Linea jajajaja");
-                archivoEscrituraRSA.Close();//guardamos y cerramos el archivo
+                archivoEscrituraRSA.Write(
+                    "Esto es una prueba de escritura en un archivo de "
+                        + "texto. \n"
+                        + "Siguiente Linea jajajaja"
+                );
+                archivoEscrituraRSA.Close(); //guardamos y cerramos el archivo
             }
 
             //Obtenemos un array de bytes del texto a cifrar

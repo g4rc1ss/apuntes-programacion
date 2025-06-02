@@ -1,13 +1,9 @@
 ﻿using System.Diagnostics;
-
 using Microsoft.Extensions.Options;
-
 using PubSubCommunication.Consumers;
 using PubSubCommunication.Consumers.Handler;
 using PubSubCommunication.Messages;
-
 using PubSubRabbitMQ.Serialization;
-
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
@@ -24,9 +20,11 @@ public class RabbitMqMessageConsumer<TMessage> : IMessageConsumer<TMessage>
     private IConnection? connection;
     private IModel? channel;
 
-    public RabbitMqMessageConsumer(IHandleMessage handleMessage,
+    public RabbitMqMessageConsumer(
+        IHandleMessage handleMessage,
         IOptions<RabbitMqSettings> rabbitMqSettings,
-        ISerializer serializer)
+        ISerializer serializer
+    )
     {
         _handleMessage = handleMessage;
         _rabbitMqSettings = rabbitMqSettings.Value;
@@ -36,7 +34,7 @@ public class RabbitMqMessageConsumer<TMessage> : IMessageConsumer<TMessage>
             HostName = rabbitMqSettings.Value.Hostname,
             Password = rabbitMqSettings.Value.Credentials!.Password,
             UserName = rabbitMqSettings.Value.Credentials!.Username,
-            DispatchConsumersAsync = true
+            DispatchConsumersAsync = true,
         };
         _serializer = serializer;
     }
@@ -64,10 +62,11 @@ public class RabbitMqMessageConsumer<TMessage> : IMessageConsumer<TMessage>
 
     private string GetCorrectQueue()
     {
-        return (typeof(TMessage) == typeof(IntegrationMessage)
-                   ? _rabbitMqSettings.Consumer?.IntegrationQueue
-                   : _rabbitMqSettings.Consumer?.DomainQueue)
-               ?? throw new ArgumentException("please configure the queues on the appsettings");
+        return (
+                typeof(TMessage) == typeof(IntegrationMessage)
+                    ? _rabbitMqSettings.Consumer?.IntegrationQueue
+                    : _rabbitMqSettings.Consumer?.DomainQueue
+            ) ?? throw new ArgumentException("please configure the queues on the appsettings");
     }
 
     private async Task HandleMessage(object ch, BasicDeliverEventArgs eventArgs)
@@ -76,8 +75,9 @@ public class RabbitMqMessageConsumer<TMessage> : IMessageConsumer<TMessage>
         byte[]? messageBody = eventArgs.Body.ToArray()!;
         ulong deliveryTag = eventArgs.DeliveryTag;
 
-        IMessage? message = _serializer.DeserializeObject(messageBody, messageType) as IMessage
-                            ?? throw new ArgumentException("The message did not deserialized properly");
+        IMessage? message =
+            _serializer.DeserializeObject(messageBody, messageType) as IMessage
+            ?? throw new ArgumentException("The message did not deserialized properly");
 
         await _handleMessage.Handle(message, CancellationToken.None);
 
@@ -94,7 +94,10 @@ public class RabbitMqMessageConsumer<TMessage> : IMessageConsumer<TMessage>
         }
 
         using ActivitySource? tracingConsumer = new(nameof(IMessageHandler));
-        using Activity? activity = tracingConsumer.CreateActivity("Call ACK", ActivityKind.Consumer);
+        using Activity? activity = tracingConsumer.CreateActivity(
+            "Call ACK",
+            ActivityKind.Consumer
+        );
         activity?.SetParentId(traceId, spanId, ActivityTraceFlags.Recorded);
         activity?.Start();
         ((AsyncEventingBasicConsumer)ch).Model.BasicAck(deliveryTag, false);

@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
 using PubSubCommunication.Consumers.Manager;
 
 namespace PubSubCommunication.Consumers.Host;
@@ -18,4 +17,3 @@ public class ConsumerController<TMessage>(IConsumerManager<TMessage> consumerMan
         return Ok();
     }
 }
-

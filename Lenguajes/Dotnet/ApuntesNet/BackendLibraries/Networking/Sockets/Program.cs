@@ -1,7 +1,6 @@
 ﻿using Sockets.ConexionSocket;
 using Sockets.ConexionSocket.ClienteServidor;
 
-
 // -------- Peticion de conexion tipo cliente -------- \\
 ConsultarPuertosAbiertos.EscanerPuertos();
 

@@ -19,7 +19,6 @@ internal class UpdateMysql
         finally
         {
             connection.Close();
-
         }
     }
 }

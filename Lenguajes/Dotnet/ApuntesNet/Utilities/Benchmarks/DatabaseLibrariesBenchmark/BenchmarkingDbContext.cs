@@ -1,5 +1,4 @@
 ﻿using DatabaseLibrariesBenchmark.Entities;
-
 using Microsoft.EntityFrameworkCore;
 
 namespace DatabaseLibrariesBenchmark;

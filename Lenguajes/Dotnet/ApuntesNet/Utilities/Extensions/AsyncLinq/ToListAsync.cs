@@ -1,12 +1,12 @@
 ﻿namespace AsyncLinq;
 
 /// <summary>
-/// 
+///
 /// </summary>
 public static class ListAsync
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="value"></param>

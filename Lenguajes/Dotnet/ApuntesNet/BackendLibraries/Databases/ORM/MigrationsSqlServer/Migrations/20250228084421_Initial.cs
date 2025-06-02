@@ -14,29 +14,32 @@ public partial class Initial : Migration
             name: "pueblos",
             columns: table => new
             {
-                Id = table.Column<int>(type: "int", nullable: false)
+                Id = table
+                    .Column<int>(type: "int", nullable: false)
                     .Annotation("SqlServer:Identity", "1, 1"),
                 Nombre = table.Column<string>(type: "varchar(100)", nullable: false),
                 IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
+                DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
             },
             constraints: table =>
             {
                 table.PrimaryKey("PK_pueblos", x => x.Id);
-            });
+            }
+        );
 
         migrationBuilder.CreateTable(
             name: "usuarios",
             columns: table => new
             {
-                Id = table.Column<int>(type: "int", nullable: false)
+                Id = table
+                    .Column<int>(type: "int", nullable: false)
                     .Annotation("SqlServer:Identity", "1, 1"),
                 PuebloId = table.Column<int>(type: "int", nullable: false),
                 Nombre = table.Column<string>(type: "nvarchar(max)", nullable: true),
                 Edad = table.Column<int>(type: "int", nullable: false),
                 FechaHoy = table.Column<DateTime>(type: "datetime2", nullable: false),
                 IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
+                DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
             },
             constraints: table =>
             {
@@ -46,32 +49,35 @@ public partial class Initial : Migration
                     column: x => x.PuebloId,
                     principalTable: "pueblos",
                     principalColumn: "Id",
-                    onDelete: ReferentialAction.Cascade);
-            });
+                    onDelete: ReferentialAction.Cascade
+                );
+            }
+        );
 
         migrationBuilder.CreateIndex(
             name: "IX_pueblos_IsDeleted",
             table: "pueblos",
-            column: "IsDeleted");
+            column: "IsDeleted"
+        );
 
         migrationBuilder.CreateIndex(
             name: "IX_usuarios_IsDeleted",
             table: "usuarios",
-            column: "IsDeleted");
+            column: "IsDeleted"
+        );
 
         migrationBuilder.CreateIndex(
             name: "IX_usuarios_PuebloId",
             table: "usuarios",
-            column: "PuebloId");
+            column: "PuebloId"
+        );
     }
 
     /// <inheritdoc />
     protected override void Down(MigrationBuilder migrationBuilder)
     {
-        migrationBuilder.DropTable(
-            name: "usuarios");
+        migrationBuilder.DropTable(name: "usuarios");
 
-        migrationBuilder.DropTable(
-            name: "pueblos");
+        migrationBuilder.DropTable(name: "pueblos");
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using System.Reflection;
-
 using PubSubCommunication.Messages;
 
 namespace PubSubCommunication.Publisher.Domain;
@@ -11,7 +10,9 @@ public class DomainMessageMapper
     {
         if (message is IntegrationMessage)
         {
-            throw new ArgumentException("Message should not be of type DomainMessage, it should be a plain type");
+            throw new ArgumentException(
+                "Message should not be of type DomainMessage, it should be a plain type"
+            );
         }
 
         MethodInfo? buildWrapperMethodInfo = typeof(DomainMessageMapper).GetMethod(
@@ -19,28 +20,31 @@ public class DomainMessageMapper
             BindingFlags.Static | BindingFlags.NonPublic
         );
 
-        MethodInfo? buildWrapperGenericMethodInfo = buildWrapperMethodInfo?.MakeGenericMethod([message.GetType()]);
+        MethodInfo? buildWrapperGenericMethodInfo = buildWrapperMethodInfo?.MakeGenericMethod(
+            [message.GetType()]
+        );
         MessageDiagnosticTraces? traces = new()
         {
             TraceId = Activity.Current!.TraceId.ToString(),
             SpanId = Activity.Current!.SpanId.ToString(),
-            ParentId = parentId
+            ParentId = parentId,
         };
-        object? wrapper = buildWrapperGenericMethodInfo?.Invoke(
-            null,
-            [
-                message,
-                metadata,
-                traces
-            ]
-        );
+        object? wrapper = buildWrapperGenericMethodInfo?.Invoke(null, [message, metadata, traces]);
         return (wrapper as DomainMessage)!;
     }
 
-
-    private static DomainMessage<T> ToTypedIntegrationEvent<T>(T message, Metadata metadata, MessageDiagnosticTraces traces)
+    private static DomainMessage<T> ToTypedIntegrationEvent<T>(
+        T message,
+        Metadata metadata,
+        MessageDiagnosticTraces traces
+    )
     {
-        return new DomainMessage<T>(Guid.NewGuid().ToString(), typeof(T).Name, traces, message, metadata);
+        return new DomainMessage<T>(
+            Guid.NewGuid().ToString(),
+            typeof(T).Name,
+            traces,
+            message,
+            metadata
+        );
     }
 }
-

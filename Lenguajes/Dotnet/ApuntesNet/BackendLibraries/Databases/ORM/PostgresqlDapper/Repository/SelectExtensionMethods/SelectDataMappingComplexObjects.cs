@@ -1,6 +1,4 @@
 ﻿using Dapper;
-
-
 using PostgresqlDapper.Entities;
 
 namespace PostgresqlDapper.Repository.SelectExtensionMethods;
@@ -9,7 +7,8 @@ internal static class SelectDataMappingComplexObjects
 {
     internal static async Task SelectDataMappingComplexObjectsAsync(this SelectData select)
     {
-        string? sqlUsuarioJoin = @$"
+        string? sqlUsuarioJoin =
+            @$"
 SELECT u.Id as {nameof(Usuario.IdUsuario)}
     ,u.Nombre as {nameof(Usuario.NombreUsuario)}
     ,village.Id as {nameof(Pueblo.IdPueblo)}
@@ -19,17 +18,22 @@ INNER JOIN {nameof(Pueblo)} village ON u.IdPueblo = village.Id
 WHERE u.id = @IdUsuario
 ";
 
-        var parameters = new
-        {
-            IdUsuario = 1
-        };
+        var parameters = new { IdUsuario = 1 };
 
-        IEnumerable<Usuario>? respuestaJoin = await select.dbConnection.QueryAsync<Usuario, Pueblo, Usuario>(sqlUsuarioJoin, (user, pueblo) =>
-        {
-            user.FKPueblo = pueblo;
-            return user;
-        }, parameters, splitOn: $"{nameof(Pueblo.IdPueblo)}");
-
+        IEnumerable<Usuario>? respuestaJoin = await select.dbConnection.QueryAsync<
+            Usuario,
+            Pueblo,
+            Usuario
+        >(
+            sqlUsuarioJoin,
+            (user, pueblo) =>
+            {
+                user.FKPueblo = pueblo;
+                return user;
+            },
+            parameters,
+            splitOn: $"{nameof(Pueblo.IdPueblo)}"
+        );
 
         foreach (Usuario? user in respuestaJoin)
         {

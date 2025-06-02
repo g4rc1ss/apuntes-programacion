@@ -6,8 +6,9 @@ public static class ServicesExtensions
 {
     public static void AddDatabase(this IHostApplicationBuilder builder)
     {
-        string? connectionString = builder.Configuration
-            .GetConnectionString(nameof(DatabaseDbContext));
+        string? connectionString = builder.Configuration.GetConnectionString(
+            nameof(DatabaseDbContext)
+        );
         ArgumentNullException.ThrowIfNull(connectionString);
 
         builder.Services.AddDbContextPool<DatabaseDbContext>(builder =>

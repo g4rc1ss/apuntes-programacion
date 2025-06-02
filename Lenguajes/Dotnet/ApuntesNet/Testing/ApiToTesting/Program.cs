@@ -3,13 +3,14 @@
 // Add services to the container.
 
 builder.Services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddCors(config =>
-    config.AddPolicy("all",
-    corsPolicy => corsPolicy.AllowAnyHeader().AllowAnyOrigin()));
+    config.AddPolicy("all", corsPolicy => corsPolicy.AllowAnyHeader().AllowAnyOrigin())
+);
 
 WebApplication? app = builder.Build();
 
@@ -29,7 +30,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-
 
 namespace ApiToTesting
 {

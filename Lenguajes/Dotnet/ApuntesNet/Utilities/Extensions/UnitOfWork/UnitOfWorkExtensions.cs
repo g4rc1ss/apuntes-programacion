@@ -1,7 +1,7 @@
 ﻿namespace UnitOfWork;
 
 /// <summary>
-/// 
+///
 /// </summary>
 public static class UnitOfWorkExtensions
 {

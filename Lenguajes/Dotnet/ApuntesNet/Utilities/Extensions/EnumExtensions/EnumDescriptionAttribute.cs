@@ -9,7 +9,11 @@
 /// Constructor del atributo
 /// </remarks>
 /// <param name="text"></param>
-[AttributeUsage(AttributeTargets.Field | AttributeTargets.Enum | AttributeTargets.Property, Inherited = false, AllowMultiple = true)]
+[AttributeUsage(
+    AttributeTargets.Field | AttributeTargets.Enum | AttributeTargets.Property,
+    Inherited = false,
+    AllowMultiple = true
+)]
 public sealed class EnumDescriptionAttribute(string text) : Attribute
 {
     /// <summary>

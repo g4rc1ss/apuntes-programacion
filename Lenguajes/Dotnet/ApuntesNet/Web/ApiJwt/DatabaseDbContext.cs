@@ -3,9 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ApiJwt;
 
-public class DatabaseDbContext(
-    DbContextOptions<DatabaseDbContext> options
-) : DbContext(options)
+public class DatabaseDbContext(DbContextOptions<DatabaseDbContext> options) : DbContext(options)
 {
     public DbSet<UserJwtTokensEntity> UserJwtTokens { get; set; }
 

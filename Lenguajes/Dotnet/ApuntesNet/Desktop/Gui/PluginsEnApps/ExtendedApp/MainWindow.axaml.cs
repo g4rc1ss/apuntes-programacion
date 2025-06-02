@@ -1,9 +1,7 @@
 using System.Reflection;
-
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Platform.Storage;
-
 using PluginAPI;
 using PluginAPI.ExportAPI;
 
@@ -21,7 +19,9 @@ public partial class MainWindow : Window
 
     private async void CargarPluginsCLick(System.Object sender, RoutedEventArgs e)
     {
-        IReadOnlyList<IStorageFile>? openFileDialog1 = await StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions());
+        IReadOnlyList<IStorageFile>? openFileDialog1 = await StorageProvider.OpenFilePickerAsync(
+            new FilePickerOpenOptions()
+        );
         string? fullPath = openFileDialog1?.FirstOrDefault()?.Path.LocalPath;
         string? name = openFileDialog1?.FirstOrDefault()?.Name;
         if (!string.IsNullOrEmpty(fullPath))

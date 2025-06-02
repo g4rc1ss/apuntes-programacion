@@ -2,10 +2,8 @@ using Azure.Messaging.ServiceBus;
 
 namespace ConsumerAzServiceBus;
 
-public class Worker(
-    ILogger<Worker> logger,
-    IConfiguration configuration,
-    ServiceBusClient client) : BackgroundService
+public class Worker(ILogger<Worker> logger, IConfiguration configuration, ServiceBusClient client)
+    : BackgroundService
 {
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {

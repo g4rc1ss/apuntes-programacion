@@ -21,7 +21,10 @@ public class RsaDecryptText
             rsaCrypt.ImportRSAPrivateKey(File.ReadAllBytes("private.key"), out int privateKey);
 
             // Desencriptamos el mensaje
-            byte[]? mensajeDescifrado = rsaCrypt.Decrypt(textoDescifrarBytes, RSAEncryptionPadding.Pkcs1);
+            byte[]? mensajeDescifrado = rsaCrypt.Decrypt(
+                textoDescifrarBytes,
+                RSAEncryptionPadding.Pkcs1
+            );
 
             Console.WriteLine("----------------------------------- \n Mensaje encriptado:");
             Console.WriteLine(Encoding.UTF8.GetString(mensajeDescifrado));

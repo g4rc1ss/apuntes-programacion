@@ -1,5 +1,4 @@
 ﻿using Caching.ObjCaching;
-
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -22,17 +21,28 @@ internal class MemoryCaching
 
         TimeSpan timeStart = DateTime.Now.TimeOfDay;
         Console.WriteLine($"Obtenemos la lista {timeStart}");
-        memoryCache.Set(ObjectsToCaching.cacheKey, ObjectsToCaching.listToCache, TimeSpan.FromMinutes(1));
+        memoryCache.Set(
+            ObjectsToCaching.cacheKey,
+            ObjectsToCaching.listToCache,
+            TimeSpan.FromMinutes(1)
+        );
 
         Console.WriteLine($"Obtenemos la lista {DateTime.Now.TimeOfDay}");
 
-        if (memoryCache.TryGetValue<IEnumerable<int>>(ObjectsToCaching.cacheKey, out IEnumerable<int>? listaCacheRecuperada))
+        if (
+            memoryCache.TryGetValue<IEnumerable<int>>(
+                ObjectsToCaching.cacheKey,
+                out IEnumerable<int>? listaCacheRecuperada
+            )
+        )
         {
-            listaCacheRecuperada.Select(x =>
-            {
-                Console.WriteLine(x);
-                return x;
-            }).ToList();
+            listaCacheRecuperada
+                .Select(x =>
+                {
+                    Console.WriteLine(x);
+                    return x;
+                })
+                .ToList();
         }
 
         memoryCache.Remove(ObjectsToCaching.cacheKey);

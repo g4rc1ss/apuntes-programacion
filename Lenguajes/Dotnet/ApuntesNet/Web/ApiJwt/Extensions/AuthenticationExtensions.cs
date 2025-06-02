@@ -1,24 +1,23 @@
+using System.Text;
 using ApiJwt.JwtServices;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
 
 namespace ApiJwt.Extensions;
 
 internal static class AuthenticationExtensions
 {
-    internal static void AddAuthenticationProtocol(this IServiceCollection services,
-        IConfiguration configuration)
+    internal static void AddAuthenticationProtocol(
+        this IServiceCollection services,
+        IConfiguration configuration
+    )
     {
         services
             .AddHttpContextAccessor()
             .AddAuthorization()
-            .AddAuthentication(options =>
-            {
-            })
+            .AddAuthentication(options => { })
             .AddJwtBearer(options =>
             {
-                IConfigurationSection jwtOptionsSection = configuration
-                    .GetSection("Jwt");
+                IConfigurationSection jwtOptionsSection = configuration.GetSection("Jwt");
 
                 options.TokenValidationParameters = new()
                 {
@@ -30,7 +29,8 @@ internal static class AuthenticationExtensions
                     ValidIssuer = jwtOptionsSection["Issuer"],
                     ValidAudience = jwtOptionsSection["Audience"],
                     IssuerSigningKey = new SymmetricSecurityKey(
-                        Encoding.UTF8.GetBytes(jwtOptionsSection["Key"]!))
+                        Encoding.UTF8.GetBytes(jwtOptionsSection["Key"]!)
+                    ),
                 };
             });
 

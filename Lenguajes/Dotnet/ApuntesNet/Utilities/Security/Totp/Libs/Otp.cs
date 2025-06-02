@@ -22,7 +22,7 @@ public abstract class Otp
             OtpHashMode.SHA256 => new HMACSHA256(),
             OtpHashMode.SHA512 => new HMACSHA512(),
             OtpHashMode.SHA1 => new HMACSHA1(),
-            _ => new HMACSHA1()
+            _ => new HMACSHA1(),
         };
 
         return hmacAlgorithm;
@@ -93,9 +93,9 @@ public abstract class Otp
 
         int offset = hmacComputedHash[^1] & 0x0F;
         return ((hmacComputedHash[offset] & 0x7f) << 24)
-               | ((hmacComputedHash[offset + 1] & 0xff) << 16)
-               | ((hmacComputedHash[offset + 2] & 0xff) << 8)
-               | ((hmacComputedHash[offset + 3] & 0xff) % 1000000);
+            | ((hmacComputedHash[offset + 1] & 0xff) << 16)
+            | ((hmacComputedHash[offset + 2] & 0xff) << 8)
+            | ((hmacComputedHash[offset + 3] & 0xff) % 1000000);
     }
 
     /// <summary>
@@ -106,7 +106,12 @@ public abstract class Otp
     /// <param name="mode">Tipo de Hash a aplicar</param>
     /// <param name="otpSize">Tamaño del código OTP entre 1 y 9</param>
     /// <returns>Código TOTP</returns>
-    protected static string Compute(byte[] claveSecreta, long contador, OtpHashMode mode, int otpSize)
+    protected static string Compute(
+        byte[] claveSecreta,
+        long contador,
+        OtpHashMode mode,
+        int otpSize
+    )
     {
         byte[]? data = GetBigEndianBytes(contador);
         long otp = CalculateOtp(claveSecreta, data, mode);

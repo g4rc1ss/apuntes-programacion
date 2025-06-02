@@ -19,16 +19,15 @@ public static class ConfigureSwagger
                 Reference = new OpenApiReference
                 {
                     Type = ReferenceType.SecurityScheme,
-                    Id = "Bearer"
-                }
+                    Id = "Bearer",
+                },
             };
 
             options.AddSecurityDefinition("Bearer", securityScheme);
 
-            options.AddSecurityRequirement(new OpenApiSecurityRequirement()
-            {
-                { securityScheme, Array.Empty<string>() }
-            });
+            options.AddSecurityRequirement(
+                new OpenApiSecurityRequirement() { { securityScheme, Array.Empty<string>() } }
+            );
 
             // options.IncludeXmlComments(typeof(Program).Assembly);
         });

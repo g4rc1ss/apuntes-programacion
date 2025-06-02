@@ -1,6 +1,5 @@
 ﻿namespace Visitor;
 
-
 public class Client
 {
     // The client code can run visitor operations over any set of elements

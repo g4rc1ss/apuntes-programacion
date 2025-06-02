@@ -12,6 +12,7 @@ namespace DatabaseLibrariesBenchmark.ConfigurationBenchmark;
 public class Config : ManualConfig
 {
     public const int ITERATIONS = 500;
+
     public Config()
     {
         AddLogger(ConsoleLogger.Default);
@@ -29,11 +30,11 @@ public class Config : ManualConfig
         AddColumn(BaselineRatioColumn.RatioMean);
         AddColumnProvider(DefaultColumnProviders.Metrics);
 
-        AddJob(Job.ShortRun
-               .WithLaunchCount(1)
-               .WithWarmupCount(2)
-               .WithUnrollFactor(ITERATIONS)
-               .WithIterationCount(10)
+        AddJob(
+            Job.ShortRun.WithLaunchCount(1)
+                .WithWarmupCount(2)
+                .WithUnrollFactor(ITERATIONS)
+                .WithIterationCount(10)
         );
         Orderer = new DefaultOrderer(SummaryOrderPolicy.FastestToSlowest);
         Options |= ConfigOptions.JoinSummary;

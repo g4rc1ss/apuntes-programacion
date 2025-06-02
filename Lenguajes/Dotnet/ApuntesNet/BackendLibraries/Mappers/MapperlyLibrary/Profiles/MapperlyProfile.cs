@@ -1,5 +1,4 @@
 ﻿using MapperlyLibrary.ClassToMap;
-
 using Riok.Mapperly.Abstractions;
 
 namespace MapperlyLibrary.Profiles;

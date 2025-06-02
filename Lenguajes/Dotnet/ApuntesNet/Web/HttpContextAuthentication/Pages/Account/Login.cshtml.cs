@@ -1,7 +1,5 @@
 ﻿using System.Security.Claims;
-
 using HttpContextAuthentication.Peticiones.Request;
-
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -12,10 +10,7 @@ namespace HttpContextAuthentication.Pages.Account;
 [AllowAnonymous]
 public class LoginModel : PageModel
 {
-    public LoginModel()
-    {
-
-    }
+    public LoginModel() { }
 
     [BindProperty(SupportsGet = true)]
     public LoginRequest? LoginRequest { get; set; }
@@ -23,10 +18,7 @@ public class LoginModel : PageModel
     [BindProperty(SupportsGet = true)]
     public string? ReturnUrl { get; set; }
 
-    public void OnGet()
-    {
-
-    }
+    public void OnGet() { }
 
     public async Task<IActionResult> OnGetLoginAsync()
     {

@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
 using SqlServerEfCore.Database.Entities;
 
 namespace SqlServerEfCore.Database.EntityConfigurations;

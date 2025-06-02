@@ -14,7 +14,6 @@ if (true)
 dictionary.TryGetValue("Mundo", out string? value);
 Console.WriteLine(value);
 
-
 HashTables<string, int>? hashTable = new();
 
 for (int i = 0; i < 100; i++)

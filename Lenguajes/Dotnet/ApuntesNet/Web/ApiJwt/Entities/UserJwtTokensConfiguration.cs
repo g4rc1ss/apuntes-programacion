@@ -10,10 +10,8 @@ public class UserJwtTokensConfiguration : IEntityTypeConfiguration<UserJwtTokens
         builder.ToTable("UserJwtTokens");
 
         builder.HasKey(x => x.Id);
-        builder.Property(x => x.Id)
-            .ValueGeneratedOnAdd();
-        builder.Property(x => x.ExpirationUtc)
-            .IsRequired();
+        builder.Property(x => x.Id).ValueGeneratedOnAdd();
+        builder.Property(x => x.ExpirationUtc).IsRequired();
 
         // Relation 1:N con Users
         // builder.HasOne<UserEntity>(x => x.User)

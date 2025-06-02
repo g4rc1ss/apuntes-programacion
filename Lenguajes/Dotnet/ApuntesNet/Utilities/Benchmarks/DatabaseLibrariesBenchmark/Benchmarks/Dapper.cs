@@ -1,9 +1,6 @@
 ﻿using System.Data;
-
 using BenchmarkDotNet.Attributes;
-
 using Dapper;
-
 using DatabaseLibrariesBenchmark.Entities;
 
 namespace DatabaseLibrariesBenchmark.Benchmarks;
@@ -23,7 +20,8 @@ public partial class DatabaseFrameworksPerformance
     public void DapperSelectSingleQuery()
     {
         Step();
-        string? sql = @"
+        string? sql =
+            @"
 SELECT * 
 FROM BenchmarkingDatabases.WeatherForecast
 Where Id = @id
