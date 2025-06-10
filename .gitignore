@@ -1029,4 +1029,15 @@ $RECYCLE.BIN/
 
 # End of https://www.toptal.com/developers/gitignore/api/deno,node,visualstudio,visualstudiocode,csharp,dotnetcore,python,java,macos,windows,linux,rust,rust-analyzer
 
+
+@@ -0,0 +1,8 @@
+.DS_Store
+.build/
+Packages
+xcuserdata/
+DerivedData/
+.swiftpm/configuration/registries.json
+.swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
+.netrc
+
 .idea
