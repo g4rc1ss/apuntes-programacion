@@ -40,6 +40,7 @@ public static class MarshalWithUnsafe
             if (pointer != IntPtr.Zero)
             {
                 Marshal.FreeHGlobal(pointer);
+                GC.Collect();
                 Console.WriteLine("La memoria no administrada ha sido liberada.");
             }
 

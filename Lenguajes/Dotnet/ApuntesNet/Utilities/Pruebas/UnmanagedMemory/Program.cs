@@ -3,6 +3,8 @@
 MarshalWithUnsafe.Execute();
 UnmanagedMemoryMarshal.Execute();
 
+ArrayPoolShared.Execute();
+
 UnsafeWithPointers.Execute();
 
 UnsafeWithStackalloc.ExecuteWithPointers();
