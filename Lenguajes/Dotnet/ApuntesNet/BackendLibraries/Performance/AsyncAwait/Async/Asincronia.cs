@@ -11,7 +11,7 @@ public class Asincronia
         });
     }
 
-    internal async Task ESAsync()
+    internal async Task EsAsync()
     {
         HttpClient? cliente = new();
         await cliente.GetStringAsync("https://docs.microsoft.com/en-us/");

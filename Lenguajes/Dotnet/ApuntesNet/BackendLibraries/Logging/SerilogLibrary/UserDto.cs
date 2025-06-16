@@ -1,6 +1,6 @@
 namespace SerilogLibrary;
 
-public record UserDTO
+public record UserDto
 {
     public required string Name { get; init; }
     public required string SurName { get; init; }

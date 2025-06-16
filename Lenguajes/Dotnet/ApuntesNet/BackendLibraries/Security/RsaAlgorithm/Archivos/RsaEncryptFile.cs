@@ -5,26 +5,26 @@ namespace RsaAlgorithm.Archivos;
 
 public class RsaEncryptFile
 {
-    private readonly string _archivoRSA_TXT = "archivoRSA.txt";
-    private readonly string _archivoRSA_CRYPT = "archivoRSA.crypt";
+    private readonly string _archivoRsaTxt = "archivoRSA.txt";
+    private readonly string _archivoRsaCrypt = "archivoRSA.crypt";
 
-    public void CifrarRSA()
+    public void CifrarRsa()
     {
         try
         {
-            if (!File.Exists(_archivoRSA_TXT))
+            if (!File.Exists(_archivoRsaTxt))
             {
-                StreamWriter? archivoEscrituraRSA = File.CreateText(_archivoRSA_TXT);
-                archivoEscrituraRSA.Write(
+                StreamWriter? archivoEscrituraRsa = File.CreateText(_archivoRsaTxt);
+                archivoEscrituraRsa.Write(
                     "Esto es una prueba de escritura en un archivo de "
                         + "texto. \n"
                         + "Siguiente Linea jajajaja"
                 );
-                archivoEscrituraRSA.Close(); //guardamos y cerramos el archivo
+                archivoEscrituraRsa.Close(); //guardamos y cerramos el archivo
             }
 
             //Obtenemos un array de bytes del texto a cifrar
-            byte[]? textoCifrarBytes = File.ReadAllBytes(_archivoRSA_TXT);
+            byte[]? textoCifrarBytes = File.ReadAllBytes(_archivoRsaTxt);
 
             // Instanciamos el algorimo asimétrico RSA
             using RSA? rsaCrypt = RSA.Create();
@@ -36,11 +36,11 @@ public class RsaEncryptFile
             byte[]? mensajeCifrado = rsaCrypt.Encrypt(textoCifrarBytes, RSAEncryptionPadding.Pkcs1);
 
             // Escribir en un fichero el mensaje cifrado
-            File.WriteAllBytes(_archivoRSA_CRYPT, mensajeCifrado);
-            File.Delete(_archivoRSA_TXT);
+            File.WriteAllBytes(_archivoRsaCrypt, mensajeCifrado);
+            File.Delete(_archivoRsaTxt);
 
             Console.WriteLine("----------------------------------- \n Mensaje encriptado:");
-            Console.WriteLine(Encoding.UTF8.GetString(File.ReadAllBytes(_archivoRSA_CRYPT)));
+            Console.WriteLine(Encoding.UTF8.GetString(File.ReadAllBytes(_archivoRsaCrypt)));
         }
         catch (Exception e)
         {

@@ -1,41 +1,41 @@
 ﻿@page "/counter"
 @rendermode @(new InteractiveServerRenderMode(false))
 
-@inject ILogger<Counter> _logger;
+@inject ILogger<Counter> Logger;
 
 <PageTitle>Counter</PageTitle>
 
 <h1>Counter</h1>
 
-<p role="status">Current count: @currentCount</p>
+<p role="status">Current count: @_currentCount</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 @code {
-    [CascadingParameter(Name = "IsSSR")] private bool IsSSR { get; set; }
+    [CascadingParameter(Name = "IsSSR")] private bool IsSsr { get; set; }
 
-    private int currentCount = 0;
+    private int _currentCount = 0;
 
     private void IncrementCount()
     {
-        currentCount++;
+        _currentCount++;
     }
 
     protected override void OnInitialized()
     {
         if (!RendererInfo.IsInteractive)
         {
-            currentCount = 10;
+            _currentCount = 10;
             return;
         }
 
-        _logger.LogInformation("Counter SSR? = {0}", IsSSR);
+        Logger.LogInformation("Counter SSR? = {0}", IsSsr);
         base.OnInitialized();
     }
 
     protected override void OnAfterRender(bool firstRender)
     {
-        _logger.LogInformation("Counter SSR after Render? = {0}", IsSSR);
+        Logger.LogInformation("Counter SSR after Render? = {0}", IsSsr);
         base.OnAfterRender(firstRender);
     }
 

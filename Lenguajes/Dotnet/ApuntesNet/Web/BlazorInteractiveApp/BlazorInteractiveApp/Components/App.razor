@@ -14,7 +14,7 @@
 </head>
 
 <body>
-<CascadingValue IsFixed="true" Name="IsSSR" Value="IsSSR">
+<CascadingValue IsFixed="true" Name="IsSSR" Value="IsSsr">
     <Routes/>
 </CascadingValue>
 <script src="_framework/blazor.web.js"></script>
@@ -27,5 +27,5 @@
     [CascadingParameter]
     public HttpContext? HttpContext { get; set; }
 
-    private bool IsSSR => HttpContext is not null;
+    private bool IsSsr => HttpContext is not null;
 }

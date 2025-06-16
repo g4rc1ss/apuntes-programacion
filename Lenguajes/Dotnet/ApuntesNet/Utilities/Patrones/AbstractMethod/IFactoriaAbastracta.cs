@@ -6,7 +6,7 @@ namespace AbstractMethod;
 
 internal interface IFactoriaAbastracta
 {
-    IAlmacenamientoBBDD CreateAlmacenamientoBBDD();
+    IAlmacenamientoBbdd CreateAlmacenamientoBbdd();
     IAlmacenamientoFile CreateAlmacenamientoFile();
     IAlmacenamientoApi CreateAlmacenamientoApi();
 }

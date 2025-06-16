@@ -67,9 +67,9 @@ app.MapPost(
 
 app.MapGet(
         "list-jwt",
-        async (IJwtRepository JwtRepository, string userId) =>
+        async (IJwtRepository jwtRepository, string userId) =>
         {
-            IEnumerable<JwtTokenData> jwt = await JwtRepository.GetAllTokensByUserId(
+            IEnumerable<JwtTokenData> jwt = await jwtRepository.GetAllTokensByUserId(
                 int.Parse(userId)
             );
             return jwt;

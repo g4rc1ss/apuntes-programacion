@@ -8,48 +8,48 @@ namespace UnitOfWork.UnitOfWork;
 internal class UnitOfWork<TContext>(TContext context) : IRepositoryFactory, IUnitOfWork<TContext>
     where TContext : DbContext, IDisposable
 {
-    private Dictionary<Type, object>? repositories;
+    private Dictionary<Type, object>? _repositories;
 
     public IRepository<TEntity> GetRepository<TEntity>()
         where TEntity : class
     {
-        repositories ??= [];
+        _repositories ??= [];
 
         Type? type = typeof(TEntity);
-        if (!repositories.ContainsKey(type))
+        if (!_repositories.ContainsKey(type))
         {
-            repositories[type] = new Repository<TEntity>(Context);
+            _repositories[type] = new Repository<TEntity>(Context);
         }
 
-        return (IRepository<TEntity>)repositories[type];
+        return (IRepository<TEntity>)_repositories[type];
     }
 
     public IRepositoryAsync<TEntity> GetRepositoryAsync<TEntity>()
         where TEntity : class
     {
-        repositories ??= [];
+        _repositories ??= [];
 
         Type? type = typeof(TEntity);
-        if (!repositories.ContainsKey(type))
+        if (!_repositories.ContainsKey(type))
         {
-            repositories[type] = new RepositoryAsync<TEntity>(Context);
+            _repositories[type] = new RepositoryAsync<TEntity>(Context);
         }
 
-        return (IRepositoryAsync<TEntity>)repositories[type];
+        return (IRepositoryAsync<TEntity>)_repositories[type];
     }
 
     public IRepositoryReadOnly<TEntity> GetReadOnlyRepository<TEntity>()
         where TEntity : class
     {
-        repositories ??= [];
+        _repositories ??= [];
 
         Type? type = typeof(TEntity);
-        if (!repositories.ContainsKey(type))
+        if (!_repositories.ContainsKey(type))
         {
-            repositories[type] = new RepositoryReadOnly<TEntity>(Context);
+            _repositories[type] = new RepositoryReadOnly<TEntity>(Context);
         }
 
-        return (IRepositoryReadOnly<TEntity>)repositories[type];
+        return (IRepositoryReadOnly<TEntity>)_repositories[type];
     }
 
     public TContext Context { get; } = context ?? throw new ArgumentNullException(nameof(context));

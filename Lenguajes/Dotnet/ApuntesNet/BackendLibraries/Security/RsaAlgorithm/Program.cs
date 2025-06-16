@@ -1,8 +1,8 @@
 ﻿using RsaAlgorithm.Archivos;
 using RsaAlgorithm.Textos;
 
-new RsaEncryptFile().CifrarRSA();
-new RsaDecryptFile().DescifrarRSA();
+new RsaEncryptFile().CifrarRsa();
+new RsaDecryptFile().DescifrarRsa();
 
-new RsaEncryptText().CifrarRSA();
-new RsaDecryptText().DescifrarRSA();
+new RsaEncryptText().CifrarRsa();
+new RsaDecryptText().DescifrarRsa();

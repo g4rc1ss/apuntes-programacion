@@ -9,18 +9,18 @@ namespace UnitOfWork.Repository;
 internal class RepositoryAsync<T> : IRepositoryAsync<T>
     where T : class
 {
-    protected readonly DbContext _dbContext;
-    protected readonly DbSet<T> _dbSet;
+    protected readonly DbContext dbContext;
+    protected readonly DbSet<T> dbSet;
 
     public RepositoryAsync(DbContext dbContext)
     {
-        _dbContext = dbContext;
-        _dbSet = _dbContext.Set<T>();
+        this.dbContext = dbContext;
+        dbSet = this.dbContext.Set<T>();
     }
 
     public DbContext GetContext()
     {
-        return _dbContext;
+        return dbContext;
     }
 
     public Task<T> SingleAsync(
@@ -36,7 +36,7 @@ internal class RepositoryAsync<T> : IRepositoryAsync<T>
         if (queryCustom == null)
         {
             string? sql = string.Empty;
-            query = !string.IsNullOrEmpty(sql) ? _dbSet.FromSqlRaw(sql) : _dbSet;
+            query = !string.IsNullOrEmpty(sql) ? dbSet.FromSqlRaw(sql) : dbSet;
         }
         else
         {
@@ -69,48 +69,48 @@ internal class RepositoryAsync<T> : IRepositoryAsync<T>
 
     public async Task<T> AddAsync(T entity, CancellationToken cancellationToken = default)
     {
-        EntityEntry<T>? addEntity = await _dbSet.AddAsync(entity, cancellationToken);
+        EntityEntry<T>? addEntity = await dbSet.AddAsync(entity, cancellationToken);
         return addEntity.Entity;
     }
 
     public Task AddAsync(IEnumerable<T> entities, CancellationToken cancellationToken = default)
     {
-        return _dbSet.AddRangeAsync(entities, cancellationToken);
+        return dbSet.AddRangeAsync(entities, cancellationToken);
     }
 
     public void Update(T entity)
     {
-        _dbSet.Update(entity);
+        dbSet.Update(entity);
     }
 
     public virtual Task<int> CountAsync(Expression<Func<T, bool>> predicate = null)
     {
-        return predicate == null ? _dbSet.CountAsync() : _dbSet.CountAsync(predicate);
+        return predicate == null ? dbSet.CountAsync() : dbSet.CountAsync(predicate);
     }
 
     public virtual Task<long> LongCountAsync(Expression<Func<T, bool>> predicate = null)
     {
-        return predicate == null ? _dbSet.LongCountAsync() : _dbSet.LongCountAsync(predicate);
+        return predicate == null ? dbSet.LongCountAsync() : dbSet.LongCountAsync(predicate);
     }
 
-    public virtual Task<K> MaxAsync<K>(
+    public virtual Task<TK> MaxAsync<TK>(
         Expression<Func<T, bool>> predicate = null,
-        Expression<Func<T, K>> selector = null
+        Expression<Func<T, TK>> selector = null
     )
     {
         return predicate == null
-            ? _dbSet.MaxAsync(selector)
-            : _dbSet.Where(predicate).MaxAsync(selector);
+            ? dbSet.MaxAsync(selector)
+            : dbSet.Where(predicate).MaxAsync(selector);
     }
 
-    public virtual Task<K> MinAsync<K>(
+    public virtual Task<TK> MinAsync<TK>(
         Expression<Func<T, bool>> predicate = null,
-        Expression<Func<T, K>> selector = null
+        Expression<Func<T, TK>> selector = null
     )
     {
         return predicate == null
-            ? _dbSet.MinAsync(selector)
-            : _dbSet.Where(predicate).MaxAsync(selector);
+            ? dbSet.MinAsync(selector)
+            : dbSet.Where(predicate).MaxAsync(selector);
     }
 
     public virtual Task<decimal> AverageAsync(
@@ -119,8 +119,8 @@ internal class RepositoryAsync<T> : IRepositoryAsync<T>
     )
     {
         return predicate == null
-            ? _dbSet.AverageAsync(selector)
-            : _dbSet.Where(predicate).AverageAsync(selector);
+            ? dbSet.AverageAsync(selector)
+            : dbSet.Where(predicate).AverageAsync(selector);
     }
 
     public virtual Task<decimal> SumAsync(
@@ -129,17 +129,17 @@ internal class RepositoryAsync<T> : IRepositoryAsync<T>
     )
     {
         return predicate == null
-            ? _dbSet.SumAsync(selector)
-            : _dbSet.Where(predicate).SumAsync(selector);
+            ? dbSet.SumAsync(selector)
+            : dbSet.Where(predicate).SumAsync(selector);
     }
 
     public Task<bool> ExistsAsync(Expression<Func<T, bool>> selector = null)
     {
-        return selector == null ? _dbSet.AnyAsync() : _dbSet.AnyAsync(selector);
+        return selector == null ? dbSet.AnyAsync() : dbSet.AnyAsync(selector);
     }
 
     public IAsyncEnumerable<T> GetAsync(Expression<Func<T, bool>> predicate)
     {
-        return _dbSet.Where(predicate).AsAsyncEnumerable();
+        return dbSet.Where(predicate).AsAsyncEnumerable();
     }
 }

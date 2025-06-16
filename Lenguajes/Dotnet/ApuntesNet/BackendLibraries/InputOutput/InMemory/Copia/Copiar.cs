@@ -4,7 +4,7 @@ internal class Copiar
 {
     public Copiar() { }
 
-    internal static async Task Copy(MemoryStream streamEscrito)
+    internal static async Task CopyAsync(MemoryStream streamEscrito)
     {
         using MemoryStream? memoryStream = new();
 

@@ -1,8 +1,8 @@
 ﻿namespace ParallelExecutionCode.EjecucionEnParalelo;
 
-internal class UsoParallelLINQ
+internal class UsoParallelLinq
 {
-    public UsoParallelLINQ()
+    public UsoParallelLinq()
     {
         int[]? source = [.. Enumerable.Range(100, 20000)];
 

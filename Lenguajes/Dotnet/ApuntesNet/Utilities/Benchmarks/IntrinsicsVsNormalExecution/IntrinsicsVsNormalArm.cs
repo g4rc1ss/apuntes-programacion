@@ -11,25 +11,25 @@ public class IntrinsicsVsNormalArm
     [Params(1, 10, 100, 1000, 100000, 1000000)]
     public int iterations;
 
-    private int[]? paramA;
-    private int[]? paramB;
+    private int[]? _paramA;
+    private int[]? _paramB;
 
     [GlobalSetup]
     public void Setup()
     {
-        paramA = [.. Enumerable.Range(0, iterations)];
-        paramB = [.. Enumerable.Range(0, iterations)];
+        _paramA = [.. Enumerable.Range(0, iterations)];
+        _paramB = [.. Enumerable.Range(0, iterations)];
     }
 
     [Benchmark]
     public unsafe void SumArraysWithIntrinsicsAndFixed()
     {
-        int len = paramA.Length;
+        int len = _paramA.Length;
         int[]? result = new int[len];
 
         fixed (
-            int* paramAPtr = paramA,
-                paramBPtr = paramB,
+            int* paramAPtr = _paramA,
+                paramBPtr = _paramB,
                 resultPtr = result
         )
         {
@@ -58,10 +58,10 @@ public class IntrinsicsVsNormalArm
     [Benchmark]
     public unsafe void SumArraysWithIntrinsicsWithMarshal()
     {
-        IntPtr pointerA = Marshal.AllocHGlobal(sizeof(int) * paramA.Length);
-        IntPtr pointerB = Marshal.AllocHGlobal(sizeof(int) * paramB.Length);
-        IntPtr resultPointer = Marshal.AllocHGlobal(sizeof(int) * paramA.Length);
-        int len = paramA.Length;
+        IntPtr pointerA = Marshal.AllocHGlobal(sizeof(int) * _paramA.Length);
+        IntPtr pointerB = Marshal.AllocHGlobal(sizeof(int) * _paramB.Length);
+        IntPtr resultPointer = Marshal.AllocHGlobal(sizeof(int) * _paramA.Length);
+        int len = _paramA.Length;
 
         try
         {
@@ -70,8 +70,8 @@ public class IntrinsicsVsNormalArm
                 throw new PlatformNotSupportedException();
             }
 
-            Marshal.Copy(paramA, 0, pointerA, len);
-            Marshal.Copy(paramB, 0, pointerB, len);
+            Marshal.Copy(_paramA, 0, pointerA, len);
+            Marshal.Copy(_paramB, 0, pointerB, len);
 
             for (int i = 0; i < len; i += Vector128<int>.Count)
             {
@@ -107,8 +107,8 @@ public class IntrinsicsVsNormalArm
     [Benchmark]
     public unsafe void SumArraysWithIntrinsicsWithMarshalWithoutCopy()
     {
-        IntPtr resultPointer = Marshal.AllocHGlobal(sizeof(int) * paramA.Length);
-        int len = paramA.Length;
+        IntPtr resultPointer = Marshal.AllocHGlobal(sizeof(int) * _paramA.Length);
+        int len = _paramA.Length;
         int* resultPtr = (int*)resultPointer;
 
         try
@@ -119,8 +119,8 @@ public class IntrinsicsVsNormalArm
             }
 
             fixed (
-                int* paramAPtr = paramA,
-                    paramBPtr = paramB
+                int* paramAPtr = _paramA,
+                    paramBPtr = _paramB
             )
             {
                 for (int i = 0; i < len; i += Vector128<int>.Count)
@@ -155,11 +155,11 @@ public class IntrinsicsVsNormalArm
     [Benchmark]
     public void SumArrays()
     {
-        int[]? result = new int[paramA.Length];
+        int[]? result = new int[_paramA.Length];
 
-        for (int i = 0; i < paramA.Length; i++)
+        for (int i = 0; i < _paramA.Length; i++)
         {
-            result[i] = paramA[i] + paramB[i];
+            result[i] = _paramA[i] + _paramB[i];
         }
     }
 }

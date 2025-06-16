@@ -15,14 +15,24 @@ public class Hotp : Otp
     private static void ValidaParametrosEntrada(byte[] claveSecreta, int otpSize)
     {
         if (!(claveSecreta != null))
+        {
             throw new ArgumentNullException("claveSecreta");
+        }
+
         if (!(claveSecreta.Length > 0))
+        {
             throw new ArgumentException("claveSecreta empty");
+        }
 
         if (!(otpSize >= OTP_MIN_SIZE))
+        {
             throw new ArgumentOutOfRangeException("otpMinSize");
+        }
+
         if (!(otpSize <= OTP_MAX_SIZE))
+        {
             throw new ArgumentOutOfRangeException("otpMaxSize");
+        }
     }
 
     /// <summary>

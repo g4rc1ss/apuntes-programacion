@@ -5,30 +5,30 @@ namespace AdvancedEncryptionStandard.Archivos;
 
 public class AesDecryptFile
 {
-    private readonly string _archivoAES_TXT = "archivo.txt";
-    private readonly string _archivoAES_TXT_Cifrado = "archivo.txt.crypt";
+    private readonly string _archivoAesTxt = "archivo.txt";
+    private readonly string _archivoAesTxtCifrado = "archivo.txt.crypt";
 
-    public void DescifrarAES()
+    public void DescifrarAes()
     {
         try
         {
             Console.WriteLine("Escribe la contraseña");
-            string? contraseña = Console.ReadLine();
+            string? contrasenia = Console.ReadLine();
 
             using (HashAlgorithm hash = SHA256.Create())
             {
                 using Aes? aesAlg = Aes.Create();
-                aesAlg.Key = hash.ComputeHash(Encoding.UTF8.GetBytes(contraseña));
+                aesAlg.Key = hash.ComputeHash(Encoding.UTF8.GetBytes(contrasenia!));
 
                 // Create an encryptor to perform the stream transform.
                 using ICryptoTransform? decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
                 using FileStream? fileStreamCrypt = new(
-                    _archivoAES_TXT_Cifrado,
+                    _archivoAesTxtCifrado,
                     FileMode.Open,
                     FileAccess.Read
                 );
                 using FileStream? fileStreamOut = new(
-                    _archivoAES_TXT,
+                    _archivoAesTxt,
                     FileMode.OpenOrCreate,
                     FileAccess.Write
                 );
@@ -43,8 +43,8 @@ public class AesDecryptFile
                 }
             }
 
-            File.Delete(_archivoAES_TXT_Cifrado);
-            Console.WriteLine(File.ReadAllText(_archivoAES_TXT));
+            File.Delete(_archivoAesTxtCifrado);
+            Console.WriteLine(File.ReadAllText(_archivoAesTxt));
         }
         catch (Exception ex)
         {

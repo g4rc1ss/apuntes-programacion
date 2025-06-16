@@ -5,9 +5,9 @@ namespace AdvancedEncryptionStandard.Textos;
 
 public class AesEncryptText
 {
-    private readonly string _archivoAES_TXT = "archivo.txt";
+    private readonly string _archivoAesTxt = "archivo.txt";
 
-    public void CifrarAES()
+    public void CifrarAes()
     {
         try
         {
@@ -37,7 +37,7 @@ public class AesEncryptText
                 textoCifrado = msEncrypt.ToArray();
             }
 
-            File.Delete(_archivoAES_TXT);
+            File.Delete(_archivoAesTxt);
             Console.WriteLine(Encoding.UTF8.GetString(textoCifrado));
         }
         catch (Exception ex)

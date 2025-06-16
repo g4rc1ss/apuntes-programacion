@@ -1,6 +1,6 @@
 ﻿namespace AbstractMethod.BaseDatos;
 
-internal class AlmacenamientoBBDD : IAlmacenamientoBBDD
+internal class AlmacenamientoBbdd : IAlmacenamientoBbdd
 {
     public void Guardar<T>(T entityDatabase)
     {

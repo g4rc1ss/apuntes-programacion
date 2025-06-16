@@ -5,7 +5,7 @@ namespace MongoDatabase.Queries;
 
 internal static class DeleteData
 {
-    public static async Task Delete()
+    public static async Task DeleteAsync()
     {
         FilterDefinition<Persona>? filter = Builders<Persona>.Filter.Eq(x => x.Name, "asier");
         DeleteResult? resultadoDelete = await Helper

@@ -4,7 +4,7 @@ namespace MongoDatabase.Queries;
 
 internal class CreateDatabaseAndCollections
 {
-    internal static async Task CreateCollection()
+    internal static async Task CreateCollectionAsync()
     {
         if (
             (

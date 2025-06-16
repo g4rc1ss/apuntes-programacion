@@ -5,7 +5,7 @@ namespace JsonFiles.Write;
 
 public class JsonWriteSerialization
 {
-    public static async Task UsingJSONAsync(ClaseParaJSON json)
+    public static async Task UsingJsonAsync(ClaseParaJson json)
     {
         using FileStream? jsonStream = File.OpenWrite("ruta.json");
         await JsonSerializer.SerializeAsync(jsonStream, json);

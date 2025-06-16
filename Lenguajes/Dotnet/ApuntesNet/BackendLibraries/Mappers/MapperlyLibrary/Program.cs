@@ -3,11 +3,11 @@ using MapperlyLibrary.Profiles;
 
 MapperlyProfile? mapperly = new();
 
-ChatDTO? chatDTO = mapperly.ToChatDTO(ClassFake.chatClass);
+ChatDto? chatDto = mapperly.ToChatDto(ClassFake.chatClass);
 
-IEnumerable<ChatDTO>? chatsDTO = ClassFake.chatEntityList.Select(mapperly.ToChatDTO);
+IEnumerable<ChatDto>? chatsDto = ClassFake.chatEntityList.Select(mapperly.ToChatDto);
 
-foreach (ChatDTO? chat in chatsDTO)
+foreach (ChatDto? chat in chatsDto)
 {
     Console.WriteLine(chat.Id);
 }

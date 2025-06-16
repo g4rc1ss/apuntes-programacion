@@ -30,7 +30,7 @@
                 Width="224"
                 Grid.Row="1"
                 Grid.ColumnSpan="4"
-                Click="CargarPluginsCLick"
+                Click="CargarPluginsCLickAsync"
                 Margin="2,0,0,0" />
 
         <ListBox x:Name="ListaPlugins"

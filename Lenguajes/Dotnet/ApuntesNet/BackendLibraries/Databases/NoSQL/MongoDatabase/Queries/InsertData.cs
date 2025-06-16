@@ -5,7 +5,7 @@ namespace MongoDatabase.Queries;
 
 internal static class InsertData
 {
-    public static async Task Insert()
+    public static async Task InsertAsync()
     {
         List<Persona>? persona =
         [

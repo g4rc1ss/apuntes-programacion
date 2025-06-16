@@ -17,8 +17,9 @@ public partial class MainWindow : Window
         LoadEventCallers();
     }
 
-    private async void CargarPluginsCLick(System.Object sender, RoutedEventArgs e)
+    private async void CargarPluginsCLickAsync(object sender, RoutedEventArgs e)
     {
+        string x = "";
         IReadOnlyList<IStorageFile>? openFileDialog1 = await StorageProvider.OpenFilePickerAsync(
             new FilePickerOpenOptions()
         );
@@ -34,7 +35,7 @@ public partial class MainWindow : Window
         }
     }
 
-    private void ListaPlugins_SelectionChanged(System.Object sender, SelectionChangedEventArgs e)
+    private void ListaPlugins_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         if (ListaPlugins.SelectedItem != null && ListaPlugins.SelectedItem is DllData pluginData)
         {
@@ -72,7 +73,7 @@ public partial class MainWindow : Window
 
     private void LoadEventCallers()
     {
-        ExportAPI.ExportEvent += LoadEventCall;
+        ExportApi.ExportEvent += LoadEventCall;
     }
 
     private void LoadEventCall(object sender, EventArgs e)

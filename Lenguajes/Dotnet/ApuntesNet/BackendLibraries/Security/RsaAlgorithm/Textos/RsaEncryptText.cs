@@ -5,7 +5,7 @@ namespace RsaAlgorithm.Textos;
 
 public class RsaEncryptText
 {
-    public void CifrarRSA()
+    public void CifrarRsa()
     {
         try
         {

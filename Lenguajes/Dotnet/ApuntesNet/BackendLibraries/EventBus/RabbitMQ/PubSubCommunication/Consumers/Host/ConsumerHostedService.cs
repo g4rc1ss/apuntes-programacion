@@ -9,12 +9,12 @@ public class ConsumerHostedService<TMessage>(
 ) : IHostedService
 {
     private readonly CancellationTokenSource _stoppingCancellationTokenSource = new();
-    private Task? executingTask;
+    private Task? _executingTask;
 
     public Task StartAsync(CancellationToken cancellationToken)
     {
-        executingTask = ConsumeMessages(_stoppingCancellationTokenSource.Token);
-        return executingTask.IsCompleted ? executingTask : Task.CompletedTask;
+        _executingTask = ConsumeMessagesAsync(_stoppingCancellationTokenSource.Token);
+        return _executingTask.IsCompleted ? _executingTask : Task.CompletedTask;
     }
 
     public Task StopAsync(CancellationToken cancellationToken)
@@ -24,7 +24,7 @@ public class ConsumerHostedService<TMessage>(
         return Task.CompletedTask;
     }
 
-    private async Task ConsumeMessages(CancellationToken cancellationToken)
+    private async Task ConsumeMessagesAsync(CancellationToken cancellationToken)
     {
         CancellationToken ct = consumerManager.GetCancellationToken();
         if (ct.IsCancellationRequested)

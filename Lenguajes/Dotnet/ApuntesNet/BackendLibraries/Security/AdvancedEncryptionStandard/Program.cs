@@ -1,8 +1,8 @@
 ﻿using AdvancedEncryptionStandard.Archivos;
 using AdvancedEncryptionStandard.Textos;
 
-new AesEncryptFile().CifrarAES();
-new AesDecryptFile().DescifrarAES();
+new AesEncryptFile().CifrarAes();
+new AesDecryptFile().DescifrarAes();
 
-new AesEncryptText().CifrarAES();
-new AesDecryptText().DescifrarAES();
+new AesEncryptText().CifrarAes();
+new AesDecryptText().DescifrarAes();

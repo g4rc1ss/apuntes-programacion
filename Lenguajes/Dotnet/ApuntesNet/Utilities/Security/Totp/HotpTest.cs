@@ -5,48 +5,48 @@ namespace Totp;
 
 public class HotpTest
 {
-    private static string claveSecreta = "";
-    private static string claveSecreta2 = "";
+    private static string _claveSecreta = "";
+    private static string _claveSecreta2 = "";
     private const long CONTADOR = 12345678;
 
     public HotpTest()
     {
-        claveSecreta = Encode("12345");
-        claveSecreta2 = Encode("12346");
+        _claveSecreta = Encode("12345");
+        _claveSecreta2 = Encode("12346");
     }
 
     [Fact]
-    public void TestGeneraOK()
+    public void TestGeneraOk()
     {
-        string? hotpCode = GeneraHotp(CONTADOR, claveSecreta);
+        string? hotpCode = GeneraHotp(CONTADOR, _claveSecreta);
         Assert.Equal("147108", hotpCode);
     }
 
     [Fact]
-    public void TestGeneraSize8OK()
+    public void TestGeneraSize8Ok()
     {
-        string? hotpCode = GeneraHotp(CONTADOR, claveSecreta, otpSize: 8);
+        string? hotpCode = GeneraHotp(CONTADOR, _claveSecreta, otpSize: 8);
         Assert.Equal("17147108", hotpCode);
     }
 
     [Fact]
-    public void TestValidaOK()
+    public void TestValidaOk()
     {
-        string? hotpCode = GeneraHotp(CONTADOR, claveSecreta);
-        Assert.True(ValidaHotp(CONTADOR, hotpCode, claveSecreta));
+        string? hotpCode = GeneraHotp(CONTADOR, _claveSecreta);
+        Assert.True(ValidaHotp(CONTADOR, hotpCode, _claveSecreta));
     }
 
     [Fact]
     public void TestErrorCodigoIncorrecto()
     {
-        string? hotpCode = GeneraHotp(CONTADOR, claveSecreta);
-        Assert.False(ValidaHotp(CONTADOR, "123456", claveSecreta));
+        string? hotpCode = GeneraHotp(CONTADOR, _claveSecreta);
+        Assert.False(ValidaHotp(CONTADOR, "123456", _claveSecreta));
     }
 
     [Fact]
     public void TestErrorOtraClave()
     {
-        string? hotpCode = GeneraHotp(CONTADOR, claveSecreta);
-        Assert.False(ValidaHotp(CONTADOR, hotpCode, claveSecreta2));
+        string? hotpCode = GeneraHotp(CONTADOR, _claveSecreta);
+        Assert.False(ValidaHotp(CONTADOR, hotpCode, _claveSecreta2));
     }
 }

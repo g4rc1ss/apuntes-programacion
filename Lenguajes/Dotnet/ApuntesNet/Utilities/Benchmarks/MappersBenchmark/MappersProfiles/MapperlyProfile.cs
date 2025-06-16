@@ -6,16 +6,16 @@ namespace MappersBenchmark.MappersProfiles;
 [Mapper]
 public partial class MapperlyProfile
 {
-    [MapProperty(nameof(Chat.UserIdFromNavigation), nameof(@ChatDTO.FromUser))]
-    [MapProperty(nameof(Chat.UserIdToNavigation), nameof(@ChatDTO.ToUser))]
-    [MapProperty(nameof(Chat.PropiedadesNavigation), nameof(@ChatDTO.Properties))]
-    [MapProperty(nameof(Chat.Message), nameof(@ChatDTO.Message))]
-    [MapProperty(nameof(Chat.EstaLeido), nameof(@ChatDTO.IsRead))]
-    public partial ChatDTO ToChatDTO(Chat chatEntity);
+    [MapProperty(nameof(Chat.UserIdFromNavigation), nameof(ChatDto.FromUser))]
+    [MapProperty(nameof(Chat.UserIdToNavigation), nameof(ChatDto.ToUser))]
+    [MapProperty(nameof(Chat.PropiedadesNavigation), nameof(ChatDto.Properties))]
+    [MapProperty(nameof(Chat.Message), nameof(ChatDto.Message))]
+    [MapProperty(nameof(Chat.EstaLeido), nameof(ChatDto.IsRead))]
+    public partial ChatDto ToChatDto(Chat chatEntity);
 
-    public partial PropertyDTO ToPropiedadDTO(Propiedad propiedad);
+    public partial PropertyDto ToPropiedadDto(Propiedad propiedad);
 
-    [MapProperty(nameof(@User.Name), nameof(@UserDTO.Nombre))]
-    [MapProperty(nameof(@User.LastName), nameof(@UserDTO.Apellidos))]
-    public partial UserDTO ToUserDTO(User user);
+    [MapProperty(nameof(@User.Name), nameof(UserDto.Nombre))]
+    [MapProperty(nameof(@User.LastName), nameof(UserDto.Apellidos))]
+    public partial UserDto ToUserDto(User user);
 }

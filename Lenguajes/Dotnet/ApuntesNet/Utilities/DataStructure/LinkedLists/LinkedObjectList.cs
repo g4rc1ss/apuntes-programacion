@@ -2,36 +2,36 @@ namespace LinkedLists;
 
 public class LinkedObjectList<TValue>
 {
-    private TValue? value;
-    private LinkedObjectList<TValue>? nextNode;
+    private TValue? _value;
+    private LinkedObjectList<TValue>? _nextNode;
 
     public LinkedObjectList() { }
 
     private LinkedObjectList(TValue newValue)
     {
-        value = newValue;
+        _value = newValue;
     }
 
     public void Add(TValue newValue)
     {
-        if (value == null)
+        if (_value == null)
         {
-            value = newValue;
+            _value = newValue;
             return;
         }
 
-        if (nextNode == null)
+        if (_nextNode == null)
         {
-            nextNode = new LinkedObjectList<TValue>(newValue);
+            _nextNode = new LinkedObjectList<TValue>(newValue);
         }
         else
         {
-            nextNode.Add(newValue);
+            _nextNode.Add(newValue);
         }
     }
 
     public (TValue? value, LinkedObjectList<TValue>? nextNode) Get()
     {
-        return (value, nextNode);
+        return (_value, _nextNode);
     }
 }

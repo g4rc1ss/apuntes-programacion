@@ -5,14 +5,14 @@ namespace JsonFiles.Read;
 
 public class JsonReadDeserialize
 {
-    public static async Task UsingJSONAsync()
+    public static async Task UsingJsonAsync()
     {
         using FileStream? jsonStream = File.Open("ruta.json", FileMode.Open, FileAccess.Read);
-        ClaseParaJSON? localizacion = await JsonSerializer.DeserializeAsync<ClaseParaJSON>(
+        ClaseParaJson? localizacion = await JsonSerializer.DeserializeAsync<ClaseParaJson>(
             jsonStream
         );
 
         Console.WriteLine("JSON Deserializado:");
-        Console.WriteLine(localizacion.Ruta);
+        Console.WriteLine(localizacion?.Ruta);
     }
 }

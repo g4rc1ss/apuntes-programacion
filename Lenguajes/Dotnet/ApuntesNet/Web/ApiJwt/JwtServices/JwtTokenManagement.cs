@@ -22,10 +22,10 @@ public class JwtTokenManagement(
 
         List<Claim> claims =
         [
-            new(ClaimsKey.UserId, jwtData.UserId),
-            new(ClaimsKey.UserName, jwtData.UserName),
-            new(ClaimsKey.UserEmail, jwtData.UserEmail),
-            new(ClaimsKey.RefreshToken, jwtData.RefreshToken),
+            new(ClaimsKey.USER_ID, jwtData.UserId),
+            new(ClaimsKey.USER_NAME, jwtData.UserName),
+            new(ClaimsKey.USER_EMAIL, jwtData.UserEmail),
+            new(ClaimsKey.REFRESH_TOKEN, jwtData.RefreshToken),
         ];
 
         if (jwtData.AdditionalClaims != null)

@@ -6,9 +6,9 @@ namespace PubSubRabbitMQ.Serialization;
 
 internal class Serializer(JsonSerializerSettings serializerSettings) : ISerializer
 {
-    private static readonly Encoding Encoding = new UTF8Encoding(false);
+    private static readonly Encoding _encoding = new UTF8Encoding(false);
 
-    private static readonly JsonSerializerSettings DefaultSerializerSettings = new()
+    private static readonly JsonSerializerSettings _defaultSerializerSettings = new()
     {
         TypeNameHandling = TypeNameHandling.Auto,
     };
@@ -19,7 +19,7 @@ internal class Serializer(JsonSerializerSettings serializerSettings) : ISerializ
         Newtonsoft.Json.JsonSerializer.Create(serializerSettings);
 
     public Serializer()
-        : this(DefaultSerializerSettings) { }
+        : this(_defaultSerializerSettings) { }
 
     public T DeserializeObject<T>(string input)
     {
@@ -37,7 +37,7 @@ internal class Serializer(JsonSerializerSettings serializerSettings) : ISerializ
         using MemoryStream? memoryStream = new(input, false);
         using StreamReader? streamReader = new(
             memoryStream,
-            Encoding,
+            _encoding,
             false,
             DEFAULTBUFFERSIZE,
             true
@@ -54,7 +54,7 @@ internal class Serializer(JsonSerializerSettings serializerSettings) : ISerializ
     public byte[] SerializeObjectToByteArray<T>(T obj)
     {
         using MemoryStream? memoryStream = new(DEFAULTBUFFERSIZE);
-        using (StreamWriter? streamWriter = new(memoryStream, Encoding, DEFAULTBUFFERSIZE, true))
+        using (StreamWriter? streamWriter = new(memoryStream, _encoding, DEFAULTBUFFERSIZE, true))
         using (JsonTextWriter? jsonWriter = new(streamWriter))
         {
             jsonWriter.Formatting = _jsonSerializer.Formatting;

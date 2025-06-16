@@ -4,23 +4,23 @@ namespace Queues;
 
 public class Queue<T> : IEnumerable<T>
 {
-    private int indexToAdd = -1;
-    private T[] collection;
+    private int _indexToAdd = -1;
+    private T[] _collection;
 
     public Queue()
     {
-        collection = [];
+        _collection = [];
     }
 
     public Queue(T[] collection)
     {
-        this.collection = collection;
-        indexToAdd = collection.Length - 1;
+        this._collection = collection;
+        _indexToAdd = collection.Length - 1;
     }
 
     public IEnumerator<T> GetEnumerator()
     {
-        return new QueueEnumerator<T>(collection);
+        return new QueueEnumerator<T>(_collection);
     }
 
     IEnumerator IEnumerable.GetEnumerator()
@@ -30,20 +30,20 @@ public class Queue<T> : IEnumerable<T>
 
     public void Enqueue(T item)
     {
-        indexToAdd++;
-        if (indexToAdd == collection.Length)
+        _indexToAdd++;
+        if (_indexToAdd == _collection.Length)
         {
-            Array.Resize(ref collection, collection.Length + 1);
+            Array.Resize(ref _collection, _collection.Length + 1);
         }
 
-        collection[indexToAdd] = item;
+        _collection[_indexToAdd] = item;
     }
 
     public T Dequeue()
     {
-        T? value = collection[0];
-        collection = [.. collection.Skip(1)];
-        indexToAdd--;
+        T? value = _collection[0];
+        _collection = [.. _collection.Skip(1)];
+        _indexToAdd--;
         return value;
     }
 }

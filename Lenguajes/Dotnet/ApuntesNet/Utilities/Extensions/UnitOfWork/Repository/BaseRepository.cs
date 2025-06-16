@@ -9,12 +9,12 @@ internal abstract class BaseRepository<T> : IReadRepository<T>
     where T : class
 {
     public readonly DbContext dbContext;
-    protected readonly DbSet<T> _dbSet;
+    protected readonly DbSet<T> dbSet;
 
     protected BaseRepository(DbContext context)
     {
         dbContext = context ?? throw new ArgumentException(nameof(context));
-        _dbSet = dbContext.Set<T>();
+        dbSet = dbContext.Set<T>();
     }
 
     public DbContext GetContext()
@@ -24,12 +24,12 @@ internal abstract class BaseRepository<T> : IReadRepository<T>
 
     public virtual IQueryable<T> Query(string sql, params object[] parameters)
     {
-        return _dbSet.FromSqlRaw(sql, parameters);
+        return dbSet.FromSqlRaw(sql, parameters);
     }
 
     public T Search(params object[] keyValues)
     {
-        return _dbSet.Find(keyValues);
+        return dbSet.Find(keyValues);
     }
 
     public T SelectSingle(
@@ -45,7 +45,7 @@ internal abstract class BaseRepository<T> : IReadRepository<T>
         if (queryCustom == null)
         {
             string? sql = string.Empty;
-            query = !string.IsNullOrEmpty(sql) ? _dbSet.FromSqlRaw(sql) : _dbSet;
+            query = !string.IsNullOrEmpty(sql) ? dbSet.FromSqlRaw(sql) : dbSet;
         }
         else
         {

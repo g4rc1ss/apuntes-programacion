@@ -7,7 +7,7 @@ namespace DbConnectionExtensions.DependencyInjection;
 /// <summary>
 ///
 /// </summary>
-public static class DbConnectionFactoryDI
+public static class DbConnectionFactoryDi
 {
     /// <summary>
     ///

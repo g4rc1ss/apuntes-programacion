@@ -5,16 +5,16 @@ namespace AdvancedEncryptionStandard.Archivos;
 
 public class AesEncryptFile
 {
-    private readonly string _archivoAES_TXT = "archivo.txt";
-    private readonly string _archivoAES_TXT_Cifrado = "archivo.txt.crypt";
+    private readonly string _archivoAesTxt = "archivo.txt";
+    private readonly string _archivoAesTxtCifrado = "archivo.txt.crypt";
 
-    public void CifrarAES()
+    public void CifrarAes()
     {
         try
         {
-            if (!File.Exists(_archivoAES_TXT))
+            if (!File.Exists(_archivoAesTxt))
             {
-                StreamWriter? archivoEscritura = File.CreateText(_archivoAES_TXT);
+                StreamWriter? archivoEscritura = File.CreateText(_archivoAesTxt);
                 archivoEscritura.Write(
                     "Esto es una prueba de escritura en un archivo de "
                         + "texto. \n"
@@ -33,7 +33,7 @@ public class AesEncryptFile
 
                 using ICryptoTransform? encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
                 using FileStream? fileStreamOutput = new(
-                    _archivoAES_TXT_Cifrado,
+                    _archivoAesTxtCifrado,
                     FileMode.OpenOrCreate,
                     FileAccess.Write
                 );
@@ -43,7 +43,7 @@ public class AesEncryptFile
                     CryptoStreamMode.Write
                 );
                 using FileStream? fileStreamInput = new(
-                    _archivoAES_TXT,
+                    _archivoAesTxt,
                     FileMode.Open,
                     FileAccess.Read
                 );
@@ -53,8 +53,8 @@ public class AesEncryptFile
                 }
             }
 
-            File.Delete(_archivoAES_TXT);
-            Console.WriteLine(File.ReadAllText(_archivoAES_TXT_Cifrado));
+            File.Delete(_archivoAesTxt);
+            Console.WriteLine(File.ReadAllText(_archivoAesTxtCifrado));
         }
         catch (Exception ex)
         {

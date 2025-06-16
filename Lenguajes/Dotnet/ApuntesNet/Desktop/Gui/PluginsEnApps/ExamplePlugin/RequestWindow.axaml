@@ -20,6 +20,6 @@
         <Label Content="Cual es mi Ip" VerticalAlignment="Center" Height="45" Grid.Column="1" Grid.Row="1"
                HorizontalAlignment="Center" Width="80" />
         <Button Content="Solicitar" HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Width="128"
-                Click="Button_Clicked" Grid.Row="2" Grid.Column="1" Margin="0,21,0,0" />
+                Click="Button_ClickedAsync" Grid.Row="2" Grid.Column="1" Margin="0,21,0,0" />
     </Grid>
 </Window>

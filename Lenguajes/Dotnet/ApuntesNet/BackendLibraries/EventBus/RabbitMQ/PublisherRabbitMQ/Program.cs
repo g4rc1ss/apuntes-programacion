@@ -15,7 +15,7 @@ hostBuilder.ConfigureServices(
     (host, serviceCollection) =>
     {
         serviceCollection.AddHandlersInAssembly<Program>();
-        serviceCollection.AddRabbitMQ(host.Configuration);
+        serviceCollection.AddRabbitMq(host.Configuration);
         serviceCollection.AddRabbitMqPublisher<IntegrationMessage>();
 
         serviceCollection

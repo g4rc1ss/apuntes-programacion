@@ -4,7 +4,7 @@ namespace HtmlToMd;
 
 public static class HtmlToMarkdown
 {
-    private static readonly Dictionary<string, string> Replacements = new()
+    private static readonly Dictionary<string, string> _replacements = new()
     {
         { "<ul>", string.Empty },
         { "</ul>", string.Empty },
@@ -21,15 +21,17 @@ public static class HtmlToMarkdown
         { "¬", "\n" },
     };
 
-    public static string ConvertHtmlToMD(this string source)
+    public static string ConvertHtmlToMd(this string source)
     {
         if (string.IsNullOrEmpty(source))
+        {
             return source;
+        }
 
         string? result = Regex.Replace(
             source,
-            string.Join("|", Replacements.Keys.Select(k => k.ToString()).ToArray()),
-            m => Replacements[m.Value]
+            string.Join("|", _replacements.Keys.Select(k => k.ToString()).ToArray()),
+            m => _replacements[m.Value]
         );
 
         result = Regex.Replace(result, "<span[^>]*>", string.Empty);
