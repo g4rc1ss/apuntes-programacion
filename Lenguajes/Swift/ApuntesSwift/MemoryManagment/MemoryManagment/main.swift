@@ -9,18 +9,17 @@ import Foundation
 
 var lista = [PruebaObjeto]()
 
-for i in 0...1_000_000_0 {
+for i in 0...1_000_000 {
     lista.append(PruebaObjeto(texto: i))
 }
-
-let listSize = MemoryLayout<PruebaObjeto>.stride * lista.count
-print(
-    "Memoria física total: \(listSize) MB"
-)
-
 print("Limpiamos la lista")
 lista.removeAll()
-print(
-    "Memoria física total: \(ProcessInfo.processInfo.physicalMemory) MB"
-)
-//_ = readLine()
+
+pruebaFunction()
+
+func pruebaFunction() {
+    var array = [PruebaObjeto]()
+    for i in 0...1_000_000 {
+        array.append(PruebaObjeto(texto: i))
+    }
+}
