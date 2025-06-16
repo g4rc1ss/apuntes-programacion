@@ -13,14 +13,14 @@ internal class ReadXmlWithXpath
         nodes.MoveNext();
         XPathNavigator? nodesNavigator = nodes.Current;
 
-        XPathNodeIterator? nodesText = nodesNavigator.SelectDescendants(
+        XPathNodeIterator? nodesText = nodesNavigator?.SelectDescendants(
             XPathNodeType.Element,
             false
         );
 
-        while (nodesText.MoveNext())
+        while (nodesText != null && nodesText.MoveNext())
         {
-            Console.WriteLine($"{nodesText.Current.Name} : {nodesText.Current.Value}");
+            Console.WriteLine($"{nodesText.Current?.Name} : {nodesText.Current?.Value}");
         }
     }
 }

@@ -13,6 +13,6 @@ public class JsonReadDeserialize
         );
 
         Console.WriteLine("JSON Deserializado:");
-        Console.WriteLine(localizacion.Ruta);
+        Console.WriteLine(localizacion?.Ruta);
     }
 }

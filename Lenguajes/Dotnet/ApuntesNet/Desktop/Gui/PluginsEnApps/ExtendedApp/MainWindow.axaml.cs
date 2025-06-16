@@ -19,6 +19,7 @@ public partial class MainWindow : Window
 
     private async void CargarPluginsCLickAsync(object sender, RoutedEventArgs e)
     {
+        string x = "";
         IReadOnlyList<IStorageFile>? openFileDialog1 = await StorageProvider.OpenFilePickerAsync(
             new FilePickerOpenOptions()
         );

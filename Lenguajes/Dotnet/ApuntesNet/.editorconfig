@@ -73,9 +73,6 @@ csharp_space_after_semicolon_in_for_statement=true
 # http://kent-boogaart.com/blog/editorconfig-reference-for-c-developers#csharp_space_around_binary_operators
 csharp_space_around_binary_operators=before_and_after
 
-# http://kent-boogaart.com/blog/editorconfig-reference-for-c-developers#csharp_space_around_declaration_statements
-csharp_space_around_declaration_statements=do_not_ignore
-
 # http://kent-boogaart.com/blog/editorconfig-reference-for-c-developers#csharp_space_before_colon_in_inheritance_clause
 csharp_space_before_colon_in_inheritance_clause=true
 
@@ -130,9 +127,6 @@ csharp_style_expression_bodied_constructors=false:warning
 # http://kent-boogaart.com/blog/editorconfig-reference-for-c-developers#csharp_style_expression_bodied_indexers
 csharp_style_expression_bodied_indexers=true:error
 
-# http://kent-boogaart.com/blog/editorconfig-reference-for-c-developers#csharp_style_expression_bodied_methods
-csharp_style_expression_bodied_methods=none
-
 # http://kent-boogaart.com/blog/editorconfig-reference-for-c-developers#csharp_style_expression_bodied_operators
 csharp_style_expression_bodied_operators=false:suggestion
 
@@ -152,24 +146,18 @@ csharp_style_pattern_matching_over_is_with_cast_check=true:error
 csharp_style_throw_expression=true:error
 
 # http://kent-boogaart.com/blog/editorconfig-reference-for-c-developers#csharp_style_var_elsewhere
-csharp_style_var_elsewhere=false:warning
+csharp_style_var_elsewhere=false:error
 
 # http://kent-boogaart.com/blog/editorconfig-reference-for-c-developers#csharp_style_var_for_built_in_types
-csharp_style_var_for_built_in_types=false:warning
+csharp_style_var_for_built_in_types=false:error
 
-# http://kent-boogaart.com/blog/editorconfig-reference-for-c-developers#csharp_style_var_when_type_is_apparent
-csharp_style_var_when_type_is_apparent=none
-
-csharp_style_namespace_declarations = file_scoped:warning
+csharp_style_namespace_declarations = file_scoped:error
 
 # http://kent-boogaart.com/blog/editorconfig-reference-for-c-developers#dotnet_sort_system_directives_first
 dotnet_sort_system_directives_first=true
 
 # http://kent-boogaart.com/blog/editorconfig-reference-for-c-developers#dotnet_style_coalesce_expression
 dotnet_style_coalesce_expression=true:error
-
-# http://kent-boogaart.com/blog/editorconfig-reference-for-c-developers#dotnet_style_collection_initializer
-dotnet_style_collection_initializer=none
 
 # http://kent-boogaart.com/blog/editorconfig-reference-for-c-developers#dotnet_style_explicit_tuple_names
 dotnet_style_explicit_tuple_names=true:error
@@ -197,9 +185,6 @@ dotnet_style_qualification_for_method=false:suggestion
 
 # http://kent-boogaart.com/blog/editorconfig-reference-for-c-developers#dotnet_style_qualification_for_property
 dotnet_style_qualification_for_property=false:suggestion
-
-# http://kent-boogaart.com/blog/editorconfig-reference-for-c-developers#end_of_line
-end_of_line=crlf
 
 # http://kent-boogaart.com/blog/editorconfig-reference-for-c-developers#indent_size
 indent_size=4
@@ -235,7 +220,7 @@ dotnet_naming_rule.constant_field_should_be_uppercase.style = uppercase
 
 # Non private fields
 dotnet_naming_symbols.non_private_field_symbol.applicable_kinds=field
-dotnet_naming_symbols.non_private_field_symbol.applicable_accessibilities=public,internal,friend,protected,protected_internal,protected_friend
+dotnet_naming_symbols.non_private_field_symbol.applicable_accessibilities=public,friend,protected,protected_friend
 dotnet_naming_style.non_private_field_style.capitalization=camel_case
 dotnet_naming_rule.non_private_fields_are_camel_case.severity=error
 dotnet_naming_rule.non_private_fields_are_camel_case.symbols=non_private_field_symbol

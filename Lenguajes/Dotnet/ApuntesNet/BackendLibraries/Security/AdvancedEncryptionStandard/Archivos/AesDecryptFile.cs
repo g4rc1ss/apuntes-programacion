@@ -13,12 +13,12 @@ public class AesDecryptFile
         try
         {
             Console.WriteLine("Escribe la contraseña");
-            string? contraseña = Console.ReadLine();
+            string? contrasenia = Console.ReadLine();
 
             using (HashAlgorithm hash = SHA256.Create())
             {
                 using Aes? aesAlg = Aes.Create();
-                aesAlg.Key = hash.ComputeHash(Encoding.UTF8.GetBytes(contraseña));
+                aesAlg.Key = hash.ComputeHash(Encoding.UTF8.GetBytes(contrasenia!));
 
                 // Create an encryptor to perform the stream transform.
                 using ICryptoTransform? decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
