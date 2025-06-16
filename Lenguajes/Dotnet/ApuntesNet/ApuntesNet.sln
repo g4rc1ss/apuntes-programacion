@@ -13,6 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Directory.build.props = Directory.build.props
 		.editorconfig = .editorconfig
 		Directory.Packages.props = Directory.Packages.props
+		.csharpierrc.json = .csharpierrc.json
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gui", "Gui", "{0668E463-2FB9-4D83-8FD5-BABAF6E85BDB}"
