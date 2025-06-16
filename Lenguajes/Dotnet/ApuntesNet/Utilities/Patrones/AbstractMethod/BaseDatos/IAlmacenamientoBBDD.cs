@@ -1,6 +1,6 @@
 ﻿namespace AbstractMethod.BaseDatos;
 
-internal interface IAlmacenamientoBBDD
+internal interface IAlmacenamientoBbdd
 {
     void Guardar<T>(T entityDatabase);
 }

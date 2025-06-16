@@ -20,7 +20,7 @@ foreach (int item in Enumerable.Range(0, 10))
 {
     PruebaHttpClientFactory? httpClientFactory =
         serviceProvider.GetRequiredService<PruebaHttpClientFactory>();
-    await httpClientFactory.ExecutePrueba(endpoint);
+    await httpClientFactory.ExecutePruebaAsync(endpoint);
 }
 Console.WriteLine("HttpClientFactory");
 Console.WriteLine(
@@ -36,7 +36,7 @@ foreach (int item in Enumerable.Range(0, 10))
 {
     PruebaUsingHttpClient? usingHttpClient =
         serviceProvider.GetRequiredService<PruebaUsingHttpClient>();
-    await usingHttpClient.ExecutePrueba(endpoint);
+    await usingHttpClient.ExecutePruebaAsync(endpoint);
 }
 Console.WriteLine("Using HttpClient");
 Console.WriteLine(
@@ -51,7 +51,7 @@ Console.WriteLine(
 foreach (int item in Enumerable.Range(0, 10))
 {
     PruebaHttpClient? pruebaHttpClient = serviceProvider.GetRequiredService<PruebaHttpClient>();
-    await pruebaHttpClient.ExecutePrueba(endpoint);
+    await pruebaHttpClient.ExecutePruebaAsync(endpoint);
 }
 Console.WriteLine("HttpClient In Ctor");
 Console.WriteLine(

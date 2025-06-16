@@ -4,7 +4,7 @@ namespace MappersBenchmark.MappersProfiles;
 
 public static class ManualProfile
 {
-    public static ChatDTO ToDto(this Chat chat)
+    public static ChatDto ToDto(this Chat chat)
     {
         return new()
         {
@@ -18,12 +18,12 @@ public static class ManualProfile
         };
     }
 
-    public static UserDTO ToUserModelEntity(this User user)
+    public static UserDto ToUserModelEntity(this User user)
     {
         return new() { Nombre = user.Name, Apellidos = user.LastName };
     }
 
-    public static PropertyDTO ToPropertyModelEntity(this Propiedad propiedad)
+    public static PropertyDto ToPropertyModelEntity(this Propiedad propiedad)
     {
         return new()
         {

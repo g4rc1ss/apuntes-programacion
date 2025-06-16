@@ -5,14 +5,14 @@ namespace HashTables;
 
 public class HashTables<TKey, TValue>
 {
-    private int size;
-    private ObjectKeyValue[] data;
-    private int[] hashIndex;
+    private int _size;
+    private ObjectKeyValue[] _data;
+    private int[] _hashIndex;
 
     public HashTables()
     {
-        data = new ObjectKeyValue[3];
-        hashIndex = [.. Enumerable.Range(0, 3).Select(x => -1)];
+        _data = new ObjectKeyValue[3];
+        _hashIndex = [.. Enumerable.Range(0, 3).Select(x => -1)];
     }
 
     public void Add(TKey key, TValue value)
@@ -26,66 +26,66 @@ public class HashTables<TKey, TValue>
         }
 
         // Verificamos el tamaño de los array
-        if (size == data.Length)
+        if (_size == _data.Length)
         {
             Resize();
         }
 
         int hash = GetHashCode(key);
         uint indexHash = GetIndexHash(hash);
-        int dataIndex = hashIndex[indexHash];
+        int dataIndex = _hashIndex[indexHash];
 
-        data[size].key = key;
-        data[size].value = value;
-        data[size].hashCode = (uint)hash;
-        data[size].next = -1;
+        _data[_size].key = key;
+        _data[_size].value = value;
+        _data[_size].hashCode = (uint)hash;
+        _data[_size].next = -1;
 
         if (dataIndex > -1)
         {
-            ObjectKeyValue dataIndexValue = data[dataIndex];
+            ObjectKeyValue dataIndexValue = _data[dataIndex];
             while (true)
             {
                 int next = dataIndexValue.next;
 
                 if (next == -1 && dataIndexValue.hashCode != 0)
                 {
-                    data[dataIndex].next = size;
+                    _data[dataIndex].next = _size;
                     break;
                 }
 
                 if (dataIndexValue.hashCode == 0)
                 {
-                    hashIndex[indexHash] = size;
+                    _hashIndex[indexHash] = _size;
                     break;
                 }
 
-                dataIndexValue = data[next];
+                dataIndexValue = _data[next];
             }
         }
         else
         {
-            hashIndex[indexHash] = size;
+            _hashIndex[indexHash] = _size;
         }
 
-        size++;
+        _size++;
     }
 
     private void Resize()
     {
-        Array.Resize(ref data, data.Length * 2);
-        Array.Resize(ref hashIndex, hashIndex.Length * 2);
+        Array.Resize(ref _data, _data.Length * 2);
+        Array.Resize(ref _hashIndex, _hashIndex.Length * 2);
         RehashData();
     }
 
     private void RehashData()
     {
-        ObjectKeyValue[]? copyData = new ObjectKeyValue[this.data.Length];
-        Array.Copy(data, copyData, copyData.Length);
-        Array.Clear(data);
-        Array.Clear(hashIndex);
-        hashIndex = [.. Enumerable.Range(0, hashIndex.Length).Select(x => -1)];
-        int oldSize = size;
-        size = 0;
+        ObjectKeyValue[]? copyData = new ObjectKeyValue[this._data.Length];
+        Array.Copy(_data, copyData, copyData.Length);
+        Array.Clear(_data);
+        Array.Clear(_hashIndex);
+        _hashIndex = [.. Enumerable.Range(0, _hashIndex.Length).Select(x => -1)];
+        int oldSize = _size;
+        _size = 0;
 
         for (int i = 0; i < oldSize; i++)
         {
@@ -105,13 +105,13 @@ public class HashTables<TKey, TValue>
 
         int hash = GetHashCode(key);
         uint indexHash = GetIndexHash(hash);
-        int index = hashIndex[indexHash];
+        int index = _hashIndex[indexHash];
         if (index == -1)
         {
             return default;
         }
 
-        ObjectKeyValue objectKeyValue = data[index];
+        ObjectKeyValue objectKeyValue = _data[index];
         // Verificamos si la key existe
         while (true)
         {
@@ -130,7 +130,7 @@ public class HashTables<TKey, TValue>
                 break;
             }
 
-            objectKeyValue = data[objectKeyValue.next];
+            objectKeyValue = _data[objectKeyValue.next];
         }
 
         return default;
@@ -156,7 +156,7 @@ public class HashTables<TKey, TValue>
     // Metodo copiado de la clase Dictionary
     private uint GetIndexHash(int hash)
     {
-        return (uint)hash % (uint)hashIndex.Length;
+        return (uint)hash % (uint)_hashIndex.Length;
     }
 
     private struct ObjectKeyValue

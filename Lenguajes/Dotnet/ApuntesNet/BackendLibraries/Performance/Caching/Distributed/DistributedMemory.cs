@@ -17,7 +17,7 @@ internal class DistributedMemory
         _distributedCache = serviceProvider.GetRequiredService<IDistributedCache>();
     }
 
-    public async Task DistributedMemoryWithDIAsync()
+    public async Task DistributedMemoryWithDiAsync()
     {
         string? listaSerializada = JsonSerializer.Serialize(ObjectsToCaching.listToCache);
 

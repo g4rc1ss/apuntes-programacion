@@ -1,6 +1,6 @@
 ﻿namespace JsonFiles.JSON;
 
-public class ClaseParaJSON
+public class ClaseParaJson
 {
     public string? Ruta { get; set; }
 }

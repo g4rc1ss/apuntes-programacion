@@ -5,9 +5,9 @@ namespace AdvancedEncryptionStandard.Textos;
 
 public class AesDecryptText
 {
-    private readonly string _archivoAES_TXT = "archivo.txt";
+    private readonly string _archivoAesTxt = "archivo.txt";
 
-    public void DescifrarAES()
+    public void DescifrarAes()
     {
         try
         {
@@ -35,7 +35,7 @@ public class AesDecryptText
                 textoDescifrado = srDecrypt.ReadToEnd();
             }
 
-            File.Delete(_archivoAES_TXT);
+            File.Delete(_archivoAesTxt);
             Console.WriteLine(textoDescifrado);
         }
         catch (Exception ex)

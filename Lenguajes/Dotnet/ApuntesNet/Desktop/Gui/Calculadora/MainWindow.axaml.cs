@@ -5,10 +5,10 @@ namespace Calculadora;
 
 public partial class MainWindow : Window
 {
-    private string operacion = "";
+    private string _operacion = "";
     private readonly int[] _numero = new int[2];
-    private bool insertar = true;
-    private bool operacionSeleccion = false;
+    private bool _insertar = true;
+    private bool _operacionSeleccion = false;
 
     public MainWindow()
     {
@@ -22,11 +22,11 @@ public partial class MainWindow : Window
 
         if (ComprobarNumero(respuesta))
         {
-            if (insertar)
+            if (_insertar)
             {
                 _numero[0] = int.Parse(mostrar.Text);
             }
-            else if (!insertar)
+            else if (!_insertar)
             {
                 _numero[1] = int.Parse(mostrar.Text);
             }
@@ -44,7 +44,7 @@ public partial class MainWindow : Window
                 return;
             }
 
-            if (operacionSeleccion)
+            if (_operacionSeleccion)
             {
                 // await DisplayAlert("Calc", "Calc", "Ya has seleccionado una operacion", "Cancel");
                 return;
@@ -52,9 +52,9 @@ public partial class MainWindow : Window
             else
             {
                 mostrar.Text = "";
-                operacion = respuesta;
-                insertar = false;
-                operacionSeleccion = true;
+                _operacion = respuesta;
+                _insertar = false;
+                _operacionSeleccion = true;
             }
         }
         else if (respuesta.Equals("C"))
@@ -64,12 +64,12 @@ public partial class MainWindow : Window
                 _numero[x] = 0;
             }
 
-            insertar = true;
-            operacionSeleccion = false;
+            _insertar = true;
+            _operacionSeleccion = false;
         }
         else if (respuesta.Equals("="))
         {
-            if (operacion == null)
+            if (_operacion == null)
             {
                 // await DisplayAlert("Calc", "Debes seleccionar una operacion primero", "Cancel");
                 return;
@@ -81,11 +81,11 @@ public partial class MainWindow : Window
                 return;
             }
 
-            int resultado = Operar(operacion);
+            int resultado = Operar(_operacion);
             mostrar.Text = "" + resultado;
             _numero[0] = resultado;
-            insertar = true;
-            operacionSeleccion = false;
+            _insertar = true;
+            _operacionSeleccion = false;
         }
     }
 

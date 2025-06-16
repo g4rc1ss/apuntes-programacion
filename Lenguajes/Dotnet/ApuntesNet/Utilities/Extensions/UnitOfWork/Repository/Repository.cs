@@ -11,25 +11,25 @@ internal class Repository<T>(DbContext context) : BaseRepository<T>(context), IR
 {
     public void Add(T entity)
     {
-        _dbSet.Add(entity);
+        dbSet.Add(entity);
     }
 
     public void Add(params T[] entities)
     {
-        _dbSet.AddRange(entities);
+        dbSet.AddRange(entities);
     }
 
     public void Add(IEnumerable<T> entities)
     {
-        _dbSet.AddRange(entities);
+        dbSet.AddRange(entities);
     }
 
     public void Delete(T entity)
     {
-        T? existing = _dbSet.Find(entity);
+        T? existing = dbSet.Find(entity);
         if (existing != null)
         {
-            _dbSet.Remove(existing);
+            dbSet.Remove(existing);
         }
     }
 
@@ -49,7 +49,7 @@ internal class Repository<T>(DbContext context) : BaseRepository<T>(context), IR
         }
         else
         {
-            T? entity = _dbSet.Find(id);
+            T? entity = dbSet.Find(id);
             if (entity != null)
             {
                 Delete(entity);
@@ -59,27 +59,27 @@ internal class Repository<T>(DbContext context) : BaseRepository<T>(context), IR
 
     public void Delete(params T[] entities)
     {
-        _dbSet.RemoveRange(entities);
+        dbSet.RemoveRange(entities);
     }
 
     public void Delete(IEnumerable<T> entities)
     {
-        _dbSet.RemoveRange(entities);
+        dbSet.RemoveRange(entities);
     }
 
     public void Update(T entity)
     {
-        _dbSet.Update(entity);
+        dbSet.Update(entity);
     }
 
     public void Update(params T[] entities)
     {
-        _dbSet.UpdateRange(entities);
+        dbSet.UpdateRange(entities);
     }
 
     public void Update(IEnumerable<T> entities)
     {
-        _dbSet.UpdateRange(entities);
+        dbSet.UpdateRange(entities);
     }
 
     public void Dispose()
@@ -89,12 +89,12 @@ internal class Repository<T>(DbContext context) : BaseRepository<T>(context), IR
 
     public virtual int Count(Expression<Func<T, bool>> predicate = null)
     {
-        return predicate == null ? _dbSet.Count() : _dbSet.Count(predicate);
+        return predicate == null ? dbSet.Count() : dbSet.Count(predicate);
     }
 
     public virtual long LongCount(Expression<Func<T, bool>> predicate = null)
     {
-        return predicate == null ? _dbSet.LongCount() : _dbSet.LongCount(predicate);
+        return predicate == null ? dbSet.LongCount() : dbSet.LongCount(predicate);
     }
 
     public virtual TK Max<TK>(
@@ -102,7 +102,7 @@ internal class Repository<T>(DbContext context) : BaseRepository<T>(context), IR
         Expression<Func<T, TK>> selector = null
     )
     {
-        return predicate == null ? _dbSet.Max(selector) : _dbSet.Where(predicate).Max(selector);
+        return predicate == null ? dbSet.Max(selector) : dbSet.Where(predicate).Max(selector);
     }
 
     public virtual TK Min<TK>(
@@ -110,7 +110,7 @@ internal class Repository<T>(DbContext context) : BaseRepository<T>(context), IR
         Expression<Func<T, TK>> selector = null
     )
     {
-        return predicate == null ? _dbSet.Min(selector) : _dbSet.Where(predicate).Min(selector);
+        return predicate == null ? dbSet.Min(selector) : dbSet.Where(predicate).Min(selector);
     }
 
     public virtual decimal Average(
@@ -119,8 +119,8 @@ internal class Repository<T>(DbContext context) : BaseRepository<T>(context), IR
     )
     {
         return predicate == null
-            ? _dbSet.Average(selector)
-            : _dbSet.Where(predicate).Average(selector);
+            ? dbSet.Average(selector)
+            : dbSet.Where(predicate).Average(selector);
     }
 
     public virtual decimal Sum(
@@ -128,11 +128,11 @@ internal class Repository<T>(DbContext context) : BaseRepository<T>(context), IR
         Expression<Func<T, decimal>> selector = null
     )
     {
-        return predicate == null ? _dbSet.Sum(selector) : _dbSet.Where(predicate).Sum(selector);
+        return predicate == null ? dbSet.Sum(selector) : dbSet.Where(predicate).Sum(selector);
     }
 
     public bool Exists(Expression<Func<T, bool>> selector = null)
     {
-        return selector == null ? _dbSet.Any() : _dbSet.Any(selector);
+        return selector == null ? dbSet.Any() : dbSet.Any(selector);
     }
 }

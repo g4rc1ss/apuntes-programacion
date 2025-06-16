@@ -16,9 +16,9 @@ public class RabbitMqMessageConsumer<TMessage> : IMessageConsumer<TMessage>
     private readonly IHandleMessage _handleMessage;
     private readonly ISerializer _serializer;
 
-    private bool disposed;
-    private IConnection? connection;
-    private IModel? channel;
+    private bool _disposed;
+    private IConnection? _connection;
+    private IModel? _channel;
 
     public RabbitMqMessageConsumer(
         IHandleMessage handleMessage,
@@ -43,20 +43,20 @@ public class RabbitMqMessageConsumer<TMessage> : IMessageConsumer<TMessage>
     {
         cancellationToken.ThrowIfCancellationRequested();
 
-        connection = _connectionFactory.CreateConnection();
-        channel = connection.CreateModel();
+        _connection = _connectionFactory.CreateConnection();
+        _channel = _connection.CreateModel();
 
         return Consume();
     }
 
     private Task Consume()
     {
-        AsyncEventingBasicConsumer? asyncReceiver = new(channel);
-        asyncReceiver.Received += HandleMessage;
+        AsyncEventingBasicConsumer? asyncReceiver = new(_channel);
+        asyncReceiver.Received += HandleMessageAsync;
 
         string? queue = GetCorrectQueue();
-        channel.BasicQos(0, 10, false);
-        channel.BasicConsume(queue, false, asyncReceiver);
+        _channel.BasicQos(0, 10, false);
+        _channel.BasicConsume(queue, false, asyncReceiver);
         return Task.CompletedTask;
     }
 
@@ -69,7 +69,7 @@ public class RabbitMqMessageConsumer<TMessage> : IMessageConsumer<TMessage>
             ) ?? throw new ArgumentException("please configure the queues on the appsettings");
     }
 
-    private async Task HandleMessage(object ch, BasicDeliverEventArgs eventArgs)
+    private async Task HandleMessageAsync(object ch, BasicDeliverEventArgs eventArgs)
     {
         Type? messageType = Type.GetType(eventArgs.BasicProperties.Type)!;
         byte[]? messageBody = eventArgs.Body.ToArray()!;
@@ -108,11 +108,11 @@ public class RabbitMqMessageConsumer<TMessage> : IMessageConsumer<TMessage>
 
     public void Dispose()
     {
-        if (!disposed)
+        if (!_disposed)
         {
-            connection.Dispose();
-            channel.Dispose();
-            disposed = true;
+            _connection.Dispose();
+            _channel.Dispose();
+            _disposed = true;
 
             GC.SuppressFinalize(this);
         }

@@ -27,7 +27,7 @@ internal class ApiKeyAuthHandler(
 
             if (
                 !Request.Headers.TryGetValue(
-                    Constants.ApiKeyHeaderName,
+                    Constants.API_KEY_HEADER_NAME,
                     out StringValues headerApiKey
                 )
             )

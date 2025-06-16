@@ -4,11 +4,11 @@
 // class.
 internal abstract class AbstractHandler : IHandler
 {
-    private IHandler? nextHandler;
+    private IHandler? _nextHandler;
 
     public IHandler SetNext(IHandler handler)
     {
-        nextHandler = handler;
+        _nextHandler = handler;
 
         // Returning a handler from here will let us link handlers in a
         // convenient way like this:
@@ -18,6 +18,6 @@ internal abstract class AbstractHandler : IHandler
 
     public virtual object Handle(object request)
     {
-        return nextHandler?.Handle(request);
+        return _nextHandler?.Handle(request);
     }
 }

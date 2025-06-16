@@ -1,5 +1,5 @@
 ﻿@page "/"
-@inject ILogger<Home> _logger;
+@inject ILogger<Home> Logger;
 
 <PageTitle>Home</PageTitle>
 
@@ -8,12 +8,12 @@
 Welcome to your new app.
 
 @code{
-    [CascadingParameter(Name = "IsSSR")] private bool IsSSR { get; set; }
+    [CascadingParameter(Name = "IsSSR")] private bool IsSsr { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         await Task.Delay(500);
-        _logger.LogInformation("Home SSR? = {0}", IsSSR);
+        Logger.LogInformation("Home SSR? = {0}", IsSsr);
         await base.OnInitializedAsync();
     }
 

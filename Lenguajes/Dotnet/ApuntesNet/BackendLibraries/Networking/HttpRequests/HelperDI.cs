@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace HttpRequests;
 
-internal class HelperDI
+internal class HelperDi
 {
     internal static IServiceProvider GetServideProvider()
     {

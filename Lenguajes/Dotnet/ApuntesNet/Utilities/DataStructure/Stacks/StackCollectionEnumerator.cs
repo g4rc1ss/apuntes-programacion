@@ -4,17 +4,17 @@ namespace Stacks;
 
 public class StackCollectionEnumerator<T>(T[] collection) : IEnumerator<T>
 {
-    private int index;
+    private int _index;
     public T? Current { get; internal set; }
 
     object? IEnumerator.Current => Current;
 
     public bool MoveNext()
     {
-        if ((uint)index < collection.Length)
+        if ((uint)_index < collection.Length)
         {
-            Current = collection[index];
-            index++;
+            Current = collection[_index];
+            _index++;
             return true;
         }
 
@@ -23,7 +23,7 @@ public class StackCollectionEnumerator<T>(T[] collection) : IEnumerator<T>
 
     public void Reset()
     {
-        index = 0;
+        _index = 0;
         Current = default;
     }
 

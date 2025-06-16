@@ -5,7 +5,7 @@ namespace MongoDatabase.Queries;
 
 internal static class UpdateData
 {
-    public static async Task Update()
+    public static async Task UpdateAsync()
     {
         FilterDefinition<Persona>? filter = Builders<Persona>.Filter.Eq(x => x.Name, "asier");
         UpdateDefinition<Persona>? update = Builders<Persona>.Update.Set(

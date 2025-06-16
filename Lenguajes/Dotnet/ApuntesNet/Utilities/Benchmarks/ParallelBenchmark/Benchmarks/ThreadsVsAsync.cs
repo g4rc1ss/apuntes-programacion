@@ -31,7 +31,7 @@ public class ThreadsVsAsync
     }
 
     [Benchmark]
-    public async Task ExecuteAsyncWithAwaitSecuential()
+    public async Task ExecuteAsyncWithAwaitSecuentialAsync()
     {
         foreach (int item in _lenght)
         {
@@ -40,7 +40,7 @@ public class ThreadsVsAsync
     }
 
     [Benchmark]
-    public async Task ExecuteWithAsyncBlocking()
+    public async Task ExecuteWithAsyncBlockingAsync()
     {
         List<Task>? lista = [];
 

@@ -6,7 +6,7 @@ internal static class Factory
 {
     public static IAlmacenamiento GetAlmacenamientoBaseDatos()
     {
-        return new AlmacenamientoBBDD();
+        return new AlmacenamientoBbdd();
     }
 
     public static IAlmacenamiento GetAlmacenamientoFile()

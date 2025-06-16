@@ -11,9 +11,9 @@ internal class FactoriaAbstracta : IFactoriaAbastracta
         return new AlmacenamientoApi();
     }
 
-    public IAlmacenamientoBBDD CreateAlmacenamientoBBDD()
+    public IAlmacenamientoBbdd CreateAlmacenamientoBbdd()
     {
-        return new AlmacenamientoBBDD();
+        return new AlmacenamientoBbdd();
     }
 
     public IAlmacenamientoFile CreateAlmacenamientoFile()

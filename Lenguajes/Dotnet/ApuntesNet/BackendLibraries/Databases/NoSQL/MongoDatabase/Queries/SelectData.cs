@@ -5,7 +5,7 @@ namespace MongoDatabase.Queries;
 
 internal static class SelectData
 {
-    public static async Task Select()
+    public static async Task SelectAsync()
     {
         IAsyncCursor<Persona>? result = await Helper
             .GetConnectionDatabase.GetCollection<Persona>("persona")

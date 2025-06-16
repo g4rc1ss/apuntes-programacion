@@ -15,7 +15,7 @@ internal class MemoryCaching
         _serviceProvider = services.BuildServiceProvider();
     }
 
-    public void MemoryCacheWithDI()
+    public void MemoryCacheWithDi()
     {
         IMemoryCache? memoryCache = _serviceProvider.GetRequiredService<IMemoryCache>();
 

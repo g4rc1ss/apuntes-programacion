@@ -2,7 +2,7 @@
 using HttpRequests.Internal;
 using Microsoft.Extensions.DependencyInjection;
 
-IServiceProvider? serviceProvider = HelperDI.GetServideProvider();
+IServiceProvider? serviceProvider = HelperDi.GetServideProvider();
 
 UsarHttpClient? usarHttpClient = serviceProvider.GetRequiredService<UsarHttpClient>();
 await usarHttpClient.ExecuteHttpClientAsync();

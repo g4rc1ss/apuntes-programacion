@@ -1,6 +1,6 @@
 ﻿namespace PluginAPI.ExportAPI;
 
-public static class ExportAPI
+public static class ExportApi
 {
     public static event EventHandler? ExportEvent;
 

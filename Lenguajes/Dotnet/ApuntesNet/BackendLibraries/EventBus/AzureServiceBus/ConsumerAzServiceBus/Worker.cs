@@ -7,10 +7,10 @@ public class Worker(ILogger<Worker> logger, IConfiguration configuration, Servic
 {
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        await ListenServiceBus();
+        await ListenServiceBusAsync();
     }
 
-    private async Task ListenServiceBus()
+    private async Task ListenServiceBusAsync()
     {
         string? queueName = configuration["ServiceBusConfig:QueueName"];
         ServiceBusProcessor? processor = client.CreateProcessor(queueName);

@@ -5,10 +5,10 @@ namespace AdvancedEncryptionStandard.Archivos;
 
 public class AesDecryptFile
 {
-    private readonly string _archivoAES_TXT = "archivo.txt";
-    private readonly string _archivoAES_TXT_Cifrado = "archivo.txt.crypt";
+    private readonly string _archivoAesTxt = "archivo.txt";
+    private readonly string _archivoAesTxtCifrado = "archivo.txt.crypt";
 
-    public void DescifrarAES()
+    public void DescifrarAes()
     {
         try
         {
@@ -23,12 +23,12 @@ public class AesDecryptFile
                 // Create an encryptor to perform the stream transform.
                 using ICryptoTransform? decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);
                 using FileStream? fileStreamCrypt = new(
-                    _archivoAES_TXT_Cifrado,
+                    _archivoAesTxtCifrado,
                     FileMode.Open,
                     FileAccess.Read
                 );
                 using FileStream? fileStreamOut = new(
-                    _archivoAES_TXT,
+                    _archivoAesTxt,
                     FileMode.OpenOrCreate,
                     FileAccess.Write
                 );
@@ -43,8 +43,8 @@ public class AesDecryptFile
                 }
             }
 
-            File.Delete(_archivoAES_TXT_Cifrado);
-            Console.WriteLine(File.ReadAllText(_archivoAES_TXT));
+            File.Delete(_archivoAesTxtCifrado);
+            Console.WriteLine(File.ReadAllText(_archivoAesTxt));
         }
         catch (Exception ex)
         {

@@ -2,7 +2,7 @@
 
 public class PatronSingleton
 {
-    private static PatronSingleton? singleton;
+    private static PatronSingleton? _singleton;
 
     public string? Nombre { get; set; }
 
@@ -10,8 +10,8 @@ public class PatronSingleton
 
     public static PatronSingleton GetInstance()
     {
-        singleton ??= new PatronSingleton();
+        _singleton ??= new PatronSingleton();
 
-        return singleton;
+        return _singleton;
     }
 }

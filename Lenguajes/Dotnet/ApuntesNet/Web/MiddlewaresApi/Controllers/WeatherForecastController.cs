@@ -6,7 +6,7 @@ namespace MiddlewaresApi.Controllers;
 [Route("[controller]")]
 public class WeatherForecastController(ILogger<WeatherForecastController> logger) : ControllerBase
 {
-    private static readonly string[] Summaries =
+    private static readonly string[] _summaries =
     [
         "Freezing",
         "Bracing",
@@ -29,7 +29,7 @@ public class WeatherForecastController(ILogger<WeatherForecastController> logger
             {
                 Date = DateTime.Now.AddDays(index),
                 TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)],
+                Summary = _summaries[Random.Shared.Next(_summaries.Length)],
             });
     }
 

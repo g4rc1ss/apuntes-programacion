@@ -5,10 +5,10 @@ namespace RsaAlgorithm.Archivos;
 
 public class RsaDecryptFile
 {
-    private readonly string _archivoRSA_TXT = "archivoRSA.txt";
-    private readonly string _archivoRSA_CRYPT = "archivoRSA.crypt";
+    private readonly string _archivoRsaTxt = "archivoRSA.txt";
+    private readonly string _archivoRsaCrypt = "archivoRSA.crypt";
 
-    public void DescifrarRSA()
+    public void DescifrarRsa()
     {
         try
         {
@@ -22,12 +22,12 @@ public class RsaDecryptFile
 
             // Desencriptamos el mensaje
             byte[]? mensajeDescifrado = rsaCrypt.Decrypt(
-                File.ReadAllBytes(_archivoRSA_CRYPT),
+                File.ReadAllBytes(_archivoRsaCrypt),
                 RSAEncryptionPadding.Pkcs1
             );
             string? mensajeOriginal = Encoding.Default.GetString(mensajeDescifrado);
 
-            using (StreamWriter? archivoEscritura = File.CreateText(_archivoRSA_TXT))
+            using (StreamWriter? archivoEscritura = File.CreateText(_archivoRsaTxt))
             {
                 archivoEscritura.Write(mensajeOriginal);
             }

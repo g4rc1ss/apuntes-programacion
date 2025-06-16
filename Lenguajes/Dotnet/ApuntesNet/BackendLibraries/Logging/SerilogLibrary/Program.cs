@@ -6,7 +6,7 @@ using SerilogLibrary;
 IServiceProvider? serviceProvider = Helper.GetServiceProvider();
 ILogger<Program>? logger = serviceProvider.GetRequiredService<ILogger<Program>>();
 
-UserDTO? user = new()
+UserDto? user = new()
 {
     Name = "Prueba",
     SurName = "Logger",

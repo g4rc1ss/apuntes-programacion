@@ -23,7 +23,7 @@ public class Componente : Button
         }
         else if (Tipo == 2)
         { //Operacion
-            return Content?.ToString() ?? String.Empty;
+            return Content?.ToString() ?? string.Empty;
         }
         else if (Tipo == 3)
         { //Vaciar

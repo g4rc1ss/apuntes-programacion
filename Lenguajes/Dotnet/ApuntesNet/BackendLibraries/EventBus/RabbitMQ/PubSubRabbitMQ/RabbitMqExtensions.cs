@@ -12,7 +12,7 @@ namespace PubSubRabbitMQ;
 
 public static class RabbitMqExtensions
 {
-    public static IServiceCollection AddRabbitMQ(
+    public static IServiceCollection AddRabbitMq(
         this IServiceCollection services,
         IConfiguration configuration
     )

@@ -28,7 +28,7 @@ WHERE u.id = @IdUsuario
             sqlUsuarioJoin,
             (user, pueblo) =>
             {
-                user.FKPueblo = pueblo;
+                user.FkPueblo = pueblo;
                 return user;
             },
             parameters,
@@ -38,7 +38,7 @@ WHERE u.id = @IdUsuario
         foreach (Usuario? user in respuestaJoin)
         {
             Console.WriteLine($"Usuario - {user.IdUsuario}_{user.NombreUsuario}");
-            Console.WriteLine($"Pueblo - {user.FKPueblo.IdPueblo}_{user.FKPueblo.NombrePueblo}");
+            Console.WriteLine($"Pueblo - {user.FkPueblo.IdPueblo}_{user.FkPueblo.NombrePueblo}");
         }
     }
 }

@@ -2,7 +2,7 @@
 
 public class PruebaUsingHttpClient
 {
-    public async Task ExecutePrueba(string endpoint)
+    public async Task ExecutePruebaAsync(string endpoint)
     {
         using HttpClient? client = new();
 

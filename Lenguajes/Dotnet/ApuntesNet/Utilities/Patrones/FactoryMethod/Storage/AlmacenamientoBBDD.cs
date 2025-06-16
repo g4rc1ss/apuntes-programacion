@@ -1,6 +1,6 @@
 ﻿namespace FactoryMethod.Storage;
 
-internal class AlmacenamientoBBDD : IAlmacenamiento
+internal class AlmacenamientoBbdd : IAlmacenamiento
 {
     public bool Guardar<T>(T entity)
     {

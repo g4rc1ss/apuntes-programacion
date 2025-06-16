@@ -6,7 +6,7 @@ new UsoParallelBucles().BucleForEach();
 
 new UsoParallelInvoke();
 
-new UsoParallelLINQ();
+new UsoParallelLinq();
 
 Console.WriteLine("\nPress any key to exit...");
 Console.ReadLine();

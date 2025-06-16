@@ -6,7 +6,7 @@
 internal class Context
 {
     // A reference to the current state of the Context.
-    private State state = null;
+    private State _state = null;
 
     public Context(State state)
     {
@@ -17,19 +17,19 @@ internal class Context
     public void TransitionTo(State state)
     {
         Console.WriteLine($"Context: Transition to {state.GetType().Name}.");
-        this.state = state;
-        this.state.SetContext(this);
+        this._state = state;
+        this._state.SetContext(this);
     }
 
     // The Context delegates part of its behavior to the current State
     // object.
     public void Request1()
     {
-        state.Handle1();
+        _state.Handle1();
     }
 
     public void Request2()
     {
-        state.Handle2();
+        _state.Handle2();
     }
 }

@@ -9,7 +9,7 @@ string? path = "blockRequest";
 
 Parallel.For(
     0,
-    Int32.MaxValue,
+    int.MaxValue,
     i =>
     {
         Task<HttpResponseMessage>? response = httpclient.GetAsync($"{http}://{url}:{port}/{path}");

@@ -4,23 +4,23 @@ namespace Stacks;
 
 public class StackCollection<T> : IEnumerable<T>
 {
-    private int index = -1;
-    private T[] collection;
+    private int _index = -1;
+    private T[] _collection;
 
     public StackCollection()
     {
-        collection = [];
+        _collection = [];
     }
 
     public StackCollection(T[] collection)
     {
-        this.collection = collection;
-        index = collection.Length - 1;
+        this._collection = collection;
+        _index = collection.Length - 1;
     }
 
     public IEnumerator<T> GetEnumerator()
     {
-        return new StackCollectionEnumerator<T>(collection);
+        return new StackCollectionEnumerator<T>(_collection);
     }
 
     IEnumerator IEnumerable.GetEnumerator()
@@ -30,20 +30,20 @@ public class StackCollection<T> : IEnumerable<T>
 
     public void Push(T item)
     {
-        index++;
-        if (index == collection.Length)
+        _index++;
+        if (_index == _collection.Length)
         {
-            Array.Resize(ref collection, collection.Length + 1);
+            Array.Resize(ref _collection, _collection.Length + 1);
         }
 
-        collection[index] = item;
+        _collection[_index] = item;
     }
 
     public T Pop()
     {
-        T? value = collection[index];
-        Array.Resize(ref collection, collection.Length - 1);
-        index--;
+        T? value = _collection[_index];
+        Array.Resize(ref _collection, _collection.Length - 1);
+        _index--;
         return value;
     }
 }

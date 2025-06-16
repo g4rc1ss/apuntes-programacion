@@ -4,7 +4,7 @@ namespace InMemory.Escritura;
 
 internal class Escribir
 {
-    internal static async Task<MemoryStream> Write()
+    internal static async Task<MemoryStream> WriteAsync()
     {
         byte[]? firstString = new UnicodeEncoding().GetBytes("Texto a convertir en bytes");
         byte[]? secondString = new UnicodeEncoding().GetBytes("Texto a agregar");

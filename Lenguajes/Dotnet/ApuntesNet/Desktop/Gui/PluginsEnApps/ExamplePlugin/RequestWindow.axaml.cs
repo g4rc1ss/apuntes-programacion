@@ -12,13 +12,13 @@ public partial class RequestWindow : Window
         InitializeComponent();
     }
 
-    private async void Button_Clicked(System.Object sender, RoutedEventArgs e)
+    private async void Button_ClickedAsync(object sender, RoutedEventArgs e)
     {
-        string? response = await GetMyIp();
-        ExportAPI.ExportEventCaller(new ExportObject(response));
+        string? response = await GetMyIpAsync();
+        ExportApi.ExportEventCaller(new ExportObject(response));
     }
 
-    private async Task<string> GetMyIp()
+    private async Task<string> GetMyIpAsync()
     {
         try
         {

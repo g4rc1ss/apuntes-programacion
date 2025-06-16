@@ -2,8 +2,8 @@ namespace ApiJwt.JwtServices;
 
 public class ClaimsKey
 {
-    public const string UserId = "UserId";
-    public const string UserName = "UserName";
-    public const string RefreshToken = "RefreshToken";
-    public const string UserEmail = "UserEmail";
+    public const string USER_ID = "UserId";
+    public const string USER_NAME = "UserName";
+    public const string REFRESH_TOKEN = "RefreshToken";
+    public const string USER_EMAIL = "UserEmail";
 }
