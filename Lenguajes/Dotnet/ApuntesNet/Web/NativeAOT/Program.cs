@@ -29,33 +29,35 @@ todosApi.MapGet(
             : Results.NotFound()
 );
 
-todosApi.MapGet("/reflection", () =>
-{
-    // Fallara por crear codigo en tiempo de ejecución
+todosApi.MapGet(
+    "/reflection",
+    () =>
+    {
+        // Fallara por crear codigo en tiempo de ejecución
 
-    var method = new DynamicMethod(
-        "Sum",
-        typeof(int),
-        new Type[] { typeof(int), typeof(int) },
-        typeof(Program).Module);
+        var method = new DynamicMethod(
+            "Sum",
+            typeof(int),
+            new Type[] { typeof(int), typeof(int) },
+            typeof(Program).Module
+        );
 
-    ILGenerator il = method.GetILGenerator();
-    il.Emit(OpCodes.Ldarg_0); // Carga el primer parámetro
-    il.Emit(OpCodes.Ldarg_1); // Carga el segundo parámetro
-    il.Emit(OpCodes.Add); // Suma
-    il.Emit(OpCodes.Ret); // Retorna el resultado
+        ILGenerator il = method.GetILGenerator();
+        il.Emit(OpCodes.Ldarg_0); // Carga el primer parámetro
+        il.Emit(OpCodes.Ldarg_1); // Carga el segundo parámetro
+        il.Emit(OpCodes.Add); // Suma
+        il.Emit(OpCodes.Ret); // Retorna el resultado
 
-    var sum = (SumDelegate)method.CreateDelegate(typeof(SumDelegate));
-    Console.WriteLine(sum(5, 3)); // Output: 8
-});
+        var sum = (SumDelegate)method.CreateDelegate(typeof(SumDelegate));
+        Console.WriteLine(sum(5, 3)); // Output: 8
+    }
+);
 
 app.Run();
 
 public record Todo(int Id, string? Title, DateOnly? DueBy = null, bool IsComplete = false);
 
 [JsonSerializable(typeof(Todo[]))]
-internal partial class AppJsonSerializerContext : JsonSerializerContext
-{
-}
+internal partial class AppJsonSerializerContext : JsonSerializerContext { }
 
 public delegate int SumDelegate(int a, int b);
