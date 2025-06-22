@@ -4,18 +4,12 @@ RootCommand? rootCommand = new(
     "Ejemplo de la nueva api de Microsoft para Argumentos de comandos para CLI"
 );
 
-Option<FileInfo>? fileOpt = new(name: "--file", description: "The file to read");
-rootCommand.AddOption(fileOpt);
-rootCommand.SetHandler(
-    async (file) =>
-    {
-        ArgumentNullException.ThrowIfNull(file);
-        await foreach (string? line in File.ReadLinesAsync(file.FullName))
-        {
-            Console.WriteLine(line);
-        }
-    },
-    fileOpt
-);
+Option<FileInfo>? fileOpt = new(name: "--file") { Description = "The file to read" };
+rootCommand.Options.Add(fileOpt);
 
-await rootCommand.InvokeAsync(args);
+ParseResult parseResult = rootCommand.Parse(args);
+
+FileInfo getFile = parseResult.GetRequiredValue(fileOpt);
+Console.WriteLine(await File.ReadAllTextAsync(getFile.FullName));
+
+// --file texto_prueba.txt
