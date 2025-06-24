@@ -1,4 +1,4 @@
-namespace LittleDB;
+namespace NoRelationalLiteDB;
 
 public class User
 {

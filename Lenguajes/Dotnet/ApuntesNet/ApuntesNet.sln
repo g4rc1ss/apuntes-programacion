@@ -230,7 +230,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InteroperabilidadConAsync",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CancellationToken", "BackendLibraries\Performance\CancellationToken\CancellationToken.csproj", "{FF5B3281-49BA-45AC-8398-0508B55DF223}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LittleDB", "BackendLibraries\Databases\NoSQL\LittleDB\LittleDB.csproj", "{CE26D297-328E-4BC5-B52B-F26F84CCBFB3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoRelationalLiteDB", "BackendLibraries\Databases\NoSQL\NoRelationalLiteDB\NoRelationalLiteDB.csproj", "{CE26D297-328E-4BC5-B52B-F26F84CCBFB3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BlazorServerRender", "BlazorServerRender", "{CC2B8AFE-D501-4594-B279-D4A7B8789984}"
 EndProject
