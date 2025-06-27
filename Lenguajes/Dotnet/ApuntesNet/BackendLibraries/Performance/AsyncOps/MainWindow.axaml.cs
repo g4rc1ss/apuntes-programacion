@@ -54,6 +54,6 @@ public partial class MainWindow : Window
     private async void ExecuteWithPlatformInvokeAsync(object? sender, RoutedEventArgs e)
     {
         await new ClaseInteractuaRust().EjecutarDllAsync();
-        File.WriteAllTextAsync("./archivo.txt", "Hola mundo");
+        await Task.Delay(100);
     }
 }
