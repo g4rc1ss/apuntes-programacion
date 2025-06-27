@@ -12,24 +12,20 @@ public class Componente : Button
 
     public string Accion(TextBox cajaDeTexto)
     {
-        if (Tipo == 0)
+        switch (Tipo)
         {
-            return null;
+            case 0:
+                return null;
+            case 1: //Numeros
+                cajaDeTexto.Text += Content;
+                return cajaDeTexto.Text;
+            case 2: //Operacion
+                return Content?.ToString() ?? string.Empty;
+            case 3: //Vaciar
+                cajaDeTexto.Text = "";
+                return cajaDeTexto.Text;
+            default:
+                return null;
         }
-        else if (Tipo == 1)
-        { //Numeros
-            cajaDeTexto.Text += Content;
-            return cajaDeTexto.Text;
-        }
-        else if (Tipo == 2)
-        { //Operacion
-            return Content?.ToString() ?? string.Empty;
-        }
-        else if (Tipo == 3)
-        { //Vaciar
-            cajaDeTexto.Text = "";
-            return cajaDeTexto.Text;
-        }
-        return null;
     }
 }

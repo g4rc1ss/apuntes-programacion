@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Runtime.InteropServices;
 
-namespace InteroperabilidadConAsync;
+namespace AsyncOps.InteroperabilidadConAsync;
 
 // Creamos el delegado que vamos a enviar a la DLL
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -9,7 +9,7 @@ public delegate void Callback(int response);
 
 public partial class Libraries
 {
-    [LibraryImport("libcallback.dylib")]
+    [LibraryImport("./InteroperabilidadConAsync/libcallback.dylib")]
     public static partial void prueba_callback(Callback callback);
 }
 

@@ -1,3 +1,4 @@
+using AsyncOps.InteroperabilidadConAsync;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 
@@ -48,5 +49,11 @@ public partial class MainWindow : Window
     {
         CustomTask customTask = new();
         await customTask;
+    }
+
+    private async void ExecuteWithPlatformInvokeAsync(object? sender, RoutedEventArgs e)
+    {
+        await new ClaseInteractuaRust().EjecutarDllAsync();
+        File.WriteAllTextAsync("./archivo.txt", "Hola mundo");
     }
 }

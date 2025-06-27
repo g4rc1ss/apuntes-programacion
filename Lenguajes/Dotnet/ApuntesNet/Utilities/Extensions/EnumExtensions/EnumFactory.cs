@@ -213,7 +213,7 @@ public static class EnumFactory
     public static TEnum ParseEnumValue<TEnum>(string value)
         where TEnum : struct, IConvertible
     {
-        TEnum retorno = default(TEnum);
+        TEnum retorno = default;
         Type? tp = typeof(TEnum);
         if (!tp.IsEnum)
         {

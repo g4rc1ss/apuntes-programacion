@@ -1,5 +1,6 @@
 using System.Reflection.Emit;
 using System.Text.Json.Serialization;
+using NativeAOT;
 
 WebApplicationBuilder builder = WebApplication.CreateSlimBuilder(args);
 
@@ -35,7 +36,7 @@ todosApi.MapGet(
     {
         // Fallara por crear codigo en tiempo de ejecución
 
-        var method = new DynamicMethod(
+        DynamicMethod method = new(
             "Sum",
             typeof(int),
             new Type[] { typeof(int), typeof(int) },
@@ -48,16 +49,19 @@ todosApi.MapGet(
         il.Emit(OpCodes.Add); // Suma
         il.Emit(OpCodes.Ret); // Retorna el resultado
 
-        var sum = (SumDelegate)method.CreateDelegate(typeof(SumDelegate));
+        SumDelegate sum = (SumDelegate)method.CreateDelegate(typeof(SumDelegate));
         Console.WriteLine(sum(5, 3)); // Output: 8
     }
 );
 
 app.Run();
 
-public record Todo(int Id, string? Title, DateOnly? DueBy = null, bool IsComplete = false);
+namespace NativeAOT
+{
+    public record Todo(int Id, string? Title, DateOnly? DueBy = null, bool IsComplete = false);
 
-[JsonSerializable(typeof(Todo[]))]
-internal partial class AppJsonSerializerContext : JsonSerializerContext { }
+    [JsonSerializable(typeof(Todo[]))]
+    internal partial class AppJsonSerializerContext : JsonSerializerContext { }
 
-public delegate int SumDelegate(int a, int b);
+    public delegate int SumDelegate(int a, int b);
+}
