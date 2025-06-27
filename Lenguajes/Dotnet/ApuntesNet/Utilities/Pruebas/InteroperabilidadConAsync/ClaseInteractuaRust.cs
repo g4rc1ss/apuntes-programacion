@@ -21,18 +21,6 @@ public class ClaseInteractuaRust
             TaskCreationOptions.RunContinuationsAsynchronously
         );
 
-        void Callback(int response)
-        {
-            if (!taskCompletionSource.TrySetResult(response))
-            {
-                taskCompletionSource.SetException(
-                    new Exception("No se puede insertar el resultado")
-                );
-            }
-
-            Console.WriteLine(response);
-        }
-
         Console.WriteLine(
             $"Hilo de Csharp antes de llamar a la libreria {Thread.CurrentThread.ManagedThreadId}"
         );
@@ -53,6 +41,18 @@ public class ClaseInteractuaRust
             );
 
             Console.WriteLine($"Han pasado {stopwatch.ElapsedMilliseconds}");
+        }
+
+        void Callback(int response)
+        {
+            if (!taskCompletionSource.TrySetResult(response))
+            {
+                taskCompletionSource.SetException(
+                    new Exception("No se puede insertar el resultado")
+                );
+            }
+
+            Console.WriteLine(response);
         }
     }
 }
