@@ -9,6 +9,11 @@ ManualConfig config = ManualConfig
     .AddExporter(MarkdownExporter.Console);
 
 BenchmarkRunner.Run(
-    [typeof(ArrayPoolBench), typeof(MarshallApi), typeof(Pointers), typeof(StringWithSpan)],
+    [
+        // typeof(ArrayPoolBench),
+        // typeof(MarshallApi),
+        // typeof(Pointers),
+        typeof(StringWithSpan),
+    ],
     config
 );

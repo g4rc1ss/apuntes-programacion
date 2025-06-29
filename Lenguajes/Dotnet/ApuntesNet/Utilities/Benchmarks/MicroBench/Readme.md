@@ -30,8 +30,15 @@
 
 
 # SubString
-| Method        | Mean      | Error     | StdDev    | Gen0   | Allocated |
-|-------------- |----------:|----------:|----------:|-------:|----------:|
-| SubString     | 4.7483 ns | 0.0411 ns | 0.0364 ns | 0.0051 |      32 B |
-| SubstringSpan | 0.7046 ns | 0.0084 ns | 0.0079 ns |      - |         - |
+| Method                       | Mean       | Error     | StdDev    | Gen0   | Allocated |
+|------------------------------|-----------:|----------:|----------:|-------:|----------:|
+| SubString                    |  4.5669 ns | 0.0104 ns | 0.0092 ns | 0.0051 |      32 B |
+| SubstringSpan                |  0.6955 ns | 0.0010 ns | 0.0009 ns |      - |         - |
+| SubstringSpanAndCreateString |  8.2861 ns | 0.0133 ns | 0.0118 ns | 0.0051 |      32 B |
+| Split                        | 80.1441 ns | 0.1968 ns | 0.1841 ns | 0.0459 |     288 B |
+| SplitSpan                    |  0.6946 ns | 0.0006 ns | 0.0005 ns |      - |         - |
+| SplitSpanAndRead             | 28.0927 ns | 0.0087 ns | 0.0068 ns |      - |         - |
+
+
+
 
