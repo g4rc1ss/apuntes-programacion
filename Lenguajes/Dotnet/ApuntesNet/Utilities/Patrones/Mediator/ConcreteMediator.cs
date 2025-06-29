@@ -18,16 +18,17 @@ internal class ConcreteMediator : IMediator
 
     public void Notify(object sender, string ev)
     {
-        if (ev == "A")
+        switch (ev)
         {
-            Console.WriteLine("Mediator reacts on A and triggers folowing operations:");
-            _component2.DoC();
-        }
-        if (ev == "D")
-        {
-            Console.WriteLine("Mediator reacts on D and triggers following operations:");
-            _component1.DoB();
-            _component2.DoC();
+            case "A":
+                Console.WriteLine("Mediator reacts on A and triggers folowing operations:");
+                _component2.DoC();
+                break;
+            case "D":
+                Console.WriteLine("Mediator reacts on D and triggers following operations:");
+                _component1.DoB();
+                _component2.DoC();
+                break;
         }
     }
 }

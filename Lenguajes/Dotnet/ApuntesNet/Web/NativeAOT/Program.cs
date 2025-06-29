@@ -1,5 +1,6 @@
 using System.Reflection.Emit;
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Mvc;
 using NativeAOT;
 
 WebApplicationBuilder builder = WebApplication.CreateSlimBuilder(args);
@@ -24,10 +25,13 @@ RouteGroupBuilder todosApi = app.MapGroup("/todos");
 todosApi.MapGet("/", () => sampleTodos);
 todosApi.MapGet(
     "/{id}",
-    (int id) =>
-        sampleTodos.FirstOrDefault(a => a.Id == id) is { } todo
+    (int id, [FromServices] IConfiguration configuration) =>
+    {
+        string? value = configuration["ASPNETCORE_ENVIRONMENT"];
+        return sampleTodos.FirstOrDefault(a => a.Id == id) is { } todo
             ? Results.Ok(todo)
-            : Results.NotFound()
+            : Results.NotFound();
+    }
 );
 
 todosApi.MapGet(

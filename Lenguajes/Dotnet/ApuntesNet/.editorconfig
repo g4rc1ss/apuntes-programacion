@@ -2,7 +2,7 @@ root = true
 
 [*.cs]
 
-resharper_convert_if_statement_to_switch_statement_highlighting = error
+resharper_convert_if_statement_to_switch_statement_highlighting = suggestion
 
 # http://kent-boogaart.com/blog/editorconfig-reference-for-c-developers#csharp_indent_block_contents
 csharp_indent_block_contents = true
