@@ -2,7 +2,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using BenchmarkDotNet.Attributes;
 
-namespace UnmanagedMemoryVsNormalBenchmark;
+namespace MicroBench;
 
 [MemoryDiagnoser]
 public class MarshallApi

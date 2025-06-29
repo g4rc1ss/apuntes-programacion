@@ -1,7 +1,7 @@
 using System.Buffers;
 using BenchmarkDotNet.Attributes;
 
-namespace SharedArrayVsNormalArray;
+namespace MicroBench;
 
 [MemoryDiagnoser]
 public class ArrayPoolBench

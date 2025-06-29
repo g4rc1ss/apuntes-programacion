@@ -1,6 +1,6 @@
 using BenchmarkDotNet.Attributes;
 
-namespace UnmanagedMemoryVsNormalBenchmark;
+namespace MicroBench;
 
 [MemoryDiagnoser]
 public class Pointers

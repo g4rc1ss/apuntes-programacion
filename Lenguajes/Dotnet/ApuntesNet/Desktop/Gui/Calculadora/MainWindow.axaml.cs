@@ -22,70 +22,72 @@ public partial class MainWindow : Window
 
         if (ComprobarNumero(respuesta))
         {
-            if (_insertar)
+            switch (_insertar)
             {
-                _numero[0] = int.Parse(mostrar.Text);
-            }
-            else if (!_insertar)
-            {
-                _numero[1] = int.Parse(mostrar.Text);
-            }
-        }
-        else if (
-            respuesta.Equals("+")
-            || respuesta.Equals("-")
-            || respuesta.Equals("*")
-            || respuesta.Equals("/")
-        )
-        {
-            if (mostrar.Text.Equals(""))
-            {
-                // await DisplayAlert("Calc", "Calc", "Debes introducir un numero primero", "Cancel");
-                return;
-            }
-
-            if (_operacionSeleccion)
-            {
-                // await DisplayAlert("Calc", "Calc", "Ya has seleccionado una operacion", "Cancel");
-                return;
-            }
-            else
-            {
-                mostrar.Text = "";
-                _operacion = respuesta;
-                _insertar = false;
-                _operacionSeleccion = true;
+                case true:
+                    _numero[0] = int.Parse(mostrar.Text);
+                    break;
+                case false:
+                    _numero[1] = int.Parse(mostrar.Text);
+                    break;
             }
         }
-        else if (respuesta.Equals("C"))
+        else
         {
-            for (int x = 0; x < _numero.Length; x++)
+            switch (respuesta)
             {
-                _numero[x] = 0;
-            }
+                case "+":
+                case "-":
+                case "*":
+                case "/":
+                {
+                    if (mostrar.Text.Equals(""))
+                    {
+                        // await DisplayAlert("Calc", "Calc", "Debes introducir un numero primero", "Cancel");
+                        return;
+                    }
 
-            _insertar = true;
-            _operacionSeleccion = false;
-        }
-        else if (respuesta.Equals("="))
-        {
-            if (_operacion == null)
-            {
-                // await DisplayAlert("Calc", "Debes seleccionar una operacion primero", "Cancel");
-                return;
-            }
+                    if (_operacionSeleccion)
+                    {
+                        // await DisplayAlert("Calc", "Calc", "Ya has seleccionado una operacion", "Cancel");
+                        return;
+                    }
+                    else
+                    {
+                        mostrar.Text = "";
+                        _operacion = respuesta;
+                        _insertar = false;
+                        _operacionSeleccion = true;
+                    }
 
-            if (mostrar.Text.Equals(""))
-            {
+                    break;
+                }
+                case "C":
+                {
+                    for (int x = 0; x < _numero.Length; x++)
+                    {
+                        _numero[x] = 0;
+                    }
+
+                    _insertar = true;
+                    _operacionSeleccion = false;
+                    break;
+                }
+                case "=" when _operacion == null:
                 // await DisplayAlert("Calc", "Debes introducir otro numero", "Cancel");
-                return;
+                case "=" when mostrar.Text.Equals(""):
+                    // await DisplayAlert("Calc", "Debes seleccionar una operacion primero", "Cancel");
+                    return;
+                case "=":
+                {
+                    int resultado = Operar(_operacion);
+                    mostrar.Text = "" + resultado;
+                    _numero[0] = resultado;
+                    _insertar = true;
+                    _operacionSeleccion = false;
+                    break;
+                }
             }
-
-            int resultado = Operar(_operacion);
-            mostrar.Text = "" + resultado;
-            _numero[0] = resultado;
-            _insertar = true;
-            _operacionSeleccion = false;
         }
     }
 
