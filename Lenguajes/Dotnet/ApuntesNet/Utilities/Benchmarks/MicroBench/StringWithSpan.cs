@@ -52,4 +52,16 @@ public class StringWithSpan
             );
         }
     }
+
+    [Benchmark]
+    public void StringContains()
+    {
+        bool contains = _text.Contains("benchmarking");
+    }
+
+    [Benchmark]
+    public void StringSpanContains()
+    {
+        _text.AsSpan().Contains("benchmarking".AsSpan(), StringComparison.OrdinalIgnoreCase);
+    }
 }

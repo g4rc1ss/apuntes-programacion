@@ -31,13 +31,16 @@
 
 # SubString
 | Method                       | Mean       | Error     | StdDev    | Gen0   | Allocated |
-|------------------------------|-----------:|----------:|----------:|-------:|----------:|
-| SubString                    |  4.5669 ns | 0.0104 ns | 0.0092 ns | 0.0051 |      32 B |
-| SubstringSpan                |  0.6955 ns | 0.0010 ns | 0.0009 ns |      - |         - |
-| SubstringSpanAndCreateString |  8.2861 ns | 0.0133 ns | 0.0118 ns | 0.0051 |      32 B |
-| Split                        | 80.1441 ns | 0.1968 ns | 0.1841 ns | 0.0459 |     288 B |
-| SplitSpan                    |  0.6946 ns | 0.0006 ns | 0.0005 ns |      - |         - |
-| SplitSpanAndRead             | 28.0927 ns | 0.0087 ns | 0.0068 ns |      - |         - |
+|----------------------------- |-----------:|----------:|----------:|-------:|----------:|
+| SubString                    |  4.5937 ns | 0.0144 ns | 0.0128 ns | 0.0051 |      32 B |
+| SubstringSpan                |  0.6945 ns | 0.0010 ns | 0.0009 ns |      - |         - |
+| SubstringSpanAndCreateString |  8.3082 ns | 0.0150 ns | 0.0133 ns | 0.0051 |      32 B |
+| Split                        | 82.8366 ns | 0.2912 ns | 0.2724 ns | 0.0459 |     288 B |
+| SplitSpan                    |  0.6955 ns | 0.0008 ns | 0.0007 ns |      - |         - |
+| SplitSpanAndRead             | 28.1969 ns | 0.0116 ns | 0.0097 ns |      - |         - |
+| StringContains               | 10.0554 ns | 0.0020 ns | 0.0018 ns |      - |         - |
+| StringSpanContains           | 12.5352 ns | 0.0288 ns | 0.0270 ns |      - |         - |
+
 
 
 
