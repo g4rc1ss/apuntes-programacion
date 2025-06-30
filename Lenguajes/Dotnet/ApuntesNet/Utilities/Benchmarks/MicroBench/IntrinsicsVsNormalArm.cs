@@ -3,7 +3,7 @@ using System.Runtime.Intrinsics;
 using System.Runtime.Intrinsics.Arm;
 using BenchmarkDotNet.Attributes;
 
-namespace IntrinsicsVsNormalExecution;
+namespace MicroBench;
 
 [MemoryDiagnoser]
 public class IntrinsicsVsNormalArm
