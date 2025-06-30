@@ -41,6 +41,22 @@
 | StringContains               | 10.0554 ns | 0.0020 ns | 0.0018 ns |      - |         - |
 | StringSpanContains           | 12.5352 ns | 0.0288 ns | 0.0270 ns |      - |         - |
 
+# Iterate enums
+| Method          | iterations | Mean            | Error          | StdDev         | Allocated |
+|---------------- |----------- |----------------:|---------------:|---------------:|----------:|
+| NormalIteration | 1          |       0.6961 ns |      0.0010 ns |      0.0009 ns |         - |
+| SpanIteration   | 1          |       0.6969 ns |      0.0011 ns |      0.0008 ns |         - |
+| NormalIteration | 10         |      11.5359 ns |      0.0059 ns |      0.0053 ns |         - |
+| SpanIteration   | 10         |      12.6309 ns |      0.0120 ns |      0.0112 ns |         - |
+| NormalIteration | 100        |      72.1998 ns |      0.0433 ns |      0.0384 ns |         - |
+| SpanIteration   | 100        |      47.5891 ns |      0.1185 ns |      0.0990 ns |         - |
+| NormalIteration | 1000       |     671.8332 ns |      0.2448 ns |      0.2044 ns |         - |
+| SpanIteration   | 1000       |     420.2478 ns |      0.2460 ns |      0.2055 ns |         - |
+| NormalIteration | 100000     |  85,020.7882 ns |     38.6078 ns |     34.2249 ns |         - |
+| SpanIteration   | 100000     |  58,511.7862 ns |    220.6042 ns |    195.5599 ns |         - |
+| NormalIteration | 1000000    | 860,477.6285 ns | 16,333.8800 ns | 15,278.7215 ns |         - |
+| SpanIteration   | 1000000    | 621,592.1416 ns | 11,879.3045 ns | 11,111.9088 ns |         - |
+
 
 
 

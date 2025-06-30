@@ -13,7 +13,8 @@ BenchmarkRunner.Run(
         // typeof(ArrayPoolBench),
         // typeof(MarshallApi),
         // typeof(Pointers),
-        typeof(StringWithSpan),
+        // typeof(StringWithSpan),
+        typeof(CollectionsWithSpan),
     ],
     config
 );
