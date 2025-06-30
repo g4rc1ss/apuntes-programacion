@@ -16,7 +16,9 @@ public class DefaultMiddleware(ILogger<DefaultMiddleware> logger) : IMiddleware
 
         // Lo que se ejecuta despues de la resolucion de la request
         memoryStream.Seek(0, SeekOrigin.Begin);
-        string? data = await new StreamReader(context.Response.Body).ReadToEndAsync();
+
+        using StreamReader reader = new(context.Response.Body);
+        string? data = await reader.ReadToEndAsync();
         memoryStream.Seek(0, SeekOrigin.Begin);
 
         logger.LogInformation($"Datos del Response {data}");

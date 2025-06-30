@@ -17,11 +17,10 @@ public class ConsumerHostedService<TMessage>(
         return _executingTask.IsCompleted ? _executingTask : Task.CompletedTask;
     }
 
-    public Task StopAsync(CancellationToken cancellationToken)
+    public async Task StopAsync(CancellationToken cancellationToken)
     {
-        _stoppingCancellationTokenSource.Cancel();
+        await _stoppingCancellationTokenSource.CancelAsync();
         consumerManager.StopExecution();
-        return Task.CompletedTask;
     }
 
     private async Task ConsumeMessagesAsync(CancellationToken cancellationToken)

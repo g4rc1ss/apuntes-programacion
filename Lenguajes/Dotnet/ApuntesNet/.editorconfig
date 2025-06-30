@@ -285,10 +285,57 @@ csharp_style_namespace_declarations = file_scoped:error
 # CA1416: Validate platform compatibility
 dotnet_diagnostic.CA1416.severity = none
 
-# Lowers severity from Warning to Suggestion
+# CA2016: Forward the CancellationToken parameter
+dotnet_diagnostic.CA2016.severity = warning
+
+# CA2250: Use ThrowIfCancellationRequested
+dotnet_diagnostic.CA2250.severity = error
+
+# CA2000: Dispose objects before losing scope
+dotnet_diagnostic.CA2000.severity = error
+
+# CA2025: Do not pass 'IDisposable' instances into unawaited tasks
+dotnet_diagnostic.CA2025.severity = error
+
+# CA2213: Disposable fields should be disposed
+dotnet_diagnostic.CA2213.severity = warning
+
+#CA2215: Dispose methods should call base class dispose
+dotnet_diagnostic.CA2215.severity = warning
+
+# CA2216: Disposable types should declare finalizer
+dotnet_diagnostic.CA2216.severity = warning
+
+#CA1511: Use ArgumentException throw helper
+dotnet_diagnostic.CA1511.severity = error
+
+# CA1510: Use ArgumentNullException throw helper
+dotnet_diagnostic.CA1510.severity = error
+
+# CA2264: No pasar un valor que no acepta valores NULL a 'ArgumentNullException.ThrowIfNull'
+dotnet_diagnostic.CA2264.severity = warning
+
+# CA2265: No comparar Span<T> con null o default
+dotnet_diagnostic.CA2265.severity = error
+
+# CA1512: Use ArgumentOutOfRangeException throw helper
+dotnet_diagnostic.CA1512.severity = error
+
+# CA1513: Use ObjectDisposedException throw helper
+dotnet_diagnostic.CA1513.severity = none
+
+# CA1816: Llamar a GC.SuppressFinalize correctamente
+dotnet_diagnostic.CA1816.severity = error
+
+# CA2100: Revisar consultas SQL para comprobar si tienen vulnerabilidades de seguridad
+dotnet_diagnostic.CA2100.severity = suggested
+
 # CS4014: Because this call is not awaited, execution of the current method continues before the call is completed. Consider applying the await operator to the result of the call.
 dotnet_diagnostic.CS4014.severity = warning
 dotnet_diagnostic.CS1998.severity = suggestion
+
+# Use Target-typed new()
+dotnet_diagnostic.IDE0090.severity = error
 
 # Missing XML comment
 dotnet_diagnostic.CS1591.severity = none
@@ -308,7 +355,43 @@ csharp_style_unused_value_expression_statement_preference = discard_variable:non
 # Disable IDE0290 - Use primary constructor
 csharp_style_prefer_primary_constructors = false
 
+## Performance analisys
+
+# CA1819: Las propiedades no deben devolver matrices
+dotnet_diagnostic.CA1819.severity = warning
+
+# CA1820: Comprobar si las cadenas están vacías mediante la longitud de cadena
+dotnet_diagnostic.CA1820.severity = error
+
+# CA1829: Usar la propiedad Length/Count en lugar del método Enumerable.Count
+dotnet_diagnostic.CA1829.severity = error
+
+# CA1828: No usar CountAsync si se puede usar AnyAsync
+dotnet_diagnostic.CA1828.severity = error
+
+# CA1832: Usar AsSpan o AsMemory en lugar de indizadores basados en intervalos
+dotnet_diagnostic.CA1832.severity = suggestion
+
+# CA1845: uso de 'string.Concat' basado en Span
+dotnet_diagnostic.CA1845.severity = suggestion
+
+# CA1846: Preferencia de AsSpan sobre Substring
+dotnet_diagnostic.CA1846.severity = suggestion
+
+# CA1849: Llamada a métodos asincrónicos en un método asincrónico
+dotnet_diagnostic.CA1849.severity = error
+
+# CA1851: Posibles enumeraciones múltiples de la colección IEnumerable
+dotnet_diagnostic.CA1851.severity = error
+
+# CA1855: Usar span<T>. Clear() en lugar de Span<T>. Fill()
+dotnet_diagnostic.CA1855.severity = error
+
+# CA1871: No pasar una estructura anulable a 'ArgumentNullException.ThrowIfNull'
+dotnet_diagnostic.CA1871.severity = error
+
+
 [**Migrations**]
 dotnet_diagnostic.IDE0005.severity = none
-# dotnet_diagnostic.IDE0130.severity = none
+dotnet_diagnostic.IDE0130.severity = none
 csharp_style_namespace_declarations = file_scoped:none

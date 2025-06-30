@@ -41,7 +41,7 @@ public partial class MainWindow : Window
                 case "*":
                 case "/":
                 {
-                    if (mostrar.Text.Equals(""))
+                    if (string.IsNullOrEmpty(mostrar.Text))
                     {
                         // await DisplayAlert("Calc", "Calc", "Debes introducir un numero primero", "Cancel");
                         return;
@@ -75,7 +75,7 @@ public partial class MainWindow : Window
                 }
                 case "=" when _operacion == null:
                 // await DisplayAlert("Calc", "Debes introducir otro numero", "Cancel");
-                case "=" when mostrar.Text.Equals(""):
+                case "=" when string.IsNullOrEmpty(mostrar.Text):
                     // await DisplayAlert("Calc", "Debes seleccionar una operacion primero", "Cancel");
                     return;
                 case "=":

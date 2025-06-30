@@ -36,7 +36,7 @@ internal class DistributedRedis
             listaSerializadaRecuperada
         )!;
 
-        if (listaSerializadaRecuperada.Count() > 0)
+        if (listaSerializadaRecuperada.Any())
         {
             listaCacheRecuperada
                 .Select(x =>

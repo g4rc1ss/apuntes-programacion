@@ -225,10 +225,7 @@ public static class EnumFactory
             return retorno;
         }
 
-        if (value == null)
-        {
-            throw new ArgumentNullException(nameof(value));
-        }
+        ArgumentNullException.ThrowIfNull(value);
 
         // out _ (Se utiliza el discard de Csharp, porque no se necesita ese parametro)
         if (int.TryParse(value.Trim(), out _))

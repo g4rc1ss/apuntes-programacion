@@ -30,7 +30,7 @@ internal class DistributedMemory
             listaSerializadaRecuperada
         )!;
 
-        if (listaSerializadaRecuperada.Count() > 0)
+        if (listaSerializadaRecuperada.Any())
         {
             listaCacheRecuperada
                 .Select(x =>
@@ -40,6 +40,6 @@ internal class DistributedMemory
                 })
                 .ToList();
         }
-        _distributedCache.Remove(ObjectsToCaching.cacheKey);
+        await _distributedCache.RemoveAsync(ObjectsToCaching.cacheKey);
     }
 }

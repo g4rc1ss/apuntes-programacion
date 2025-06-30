@@ -4,13 +4,14 @@ namespace AspMvcTesting;
 
 public class TestConfigurationToFixture
 {
+    private readonly WebApplicationFactoryWeatherForecast _webApplicationFactory;
     public HttpClient Client { get; set; }
     public IServiceProvider ServiceProvider { get; set; }
 
     public TestConfigurationToFixture()
     {
-        WebApplicationFactoryWeatherForecast? webHost = new();
-        ServiceProvider = webHost.Services;
-        Client = webHost.CreateClient();
+        _webApplicationFactory = new WebApplicationFactoryWeatherForecast();
+        ServiceProvider = _webApplicationFactory.Services;
+        Client = _webApplicationFactory.CreateClient();
     }
 }

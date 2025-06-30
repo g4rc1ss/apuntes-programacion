@@ -8,10 +8,7 @@ public class HandleMessage(IMessageHandlerRegistry messageHandlerRegistry) : IHa
 {
     public async Task Handle(IMessage message, CancellationToken cancellationToken = default)
     {
-        if (message == null)
-        {
-            throw new ArgumentNullException(nameof(message));
-        }
+        ArgumentNullException.ThrowIfNull(message);
 
         Type? messageType = message.GetType();
         Type? handlerType = typeof(IMessageHandler<>).MakeGenericType(messageType);

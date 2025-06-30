@@ -11,7 +11,9 @@ internal static class FakerThreadVsAsync
 
     internal static Task ExecuteTaskBlocking()
     {
+#pragma warning disable CA1849
         ExecuteTask().Wait();
+#pragma warning restore CA1849
         return Task.CompletedTask;
     }
 }

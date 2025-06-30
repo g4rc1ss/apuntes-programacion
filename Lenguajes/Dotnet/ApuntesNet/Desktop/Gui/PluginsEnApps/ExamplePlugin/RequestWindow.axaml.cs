@@ -22,9 +22,8 @@ public partial class RequestWindow : Window
     {
         try
         {
-            MyIp? ip = await new HttpClient().GetFromJsonAsync<MyIp>(
-                "https://api.ipify.org/?format=json"
-            );
+            using HttpClient client = new();
+            MyIp? ip = await client.GetFromJsonAsync<MyIp>("https://api.ipify.org/?format=json");
             return $"Direccion ip: {ip.Ip} \n";
         }
         catch (Exception ex)

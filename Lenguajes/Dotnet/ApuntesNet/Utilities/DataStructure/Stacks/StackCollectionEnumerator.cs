@@ -31,5 +31,6 @@ public class StackCollectionEnumerator<T>(T[] collection) : IEnumerator<T>
     {
         Current = default;
         collection = null;
+        GC.SuppressFinalize(this);
     }
 }

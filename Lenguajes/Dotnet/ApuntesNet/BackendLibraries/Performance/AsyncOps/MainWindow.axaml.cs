@@ -27,7 +27,7 @@ public partial class MainWindow : Window
 
     private async void IoAsync(object? sender, RoutedEventArgs e)
     {
-        HttpClient? cliente = new();
+        using HttpClient? cliente = new();
         await cliente.GetStringAsync("https://docs.microsoft.com/en-us/");
     }
 

@@ -25,7 +25,7 @@ public class EnviarEmail
         Console.WriteLine("Cuerpo");
         string? cuerpo = Console.ReadLine();
 
-        MailMessage? mensaje = new(emisor, receptor, asunto, cuerpo);
+        using MailMessage? mensaje = new(emisor, receptor, asunto, cuerpo);
 
         using (SmtpClient? cliente = new(servidorDeEnvio))
         {
