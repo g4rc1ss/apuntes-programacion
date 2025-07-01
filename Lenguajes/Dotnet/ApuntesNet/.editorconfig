@@ -301,10 +301,10 @@ dotnet_diagnostic.CA2025.severity = error
 dotnet_diagnostic.CA2213.severity = warning
 
 #CA2215: Dispose methods should call base class dispose
-dotnet_diagnostic.CA2215.severity = warning
+dotnet_diagnostic.CA2215.severity = error
 
 # CA2216: Disposable types should declare finalizer
-dotnet_diagnostic.CA2216.severity = warning
+dotnet_diagnostic.CA2216.severity = error
 
 #CA1511: Use ArgumentException throw helper
 dotnet_diagnostic.CA1511.severity = error
@@ -328,7 +328,7 @@ dotnet_diagnostic.CA1513.severity = none
 dotnet_diagnostic.CA1816.severity = error
 
 # CA2100: Revisar consultas SQL para comprobar si tienen vulnerabilidades de seguridad
-dotnet_diagnostic.CA2100.severity = suggested
+dotnet_diagnostic.CA2100.severity = suggestion
 
 # CS4014: Because this call is not awaited, execution of the current method continues before the call is completed. Consider applying the await operator to the result of the call.
 dotnet_diagnostic.CS4014.severity = warning
