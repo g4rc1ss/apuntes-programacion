@@ -1,5 +1,8 @@
-﻿namespace ParallelBenchmark.Fakes;
+﻿using System.Diagnostics.CodeAnalysis;
 
+namespace ParallelBenchmark.Fakes;
+
+[SuppressMessage("Performance", "CA1849:Llame a métodos asincrónicos cuando esté en un método asincrónico")]
 internal static class FakerThreadVsAsync
 {
     private const int DELAY = 100;
@@ -11,9 +14,7 @@ internal static class FakerThreadVsAsync
 
     internal static Task ExecuteTaskBlocking()
     {
-#pragma warning disable CA1849
         ExecuteTask().Wait();
-#pragma warning restore CA1849
         return Task.CompletedTask;
     }
 }
