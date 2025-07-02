@@ -1,17 +1,21 @@
 # ArrayPool
-
-| Method                   | iterations | Mean           | Error         | StdDev        | Gen0     | Gen1     | Gen2     | Allocated |
-|------------------------- |----------- |---------------:|--------------:|--------------:|---------:|---------:|---------:|----------:|
-| AddDataToStringArrayPool | 1          |      15.031 ns |     0.0877 ns |     0.0820 ns |        - |        - |        - |         - |
-| AddDataToStringArray     | 1          |       6.673 ns |     0.0231 ns |     0.0204 ns |   0.0051 |        - |        - |      32 B |
-| AddDataToStringArrayPool | 10         |      29.036 ns |     0.1350 ns |     0.1054 ns |        - |        - |        - |         - |
-| AddDataToStringArray     | 10         |      28.847 ns |     0.0878 ns |     0.0778 ns |   0.0166 |        - |        - |     104 B |
-| AddDataToStringArrayPool | 100        |     218.158 ns |     0.1651 ns |     0.1463 ns |        - |        - |        - |         - |
-| AddDataToStringArray     | 100        |     250.981 ns |     0.6535 ns |     0.5457 ns |   0.1311 |        - |        - |     824 B |
-| AddDataToStringArrayPool | 1000       |   2,071.958 ns |     8.2231 ns |     7.6919 ns |        - |        - |        - |         - |
-| AddDataToStringArray     | 1000       |   2,426.574 ns |    10.0506 ns |     9.4013 ns |   1.2779 |        - |        - |    8024 B |
-| AddDataToStringArrayPool | 100000     | 204,913.728 ns |    82.0543 ns |    64.0626 ns |        - |        - |        - |         - |
-| AddDataToStringArray     | 100000     | 298,378.121 ns | 4,109.3402 ns | 3,843.8794 ns | 249.5117 | 249.5117 | 249.5117 |  800192 B |
+| Method                    | iterations | Mean           | Error         | StdDev        | Gen0     | Gen1     | Gen2     | Allocated |
+|-------------------------- |----------- |---------------:|--------------:|--------------:|---------:|---------:|---------:|----------:|
+| AddDataToStringArrayPool  | 1          |      14.946 ns |     0.0084 ns |     0.0079 ns |        - |        - |        - |         - |
+| AddDataToStringArray      | 1          |       6.657 ns |     0.0139 ns |     0.0123 ns |   0.0051 |        - |        - |      32 B |
+| AddDataToStringMemoryPool | 1          |      22.276 ns |     0.0330 ns |     0.0293 ns |   0.0038 |        - |        - |      24 B |
+| AddDataToStringArrayPool  | 10         |      29.279 ns |     0.0857 ns |     0.0760 ns |        - |        - |        - |         - |
+| AddDataToStringArray      | 10         |      28.733 ns |     0.0868 ns |     0.0812 ns |   0.0166 |        - |        - |     104 B |
+| AddDataToStringMemoryPool | 10         |      53.272 ns |     0.0457 ns |     0.0405 ns |   0.0038 |        - |        - |      24 B |
+| AddDataToStringArrayPool  | 100        |     218.310 ns |     0.1666 ns |     0.1477 ns |        - |        - |        - |         - |
+| AddDataToStringArray      | 100        |     251.887 ns |     0.7633 ns |     0.7140 ns |   0.1311 |        - |        - |     824 B |
+| AddDataToStringMemoryPool | 100        |     321.057 ns |     0.1304 ns |     0.1089 ns |   0.0038 |        - |        - |      24 B |
+| AddDataToStringArrayPool  | 1000       |   2,068.232 ns |     2.7619 ns |     2.5835 ns |        - |        - |        - |         - |
+| AddDataToStringArray      | 1000       |   2,424.336 ns |     4.3532 ns |     3.8590 ns |   1.2779 |        - |        - |    8024 B |
+| AddDataToStringMemoryPool | 1000       |   2,927.239 ns |    26.2090 ns |    24.5159 ns |   0.0038 |        - |        - |      24 B |
+| AddDataToStringArrayPool  | 100000     | 206,098.522 ns |   606.7852 ns |   506.6932 ns |        - |        - |        - |         - |
+| AddDataToStringArray      | 100000     | 296,487.525 ns | 4,364.1191 ns | 3,868.6779 ns | 249.5117 | 249.5117 | 249.5117 |  800192 B |
+| AddDataToStringMemoryPool | 100000     | 288,008.568 ns |   273.1715 ns |   228.1106 ns |        - |        - |        - |      24 B |
 
 
 # Pointers
