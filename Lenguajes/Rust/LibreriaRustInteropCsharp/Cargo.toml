@@ -1,0 +1,10 @@
+[package]
+name = "LibreriaRustInteropCsharp"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+
+[lib]
+name = "LibreriaRustInteropCsharp"
+crate-type = ["cdylib"]
