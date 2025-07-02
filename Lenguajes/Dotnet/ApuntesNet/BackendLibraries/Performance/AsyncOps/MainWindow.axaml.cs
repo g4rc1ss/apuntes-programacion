@@ -22,7 +22,7 @@ public partial class MainWindow : Window
 
     private void CpuBlockAsync(object? sender, RoutedEventArgs e)
     {
-        Thread.Sleep(100000);
+        Thread.Sleep(TimeSpan.FromSeconds(10));
     }
 
     private async void IoAsync(object? sender, RoutedEventArgs e)
