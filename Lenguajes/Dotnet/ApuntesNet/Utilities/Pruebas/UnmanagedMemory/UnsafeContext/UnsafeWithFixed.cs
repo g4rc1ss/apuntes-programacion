@@ -1,4 +1,4 @@
-namespace UnmanagedMemory;
+namespace UnmanagedMemory.UnsafeContext;
 
 public static class UnsafeWithFixed
 {

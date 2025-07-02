@@ -2,7 +2,10 @@
 
 namespace ParallelBenchmark.Fakes;
 
-[SuppressMessage("Performance", "CA1849:Llame a métodos asincrónicos cuando esté en un método asincrónico")]
+[SuppressMessage(
+    "Performance",
+    "CA1849:Llame a métodos asincrónicos cuando esté en un método asincrónico"
+)]
 internal static class FakerThreadVsAsync
 {
     private const int DELAY = 100;

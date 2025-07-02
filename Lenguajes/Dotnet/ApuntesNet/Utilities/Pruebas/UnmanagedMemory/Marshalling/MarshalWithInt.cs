@@ -1,14 +1,14 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
-namespace UnmanagedMemory;
+namespace UnmanagedMemory.Marshalling;
 
-public static class UnmanagedMemoryMarshal
+public static class MarshalWithInt
 {
     public static void Execute()
     {
         IntPtr pointer = IntPtr.Zero;
-        long size = 2L * 1024 * 1024 * 1024;
+        long size = 2L * 1024 * 1024 * 100;
         long numberOfIntegers = size / sizeof(int);
 
         try

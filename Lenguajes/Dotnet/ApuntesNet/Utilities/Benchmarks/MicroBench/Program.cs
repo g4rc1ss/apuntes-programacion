@@ -10,11 +10,12 @@ ManualConfig config = ManualConfig
 
 BenchmarkRunner.Run(
     [
+        typeof(GCHandleApi),
         // typeof(ArrayPoolBench),
-        // typeof(MarshallApi),
+        // typeof(IntrinsicsApi),
         // typeof(Pointers),
         // typeof(StringWithSpan),
-        typeof(CollectionsWithSpan),
+        // typeof(CollectionsWithSpan),
     ],
     config
 );

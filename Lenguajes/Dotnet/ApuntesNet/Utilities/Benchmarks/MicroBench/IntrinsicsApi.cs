@@ -6,7 +6,7 @@ using BenchmarkDotNet.Attributes;
 namespace MicroBench;
 
 [MemoryDiagnoser]
-public class IntrinsicsVsNormalArm
+public class IntrinsicsApi
 {
     [Params(1, 10, 100, 1000, 100000, 1000000)]
     public int iterations;

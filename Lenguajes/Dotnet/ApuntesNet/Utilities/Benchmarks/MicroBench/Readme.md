@@ -13,14 +13,6 @@
 | AddDataToStringArrayPool | 100000     | 204,913.728 ns |    82.0543 ns |    64.0626 ns |        - |        - |        - |         - |
 | AddDataToStringArray     | 100000     | 298,378.121 ns | 4,109.3402 ns | 3,843.8794 ns | 249.5117 | 249.5117 | 249.5117 |  800192 B |
 
-# MarshallApi
-| Method                       | Mean       | Error    | StdDev   | Gen0       | Gen1      | Gen2      | Allocated    |
-|----------------------------- |-----------:|---------:|---------:|-----------:|----------:|----------:|-------------:|
-| WriteIntWithMarshall         |   832.8 ms |  2.49 ms |  2.21 ms |          - |         - |         - |            - |
-| WriteIntArrayWithManagement  | 2,070.1 ms | 28.32 ms | 25.11 ms |  9000.0000 | 9000.0000 | 9000.0000 | 8589941328 B |
-| WriteObjectsWithMarshall     |   118.7 ms |  1.44 ms |  1.35 ms | 17400.0000 |         - |         - |  110399840 B |
-| WriteArrayObjWithManagements |   207.9 ms |  2.35 ms |  2.20 ms | 19000.0000 | 7333.3333 | 1666.6667 |  118400995 B |
-
 
 # Pointers
 | Method                      | Mean     | Error   | StdDev  | Allocated |
@@ -87,4 +79,18 @@
 | SumArrays                                     | 1000000    | 942,676.837 ns |  3,146.6060 ns |  2,943.3372 ns | 942,617.758 ns | 154.2969 | 154.2969 | 154.2969 | 4000127 B |
 
 
+# GCHandle
+
+| Method                 | iterations | Mean          | Error       | StdDev      | Gen0   | Allocated |
+|----------------------- |----------- |--------------:|------------:|------------:|-------:|----------:|
+| IterateObjArray        | 1          |      5.560 ns |   0.0745 ns |   0.0660 ns | 0.0051 |      32 B |
+| IterateObjWithGCHandle | 1          |     28.495 ns |   0.1438 ns |   0.1345 ns | 0.0051 |      32 B |
+| IterateObjArray        | 10         |     15.775 ns |   0.1550 ns |   0.1450 ns | 0.0102 |      64 B |
+| IterateObjWithGCHandle | 10         |     35.504 ns |   0.6204 ns |   0.6371 ns | 0.0102 |      64 B |
+| IterateObjArray        | 100        |    105.929 ns |   0.7281 ns |   0.6080 ns | 0.0675 |     424 B |
+| IterateObjWithGCHandle | 100        |    135.679 ns |   1.6087 ns |   1.4261 ns | 0.0675 |     424 B |
+| IterateObjArray        | 1000       |  1,065.052 ns |  10.7301 ns |   8.3773 ns | 0.6409 |    4024 B |
+| IterateObjWithGCHandle | 1000       |  1,176.197 ns |  20.3087 ns |  18.0032 ns | 0.6409 |    4024 B |
+| IterateObjArray        | 10000      |  9,719.177 ns | 124.3403 ns | 116.3080 ns | 6.3171 |   40024 B |
+| IterateObjWithGCHandle | 10000      | 11,494.018 ns | 148.0806 ns | 131.2696 ns | 6.3171 |   40024 B |
 
