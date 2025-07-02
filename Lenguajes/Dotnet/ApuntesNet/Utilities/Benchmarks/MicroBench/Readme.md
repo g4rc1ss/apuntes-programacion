@@ -50,18 +50,28 @@
 | SpanIteration   | 1000000    | 621,592.1416 ns | 11,879.3045 ns | 11,111.9088 ns |         - |
 
 # Marshal
-| Method                 | iterations | Mean          | Error      | StdDev     | Gen0    | Allocated |
-|----------------------- |----------- |--------------:|-----------:|-----------:|--------:|----------:|
-| WriteMarshalWithUnsafe | 1          |     26.189 ns |  0.0072 ns |  0.0060 ns |       - |         - |
-| WriteStruct            | 1          |      5.034 ns |  0.0093 ns |  0.0078 ns |  0.0051 |      32 B |
-| WriteMarshalWithUnsafe | 10         |     35.107 ns |  0.0097 ns |  0.0086 ns |       - |         - |
-| WriteStruct            | 10         |     12.925 ns |  0.0115 ns |  0.0102 ns |  0.0166 |     104 B |
-| WriteMarshalWithUnsafe | 100        |    117.531 ns |  0.8749 ns |  0.8184 ns |       - |         - |
-| WriteStruct            | 100        |    114.673 ns |  2.0451 ns |  1.9130 ns |  0.1312 |     824 B |
-| WriteMarshalWithUnsafe | 1000       |    498.556 ns |  1.4201 ns |  1.3284 ns |       - |         - |
-| WriteStruct            | 1000       |  1,166.849 ns |  5.1319 ns |  4.8004 ns |  1.2779 |    8024 B |
-| WriteMarshalWithUnsafe | 10000      |  4,250.573 ns |  6.9844 ns |  6.1915 ns |       - |         - |
-| WriteStruct            | 10000      | 10,714.320 ns | 81.9895 ns | 76.6930 ns | 12.6495 |   80024 B |
+| Method                       | iterations | Mean           | Error         | StdDev        | Gen0    | Gen1    | Gen2    | Allocated |
+|----------------------------- |----------- |---------------:|--------------:|--------------:|--------:|--------:|--------:|----------:|
+| WriteStructMarshalWithUnsafe | 1          |      26.331 ns |     0.0856 ns |     0.0758 ns |       - |       - |       - |         - |
+| WriteStruct                  | 1          |       5.124 ns |     0.0756 ns |     0.0670 ns |  0.0051 |       - |       - |      32 B |
+| WriteStructObjMarshal        | 1          |      78.962 ns |     0.1023 ns |     0.0957 ns |  0.0050 |       - |       - |      32 B |
+| WriteStructWithObjs          | 1          |       5.712 ns |     0.0597 ns |     0.0559 ns |  0.0064 |       - |       - |      40 B |
+| WriteStructMarshalWithUnsafe | 10         |      35.766 ns |     0.0885 ns |     0.0828 ns |       - |       - |       - |         - |
+| WriteStruct                  | 10         |      12.954 ns |     0.0722 ns |     0.0603 ns |  0.0166 |       - |       - |     104 B |
+| WriteStructObjMarshal        | 10         |     381.182 ns |     1.3364 ns |     1.1847 ns |  0.0505 |       - |       - |     320 B |
+| WriteStructWithObjs          | 10         |      19.070 ns |     0.1320 ns |     0.1235 ns |  0.0293 |       - |       - |     184 B |
+| WriteStructMarshalWithUnsafe | 100        |     117.730 ns |     1.3729 ns |     1.2842 ns |       - |       - |       - |         - |
+| WriteStruct                  | 100        |     113.530 ns |     0.7891 ns |     0.7381 ns |  0.1311 |       - |       - |     824 B |
+| WriteStructObjMarshal        | 100        |   3,302.200 ns |     6.4572 ns |     5.7242 ns |  0.5074 |       - |       - |    3200 B |
+| WriteStructWithObjs          | 100        |     144.750 ns |     1.2613 ns |     1.1798 ns |  0.2587 |       - |       - |    1624 B |
+| WriteStructMarshalWithUnsafe | 1000       |     500.188 ns |     4.1339 ns |     3.8668 ns |       - |       - |       - |         - |
+| WriteStruct                  | 1000       |   1,240.565 ns |    24.5669 ns |    33.6275 ns |  1.2779 |       - |       - |    8024 B |
+| WriteStructObjMarshal        | 1000       |  33,084.293 ns |   406.0267 ns |   339.0507 ns |  5.0659 |       - |       - |   32000 B |
+| WriteStructWithObjs          | 1000       |   1,334.495 ns |    16.9225 ns |    15.0014 ns |  2.5444 |       - |       - |   16024 B |
+| WriteStructMarshalWithUnsafe | 10000      |   4,259.925 ns |     8.6908 ns |     7.2572 ns |       - |       - |       - |         - |
+| WriteStruct                  | 10000      |  10,864.605 ns |    87.3698 ns |    81.7257 ns | 12.6495 |       - |       - |   80024 B |
+| WriteStructObjMarshal        | 10000      | 329,699.972 ns | 2,957.4513 ns | 2,621.7036 ns | 50.7813 |       - |       - |  320000 B |
+| WriteStructWithObjs          | 10000      |  27,118.415 ns |   484.8605 ns |   630.4557 ns | 49.9878 | 49.9878 | 49.9878 |  160058 B |
 
 
 # Intrinsics

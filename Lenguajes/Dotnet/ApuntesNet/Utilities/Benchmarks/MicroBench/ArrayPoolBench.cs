@@ -43,4 +43,15 @@ public class ArrayPoolBench
             array[i] = _data;
         }
     }
+
+    [Benchmark]
+    public void AddDataToStringMemoryPool()
+    {
+        using MemoryPool<string> arrayPool = MemoryPool<string>.Shared;
+        using IMemoryOwner<string> array = arrayPool.Rent(iterations);
+        for (int i = 0; i < iterations; i++)
+        {
+            array.Memory.Span[i] = _data;
+        }
+    }
 }

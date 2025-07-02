@@ -11,7 +11,7 @@ public class MarshalApi
     public int iterations = 10;
 
     [Benchmark]
-    public unsafe void WriteMarshalWithUnsafe()
+    public unsafe void WriteStructMarshalWithUnsafe()
     {
         nint pointer = nint.Zero;
         try
@@ -42,10 +42,57 @@ public class MarshalApi
             coordinates[i] = new Coordinates() { x = i, y = i };
         }
     }
+
+    [Benchmark]
+    public unsafe void WriteStructObjMarshal()
+    {
+        nint pointer = nint.Zero;
+        try
+        {
+            int size = Marshal.SizeOf<Estructura>();
+            pointer = Marshal.AllocHGlobal(size * iterations);
+            for (int i = 0; i < iterations; i++)
+            {
+                nint nextPointer = nint.Add(pointer, i * size);
+                Marshal.StructureToPtr(
+                    new Estructura() { nombre = "Nombre", numero = i },
+                    nextPointer,
+                    false
+                );
+            }
+        }
+        finally
+        {
+            if (pointer != nint.Zero)
+            {
+                Marshal.FreeHGlobal(pointer);
+            }
+        }
+    }
+
+    [Benchmark]
+    public void WriteStructWithObjs()
+    {
+        Estructura[] estructuras = new Estructura[iterations];
+
+        for (int i = 0; i < iterations; i++)
+        {
+            estructuras[i] = new Estructura() { numero = i, nombre = "Nombre" };
+        }
+    }
 }
 
 internal struct Coordinates
 {
     internal int x;
     internal int y;
+}
+
+[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+internal struct Estructura
+{
+    internal int numero;
+
+    [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 20)]
+    internal string nombre;
 }

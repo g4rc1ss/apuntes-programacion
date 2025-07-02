@@ -3,6 +3,9 @@ using BenchmarkDotNet.Exporters;
 using BenchmarkDotNet.Running;
 using MicroBench;
 
+// new MarshalApi().WriteStructObjMarshal();
+// new ArrayPoolBench().AddDataToStringMemoryPool();
+
 ManualConfig config = ManualConfig
     .Create(DefaultConfig.Instance)
     .WithOptions(ConfigOptions.DisableOptimizationsValidator)
@@ -10,9 +13,9 @@ ManualConfig config = ManualConfig
 
 BenchmarkRunner.Run(
     [
-        typeof(MarshalApi),
+        // typeof(MarshalApi),
         // typeof(GCHandleApi),
-        // typeof(ArrayPoolBench),
+        typeof(ArrayPoolBench),
         // typeof(IntrinsicsApi),
         // typeof(Pointers),
         // typeof(StringWithSpan),
