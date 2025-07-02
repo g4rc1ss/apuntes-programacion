@@ -1,22 +1,36 @@
 # ArrayPool
-| Method                    | iterations | Mean           | Error         | StdDev        | Gen0     | Gen1     | Gen2     | Allocated |
-|-------------------------- |----------- |---------------:|--------------:|--------------:|---------:|---------:|---------:|----------:|
-| AddDataToStringArrayPool  | 1          |      14.946 ns |     0.0084 ns |     0.0079 ns |        - |        - |        - |         - |
-| AddDataToStringArray      | 1          |       6.657 ns |     0.0139 ns |     0.0123 ns |   0.0051 |        - |        - |      32 B |
-| AddDataToStringMemoryPool | 1          |      22.276 ns |     0.0330 ns |     0.0293 ns |   0.0038 |        - |        - |      24 B |
-| AddDataToStringArrayPool  | 10         |      29.279 ns |     0.0857 ns |     0.0760 ns |        - |        - |        - |         - |
-| AddDataToStringArray      | 10         |      28.733 ns |     0.0868 ns |     0.0812 ns |   0.0166 |        - |        - |     104 B |
-| AddDataToStringMemoryPool | 10         |      53.272 ns |     0.0457 ns |     0.0405 ns |   0.0038 |        - |        - |      24 B |
-| AddDataToStringArrayPool  | 100        |     218.310 ns |     0.1666 ns |     0.1477 ns |        - |        - |        - |         - |
-| AddDataToStringArray      | 100        |     251.887 ns |     0.7633 ns |     0.7140 ns |   0.1311 |        - |        - |     824 B |
-| AddDataToStringMemoryPool | 100        |     321.057 ns |     0.1304 ns |     0.1089 ns |   0.0038 |        - |        - |      24 B |
-| AddDataToStringArrayPool  | 1000       |   2,068.232 ns |     2.7619 ns |     2.5835 ns |        - |        - |        - |         - |
-| AddDataToStringArray      | 1000       |   2,424.336 ns |     4.3532 ns |     3.8590 ns |   1.2779 |        - |        - |    8024 B |
-| AddDataToStringMemoryPool | 1000       |   2,927.239 ns |    26.2090 ns |    24.5159 ns |   0.0038 |        - |        - |      24 B |
-| AddDataToStringArrayPool  | 100000     | 206,098.522 ns |   606.7852 ns |   506.6932 ns |        - |        - |        - |         - |
-| AddDataToStringArray      | 100000     | 296,487.525 ns | 4,364.1191 ns | 3,868.6779 ns | 249.5117 | 249.5117 | 249.5117 |  800192 B |
-| AddDataToStringMemoryPool | 100000     | 288,008.568 ns |   273.1715 ns |   228.1106 ns |        - |        - |        - |      24 B |
-
+| Method                          | iterations | Mean                 | Error              | StdDev             | Gen0          | Gen1          | Gen2          | Allocated     |
+|-------------------------------- |----------- |---------------------:|-------------------:|-------------------:|--------------:|--------------:|--------------:|--------------:|
+| AddDataToStringArrayPool        | 1          |            14.978 ns |          0.0243 ns |          0.0216 ns |             - |             - |             - |             - |
+| AddDataToStringMemoryPool       | 1          |            22.613 ns |          0.0286 ns |          0.0253 ns |        0.0038 |             - |             - |          24 B |
+| AddDataToStringArray            | 1          |             6.675 ns |          0.0162 ns |          0.0135 ns |        0.0051 |             - |             - |          32 B |
+| CreateArrayInLoopWithArrayPool  | 1          |            13.066 ns |          0.0064 ns |          0.0050 ns |             - |             - |             - |             - |
+| CreateArrayInLoopWithMemoryPool | 1          |            21.383 ns |          0.0221 ns |          0.0207 ns |        0.0038 |             - |             - |          24 B |
+| CreateArrayInLoop               | 1          |             7.184 ns |          0.0224 ns |          0.0209 ns |        0.0051 |             - |             - |          32 B |
+| AddDataToStringArrayPool        | 10         |            28.955 ns |          0.0451 ns |          0.0400 ns |             - |             - |             - |             - |
+| AddDataToStringMemoryPool       | 10         |            61.606 ns |          0.1883 ns |          0.1669 ns |        0.0038 |             - |             - |          24 B |
+| AddDataToStringArray            | 10         |            28.743 ns |          0.0624 ns |          0.0553 ns |        0.0166 |             - |             - |         104 B |
+| CreateArrayInLoopWithArrayPool  | 10         |           141.295 ns |          0.0619 ns |          0.0517 ns |             - |             - |             - |             - |
+| CreateArrayInLoopWithMemoryPool | 10         |           223.788 ns |          0.2395 ns |          0.2123 ns |        0.0381 |             - |             - |         240 B |
+| CreateArrayInLoop               | 10         |            77.830 ns |          0.5442 ns |          0.5091 ns |        0.1657 |             - |             - |        1040 B |
+| AddDataToStringArrayPool        | 100        |           218.311 ns |          0.1689 ns |          0.1580 ns |             - |             - |             - |             - |
+| AddDataToStringMemoryPool       | 100        |           272.016 ns |          0.4101 ns |          0.3836 ns |        0.0038 |             - |             - |          24 B |
+| AddDataToStringArray            | 100        |           250.356 ns |          0.3689 ns |          0.3270 ns |        0.1311 |             - |             - |         824 B |
+| CreateArrayInLoopWithArrayPool  | 100        |         1,436.489 ns |          0.4347 ns |          0.3853 ns |             - |             - |             - |             - |
+| CreateArrayInLoopWithMemoryPool | 100        |         4,431.814 ns |         17.1416 ns |         14.3140 ns |        0.3815 |             - |             - |        2400 B |
+| CreateArrayInLoop               | 100        |         3,679.598 ns |         68.6173 ns |         60.8275 ns |       13.1302 |             - |             - |       82400 B |
+| AddDataToStringArrayPool        | 1000       |         2,071.968 ns |          9.8809 ns |          9.2426 ns |             - |             - |             - |             - |
+| AddDataToStringMemoryPool       | 1000       |         2,487.931 ns |          1.8391 ns |          1.5357 ns |        0.0038 |             - |             - |          24 B |
+| AddDataToStringArray            | 1000       |         2,427.376 ns |          6.3835 ns |          5.9711 ns |        1.2779 |             - |             - |        8024 B |
+| CreateArrayInLoopWithArrayPool  | 1000       |        14,387.829 ns |          4.9426 ns |          4.1273 ns |             - |             - |             - |             - |
+| CreateArrayInLoopWithMemoryPool | 1000       |        22,707.171 ns |         40.8998 ns |         38.2577 ns |        3.8147 |             - |             - |       24000 B |
+| CreateArrayInLoop               | 1000       |       337,007.675 ns |      4,690.5279 ns |      4,387.5227 ns |     1278.3203 |             - |             - |     8024000 B |
+| AddDataToStringArrayPool        | 100000     |       205,154.093 ns |         70.1441 ns |         62.1809 ns |             - |             - |             - |             - |
+| AddDataToStringMemoryPool       | 100000     |       246,250.142 ns |         80.7761 ns |         63.0647 ns |             - |             - |             - |          24 B |
+| AddDataToStringArray            | 100000     |       300,003.953 ns |      2,556.4908 ns |      2,266.2625 ns |      249.5117 |      249.5117 |      249.5117 |      800192 B |
+| CreateArrayInLoopWithArrayPool  | 100000     |     1,442,393.895 ns |      1,516.4346 ns |      1,266.2915 ns |             - |             - |             - |             - |
+| CreateArrayInLoopWithMemoryPool | 100000     |     2,271,159.391 ns |      3,907.8041 ns |      3,655.3624 ns |      378.9063 |             - |             - |     2400000 B |
+| CreateArrayInLoop               | 100000     | 3,395,239,398.929 ns | 56,478,617.1083 ns | 50,066,822.9861 ns | 24999000.0000 | 24999000.0000 | 24999000.0000 | 80018862992 B |
 
 # Pointers
 | Method                      | Mean     | Error   | StdDev  | Allocated |

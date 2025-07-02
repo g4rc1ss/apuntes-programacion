@@ -34,6 +34,18 @@ public class ArrayPoolBench
     }
 
     [Benchmark]
+    public void AddDataToStringMemoryPool()
+    {
+        using MemoryPool<string> arrayPool = MemoryPool<string>.Shared;
+        using IMemoryOwner<string> array = arrayPool.Rent(iterations);
+        Span<string> span = array.Memory.Span;
+        for (int i = 0; i < iterations; i++)
+        {
+            span[i] = _data;
+        }
+    }
+
+    [Benchmark]
     public void AddDataToStringArray()
     {
         string[] array = new string[iterations];
@@ -45,13 +57,37 @@ public class ArrayPoolBench
     }
 
     [Benchmark]
-    public void AddDataToStringMemoryPool()
+    public void CreateArrayInLoopWithArrayPool()
     {
-        using MemoryPool<string> arrayPool = MemoryPool<string>.Shared;
-        using IMemoryOwner<string> array = arrayPool.Rent(iterations);
         for (int i = 0; i < iterations; i++)
         {
-            array.Memory.Span[i] = _data;
+            ArrayPool<string> arrayPool = ArrayPool<string>.Shared;
+            string[] array = arrayPool.Rent(iterations);
+
+            try { }
+            finally
+            {
+                arrayPool.Return(array);
+            }
+        }
+    }
+
+    [Benchmark]
+    public void CreateArrayInLoopWithMemoryPool()
+    {
+        for (int i = 0; i < iterations; i++)
+        {
+            using MemoryPool<string> arrayPool = MemoryPool<string>.Shared;
+            using IMemoryOwner<string> array = arrayPool.Rent(iterations);
+        }
+    }
+
+    [Benchmark]
+    public void CreateArrayInLoop()
+    {
+        for (int i = 0; i < iterations; i++)
+        {
+            string[] array = new string[iterations];
         }
     }
 }
