@@ -49,6 +49,20 @@
 | NormalIteration | 1000000    | 860,477.6285 ns | 16,333.8800 ns | 15,278.7215 ns |         - |
 | SpanIteration   | 1000000    | 621,592.1416 ns | 11,879.3045 ns | 11,111.9088 ns |         - |
 
+# Marshal
+| Method                 | iterations | Mean          | Error      | StdDev     | Gen0    | Allocated |
+|----------------------- |----------- |--------------:|-----------:|-----------:|--------:|----------:|
+| WriteMarshalWithUnsafe | 1          |     26.189 ns |  0.0072 ns |  0.0060 ns |       - |         - |
+| WriteStruct            | 1          |      5.034 ns |  0.0093 ns |  0.0078 ns |  0.0051 |      32 B |
+| WriteMarshalWithUnsafe | 10         |     35.107 ns |  0.0097 ns |  0.0086 ns |       - |         - |
+| WriteStruct            | 10         |     12.925 ns |  0.0115 ns |  0.0102 ns |  0.0166 |     104 B |
+| WriteMarshalWithUnsafe | 100        |    117.531 ns |  0.8749 ns |  0.8184 ns |       - |         - |
+| WriteStruct            | 100        |    114.673 ns |  2.0451 ns |  1.9130 ns |  0.1312 |     824 B |
+| WriteMarshalWithUnsafe | 1000       |    498.556 ns |  1.4201 ns |  1.3284 ns |       - |         - |
+| WriteStruct            | 1000       |  1,166.849 ns |  5.1319 ns |  4.8004 ns |  1.2779 |    8024 B |
+| WriteMarshalWithUnsafe | 10000      |  4,250.573 ns |  6.9844 ns |  6.1915 ns |       - |         - |
+| WriteStruct            | 10000      | 10,714.320 ns | 81.9895 ns | 76.6930 ns | 12.6495 |   80024 B |
+
 
 # Intrinsics
 | Method                                        | iterations |           Mean |          Error |         StdDev |         Median |     Gen0 |     Gen1 |     Gen2 | Allocated |
@@ -80,7 +94,6 @@
 
 
 # GCHandle
-
 | Method                 | iterations | Mean          | Error       | StdDev      | Gen0   | Allocated |
 |----------------------- |----------- |--------------:|------------:|------------:|-------:|----------:|
 | IterateObjArray        | 1          |      5.560 ns |   0.0745 ns |   0.0660 ns | 0.0051 |      32 B |
