@@ -33,6 +33,27 @@ public class MarshalApi
     }
 
     [Benchmark]
+    public unsafe void WriteStructMarshalWithSpan()
+    {
+        // iterations = iterations * 1024 * 1024;
+        nuint bufferSize = (nuint)(Unsafe.SizeOf<Coordinates>() * iterations);
+        void* block = NativeMemory.Alloc(bufferSize);
+        try
+        {
+            ref Coordinates myStruct = ref Unsafe.AsRef<Coordinates>(block);
+            Span<Coordinates> span = MemoryMarshal.CreateSpan(ref myStruct, iterations);
+            for (int i = 0; i < span.Length; i++)
+            {
+                span[i] = new Coordinates() { x = i, y = i };
+            }
+        }
+        finally
+        {
+            NativeMemory.Free(block);
+        }
+    }
+
+    [Benchmark]
     public void WriteStruct()
     {
         Coordinates[] coordinates = new Coordinates[iterations];

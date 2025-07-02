@@ -8,8 +8,38 @@ public class UnsafeWithMarshallAndStructs
     public static unsafe void Execute()
     {
         nint pointer = Marshal.AllocHGlobal(Unsafe.SizeOf<EstructuraBasica>());
-        Escribir();
-        Leer();
+        try
+        {
+            Escribir();
+            Leer();
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(pointer);
+        }
+
+        // Otra forma:
+        int count = 2;
+        nuint bufferSize = (nuint)(Unsafe.SizeOf<EstructuraBasica>() * count);
+        void* block = NativeMemory.Alloc(bufferSize);
+        try
+        {
+            ref EstructuraBasica myStruct = ref Unsafe.AsRef<EstructuraBasica>(block);
+            Span<EstructuraBasica> span = MemoryMarshal.CreateSpan(ref myStruct, count);
+            for (int i = 0; i < span.Length; i++)
+            {
+                span[i] = new EstructuraBasica()
+                {
+                    flotante = 2,
+                    letra = 'A',
+                    numero = 2,
+                };
+            }
+        }
+        finally
+        {
+            NativeMemory.Free(block);
+        }
 
         void Leer()
         {

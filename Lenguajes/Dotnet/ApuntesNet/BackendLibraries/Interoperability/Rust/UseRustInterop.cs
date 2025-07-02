@@ -10,9 +10,9 @@ public class UseRustInterop
         MyStruct myStruct = RustLibNative.CreateStruct(1, 200.3d);
 
         nint ptrVar = RustLibNative.CreateStructPtr(1, 300d);
-        MyStruct StructWithPointer = Unsafe.Read<MyStruct>(ptrVar.ToPointer());
-        StructWithPointer.a = 2;
-        Unsafe.Write(ptrVar.ToPointer(), StructWithPointer);
+        MyStruct structWithPointer = Unsafe.Read<MyStruct>(ptrVar.ToPointer());
+        structWithPointer.a = 2;
+        Unsafe.Write(ptrVar.ToPointer(), structWithPointer);
 
         RustLibNative.DeleteStructPtr(ptrVar);
     }
