@@ -2,6 +2,8 @@ using AuthWithApiKey;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddScoped<DisposableObject>();
+
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
@@ -26,4 +28,14 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.MapGet("/", () => "Hello World!").RequireAuthorization();
+
+app.MapGet(
+    "/disposable",
+    async (DisposableObject disposable) =>
+    {
+        await disposable.client.GetAsync("https://google.es");
+        Console.WriteLine("Ejecutando el endpoint");
+    }
+);
+
 app.Run();

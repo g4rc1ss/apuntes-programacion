@@ -43,7 +43,7 @@ todosApi.MapGet(
         DynamicMethod method = new(
             "Sum",
             typeof(int),
-            new Type[] { typeof(int), typeof(int) },
+            [typeof(int), typeof(int)],
             typeof(Program).Module
         );
 
