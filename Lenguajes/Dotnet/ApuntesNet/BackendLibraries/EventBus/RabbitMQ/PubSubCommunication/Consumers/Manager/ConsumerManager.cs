@@ -17,7 +17,9 @@ public class ConsumerManager<TMessage> : IConsumerManager<TMessage>
     public void RestartExecution()
     {
         CancellationTokenSource? cancellationTokenSource = this._cancellationTokenSource;
-        this._cancellationTokenSource = new CancellationTokenSource();
+
+        _cancellationTokenSource?.Dispose();
+        _cancellationTokenSource = new CancellationTokenSource();
         cancellationTokenSource.Cancel();
     }
 

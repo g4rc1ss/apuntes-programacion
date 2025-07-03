@@ -12,7 +12,7 @@ internal class HybridMemory
     {
         IServiceCollection services = new ServiceCollection();
         services.AddHybridCache();
-        ServiceProvider? serviceProvider = services.BuildServiceProvider();
+        using ServiceProvider? serviceProvider = services.BuildServiceProvider();
         _hybridCache = serviceProvider.GetRequiredService<HybridCache>();
     }
 

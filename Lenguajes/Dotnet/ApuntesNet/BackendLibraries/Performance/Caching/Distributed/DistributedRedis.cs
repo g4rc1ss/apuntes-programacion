@@ -19,7 +19,7 @@ internal class DistributedRedis
             options.InstanceName = "localhost";
         });
 
-        ServiceProvider? serviceProvider = services.BuildServiceProvider();
+        using ServiceProvider? serviceProvider = services.BuildServiceProvider();
         _distributedCache = serviceProvider.GetRequiredService<IDistributedCache>();
     }
 

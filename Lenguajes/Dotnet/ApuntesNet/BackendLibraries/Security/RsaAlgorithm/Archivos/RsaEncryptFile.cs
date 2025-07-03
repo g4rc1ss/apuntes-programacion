@@ -14,7 +14,7 @@ public class RsaEncryptFile
         {
             if (!File.Exists(_archivoRsaTxt))
             {
-                StreamWriter? archivoEscrituraRsa = File.CreateText(_archivoRsaTxt);
+                using StreamWriter? archivoEscrituraRsa = File.CreateText(_archivoRsaTxt);
                 archivoEscrituraRsa.Write(
                     "Esto es una prueba de escritura en un archivo de "
                         + "texto. \n"

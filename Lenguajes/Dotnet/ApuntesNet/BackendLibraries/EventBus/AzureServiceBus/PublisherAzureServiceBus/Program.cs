@@ -2,7 +2,7 @@ using Azure.Messaging.ServiceBus;
 
 HostApplicationBuilder builder = Host.CreateApplicationBuilder(args);
 
-IHost host = builder.Build();
+using IHost host = builder.Build();
 IConfiguration configuration = host.Services.GetRequiredService<IConfiguration>();
 ServiceBusClient client = host.Services.GetRequiredService<ServiceBusClient>();
 

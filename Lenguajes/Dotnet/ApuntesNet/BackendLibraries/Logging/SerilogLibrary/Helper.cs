@@ -6,7 +6,7 @@ namespace SerilogLibrary;
 
 public class Helper
 {
-    public static IServiceProvider GetServiceProvider()
+    public static IHost GetServiceProvider()
     {
         IHostBuilder? builder = Host.CreateDefaultBuilder();
 
@@ -28,6 +28,6 @@ public class Helper
 
         IHost? app = builder.Build();
 
-        return app.Services;
+        return app;
     }
 }

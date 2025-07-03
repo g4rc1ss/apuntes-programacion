@@ -12,8 +12,11 @@ internal static class UpdateData
             x => x.Name,
             "asier updateado"
         );
-        UpdateResult? valorRespuesta = await Helper
-            .GetConnectionDatabase.GetCollection<Persona>("persona")
+        using IMongoClient mongoClient = Helper.GetMongoClient;
+
+        UpdateResult? valorRespuesta = await mongoClient
+            .GetDatabase()
+            .GetCollection<Persona>("persona")
             .UpdateOneAsync(filter, update);
 
         Console.WriteLine($"Se han modificado {valorRespuesta.ModifiedCount}");

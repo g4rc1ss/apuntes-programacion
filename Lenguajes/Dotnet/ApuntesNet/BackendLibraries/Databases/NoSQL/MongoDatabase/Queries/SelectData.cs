@@ -7,8 +7,11 @@ internal static class SelectData
 {
     public static async Task SelectAsync()
     {
-        IAsyncCursor<Persona>? result = await Helper
-            .GetConnectionDatabase.GetCollection<Persona>("persona")
+        using IMongoClient mongoClient = Helper.GetMongoClient;
+
+        using IAsyncCursor<Persona>? result = await mongoClient
+            .GetDatabase()
+            .GetCollection<Persona>("persona")
             .FindAsync(FilterDefinition<Persona>.Empty);
         List<Persona>? listaResultados = await result.ToListAsync();
 

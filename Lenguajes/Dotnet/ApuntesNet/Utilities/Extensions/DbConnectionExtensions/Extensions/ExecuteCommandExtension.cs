@@ -45,19 +45,17 @@ public static class ExecuteCommandExtension
         CommandType typeOfCommand
     )
     {
-        using (dbConnection)
+        await using DbCommand? connect = dbConnection.CreateCommand();
+        connect.CommandText = sql;
+        connect.CommandType = typeOfCommand;
+
+        foreach (DbParameter? parameter in parameters)
         {
-            using DbCommand? connect = dbConnection.CreateCommand();
-            connect.CommandText = sql;
-            connect.CommandType = typeOfCommand;
-
-            foreach (DbParameter? parameter in parameters)
-            {
-                connect.Parameters.Add(parameter);
-            }
-            await dbConnection.OpenAsync();
-
-            return await connect.ExecuteNonQueryAsync();
+            connect.Parameters.Add(parameter);
         }
+
+        await dbConnection.OpenAsync();
+
+        return await connect.ExecuteNonQueryAsync();
     }
 }

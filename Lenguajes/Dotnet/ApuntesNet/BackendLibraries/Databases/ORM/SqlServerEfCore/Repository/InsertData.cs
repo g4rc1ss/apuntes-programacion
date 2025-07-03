@@ -8,9 +8,10 @@ public class InsertData(
     IDbContextFactory<EntityFrameworkSqlServerContext> frameworkSqlServerContext
 )
 {
-    internal Task<int> InsertDataAsync()
+    internal async Task<int> InsertDataAsync()
     {
-        EntityFrameworkSqlServerContext dbContext = frameworkSqlServerContext.CreateDbContext();
+        using EntityFrameworkSqlServerContext dbContext =
+            frameworkSqlServerContext.CreateDbContext();
         Usuario? usuarioAgregar = new()
         {
             Nombre = "Nombre del usuario",
@@ -21,6 +22,6 @@ public class InsertData(
         };
 
         dbContext.Usuarios.Add(usuarioAgregar);
-        return dbContext.SaveChangesAsync();
+        return await dbContext.SaveChangesAsync();
     }
 }

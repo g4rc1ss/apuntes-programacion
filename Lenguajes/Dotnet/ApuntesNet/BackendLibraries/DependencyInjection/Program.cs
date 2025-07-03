@@ -5,7 +5,7 @@ ServiceCollection? services = new();
 
 services.AddTransient<IServicioInyectado, ServicioInyectado>();
 
-ServiceProvider? serviceProvider = services.BuildServiceProvider();
+await using ServiceProvider? serviceProvider = services.BuildServiceProvider();
 
 IServicioInyectado? servicio = serviceProvider.GetRequiredService<IServicioInyectado>();
 

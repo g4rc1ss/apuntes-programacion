@@ -26,7 +26,7 @@ hostBuilder.ConfigureServices(
     }
 );
 
-IHost host = hostBuilder.Build();
+using IHost host = hostBuilder.Build();
 
 // Publish message
 IIntegrationMessagePublisher integrationMessage =

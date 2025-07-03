@@ -4,9 +4,10 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Caching.Memory;
 
-internal class MemoryCaching
+internal class MemoryCaching : IDisposable
 {
     private readonly IServiceProvider _serviceProvider;
+    private bool _disposed;
 
     public MemoryCaching()
     {
@@ -46,5 +47,25 @@ internal class MemoryCaching
         }
 
         memoryCache.Remove(ObjectsToCaching.cacheKey);
+    }
+
+    public virtual void Dispose()
+    {
+        if (_disposed)
+        {
+            return;
+        }
+
+        _disposed = true;
+
+        (_serviceProvider as IDisposable)?.Dispose();
+    }
+
+    protected virtual void ThrowIfDisposed()
+    {
+        if (_disposed)
+        {
+            throw new ObjectDisposedException(GetType().FullName);
+        }
     }
 }

@@ -4,8 +4,11 @@ public class CopyBinaryFile
 {
     public CopyBinaryFile(string nombreArchivoFuente, string nombreArchivoDestino)
     {
-        using BinaryReader? readBinaryFile = new(File.OpenRead(nombreArchivoFuente));
-        using BinaryWriter? writeBinaryFile = new(File.OpenWrite(nombreArchivoDestino));
+        using FileStream fileReader = File.OpenRead(nombreArchivoFuente);
+        using BinaryReader? readBinaryFile = new(fileReader);
+
+        using FileStream fileWriter = File.OpenWrite(nombreArchivoDestino);
+        using BinaryWriter? writeBinaryFile = new(fileWriter);
         for (byte data; readBinaryFile.PeekChar() != -1; )
         {
             data = readBinaryFile.ReadByte();

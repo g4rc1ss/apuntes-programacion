@@ -42,8 +42,10 @@ public class RabbitMqMessageConsumer<TMessage> : IMessageConsumer<TMessage>
     public Task StartAsync(CancellationToken cancellationToken = default)
     {
         cancellationToken.ThrowIfCancellationRequested();
-
+        _connection?.Dispose();
         _connection = _connectionFactory.CreateConnection();
+
+        _channel?.Dispose();
         _channel = _connection.CreateModel();
 
         return Consume();

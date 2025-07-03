@@ -19,9 +19,8 @@ SELECT Id as {nameof(Pueblo.IdPueblo)}
 FROM Pueblo
 ORDER BY Id;
 ";
-        SqlMapper.GridReader? queryMultiple = await select.dbConnection.QueryMultipleAsync(
-            sqlMultipleUserPueblo
-        );
+        await using SqlMapper.GridReader? queryMultiple =
+            await select.dbConnection.QueryMultipleAsync(sqlMultipleUserPueblo);
 
         IEnumerable<Usuario>? users = await queryMultiple.ReadAsync<Usuario>();
         IEnumerable<Pueblo>? villages = await queryMultiple.ReadAsync<Pueblo>();

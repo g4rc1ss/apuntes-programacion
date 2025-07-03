@@ -8,7 +8,7 @@ services.AddTransient<PruebaUsingHttpClient>();
 services.AddTransient<PruebaHttpClient>();
 services.AddHttpClient();
 
-ServiceProvider? serviceProvider = services.BuildServiceProvider();
+await using ServiceProvider? serviceProvider = services.BuildServiceProvider();
 
 string? endpoint = "https://jsonplaceholder.typicode.com/posts/1";
 

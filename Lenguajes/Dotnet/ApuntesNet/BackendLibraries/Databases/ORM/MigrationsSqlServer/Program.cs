@@ -24,7 +24,7 @@ builder.ConfigureServices(
     }
 );
 
-IHost? app = builder.Build();
+using IHost? app = builder.Build();
 
 MigrationService? migration = app.Services.GetRequiredService<MigrationService>();
 

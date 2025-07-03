@@ -60,24 +60,22 @@ public static class QueryEnumerableExtension
         CommandType typeOfCommand
     )
     {
-        using (dbConnection)
+        using DbCommand? connect = dbConnection.CreateCommand();
+        connect.CommandText = sql;
+        connect.CommandType = typeOfCommand;
+
+        foreach (DbParameter? parameter in parameters)
         {
-            using DbCommand? connect = dbConnection.CreateCommand();
-            connect.CommandText = sql;
-            connect.CommandType = typeOfCommand;
+            connect.Parameters.Add(parameter);
+        }
 
-            foreach (DbParameter? parameter in parameters)
-            {
-                connect.Parameters.Add(parameter);
-            }
-            dbConnection.Open();
+        dbConnection.Open();
 
-            using DbDataReader? rows = connect.ExecuteReader();
+        using DbDataReader? rows = connect.ExecuteReader();
 
-            while (rows.Read())
-            {
-                yield return mapper(rows);
-            }
+        while (rows.Read())
+        {
+            yield return mapper(rows);
         }
     }
 }

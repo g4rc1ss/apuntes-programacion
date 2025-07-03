@@ -26,7 +26,7 @@ public static class CommunicationExtensions
                 .WithTransientLifetime()
         );
 
-        ServiceProvider sp = services.BuildServiceProvider();
+        using ServiceProvider sp = services.BuildServiceProvider();
         IEnumerable<IMessageHandler> listHandlers = sp.GetServices<IMessageHandler>();
         services.AddConsumerHandlers(listHandlers);
     }

@@ -1,10 +1,11 @@
 ﻿using System.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using SerilogLibrary;
 
-IServiceProvider? serviceProvider = Helper.GetServiceProvider();
-ILogger<Program>? logger = serviceProvider.GetRequiredService<ILogger<Program>>();
+IHost host = Helper.GetServiceProvider();
+ILogger<Program>? logger = host.Services.GetRequiredService<ILogger<Program>>();
 
 UserDto? user = new()
 {

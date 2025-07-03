@@ -14,7 +14,7 @@ public class AesEncryptFile
         {
             if (!File.Exists(_archivoAesTxt))
             {
-                StreamWriter? archivoEscritura = File.CreateText(_archivoAesTxt);
+                using StreamWriter? archivoEscritura = File.CreateText(_archivoAesTxt);
                 archivoEscritura.Write(
                     "Esto es una prueba de escritura en un archivo de "
                         + "texto. \n"

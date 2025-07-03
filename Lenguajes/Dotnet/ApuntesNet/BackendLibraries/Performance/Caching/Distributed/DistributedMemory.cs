@@ -13,7 +13,7 @@ internal class DistributedMemory
     {
         IServiceCollection services = new ServiceCollection();
         services.AddDistributedMemoryCache();
-        ServiceProvider? serviceProvider = services.BuildServiceProvider();
+        using ServiceProvider? serviceProvider = services.BuildServiceProvider();
         _distributedCache = serviceProvider.GetRequiredService<IDistributedCache>();
     }
 

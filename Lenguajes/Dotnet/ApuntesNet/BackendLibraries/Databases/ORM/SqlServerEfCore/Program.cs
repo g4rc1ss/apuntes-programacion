@@ -1,20 +1,21 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using SqlServerEfCore;
 using SqlServerEfCore.Database.Entities;
 using SqlServerEfCore.Repository;
 
-IServiceProvider? serviceProvider = Helper.CreateDependencyInjection();
+IHost? host = Helper.CreateDependencyInjection();
 
-InsertData? insertService = serviceProvider.GetRequiredService<InsertData>();
+InsertData? insertService = host.Services.GetRequiredService<InsertData>();
 await insertService.InsertDataAsync();
 
-UpdateData? updateService = serviceProvider.GetRequiredService<UpdateData>();
+UpdateData? updateService = host.Services.GetRequiredService<UpdateData>();
 await updateService.UpdateDataAsync();
 
-SelectData? selectService = serviceProvider.GetRequiredService<SelectData>();
+SelectData? selectService = host.Services.GetRequiredService<SelectData>();
 List<Usuario>? allUsers = await selectService.SelectDataAsync();
 
-DeleteData? deleteService = serviceProvider.GetRequiredService<DeleteData>();
+DeleteData? deleteService = host.Services.GetRequiredService<DeleteData>();
 await deleteService.DeleteDataAsync();
 
 foreach (Usuario? user in allUsers)

@@ -9,7 +9,7 @@ namespace SqlServerEfCore;
 
 internal class Helper
 {
-    public static IServiceProvider CreateDependencyInjection()
+    public static IHost CreateDependencyInjection()
     {
         IHostBuilder? builder = Host.CreateDefaultBuilder();
         builder.ConfigureAppConfiguration(config => { });
@@ -40,6 +40,6 @@ internal class Helper
             }
         );
 
-        return builder.Build().Services;
+        return builder.Build();
     }
 }

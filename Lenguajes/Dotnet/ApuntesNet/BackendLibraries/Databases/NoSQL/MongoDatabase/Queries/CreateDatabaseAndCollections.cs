@@ -6,13 +6,14 @@ internal class CreateDatabaseAndCollections
 {
     internal static async Task CreateCollectionAsync()
     {
-        if (
-            (
-                await (await Helper.GetConnectionDatabase.ListCollectionNamesAsync()).ToListAsync()
-            ).FirstOrDefault(x => x == "persona") == null
-        )
+        using IMongoClient mongoClient = Helper.GetMongoClient;
+        using IAsyncCursor<string>? collectionNames = await mongoClient
+            .GetDatabase()
+            .ListCollectionNamesAsync();
+
+        if ((await collectionNames.ToListAsync()).FirstOrDefault(x => x == "persona") == null)
         {
-            await Helper.GetConnectionDatabase.CreateCollectionAsync("persona");
+            await mongoClient.GetDatabase().CreateCollectionAsync("persona");
         }
     }
 }

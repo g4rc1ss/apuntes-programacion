@@ -8,8 +8,12 @@ internal static class DeleteData
     public static async Task DeleteAsync()
     {
         FilterDefinition<Persona>? filter = Builders<Persona>.Filter.Eq(x => x.Name, "asier");
-        DeleteResult? resultadoDelete = await Helper
-            .GetConnectionDatabase.GetCollection<Persona>("persona")
+
+        using IMongoClient mongoClient = Helper.GetMongoClient;
+
+        DeleteResult? resultadoDelete = await mongoClient
+            .GetDatabase()
+            .GetCollection<Persona>("persona")
             .DeleteOneAsync(filter);
 
         Console.WriteLine($"Datos borrados: {resultadoDelete.DeletedCount}");

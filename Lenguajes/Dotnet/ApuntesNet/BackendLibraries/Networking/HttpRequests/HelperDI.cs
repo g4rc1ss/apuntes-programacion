@@ -5,7 +5,7 @@ namespace HttpRequests;
 
 internal class HelperDi
 {
-    internal static IServiceProvider GetServideProvider()
+    internal static ServiceProvider GetServideProvider()
     {
         IServiceCollection services = new ServiceCollection();
 

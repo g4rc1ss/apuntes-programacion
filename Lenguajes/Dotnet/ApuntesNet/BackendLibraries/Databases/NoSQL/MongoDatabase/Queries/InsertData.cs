@@ -1,5 +1,6 @@
 ﻿using MongoDatabase.Document;
 using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace MongoDatabase.Queries;
 
@@ -45,9 +46,10 @@ internal static class InsertData
                 FechaNacimiento = new DateTime(1997, 08, 27),
             },
         ];
-        await Helper
-            .GetConnectionDatabase.GetCollection<Persona>("persona")
-            .InsertManyAsync(persona);
+
+        using IMongoClient mongoClient = Helper.GetMongoClient;
+
+        await mongoClient.GetDatabase().GetCollection<Persona>("persona").InsertManyAsync(persona);
         Console.WriteLine("Datos Insertados");
     }
 }

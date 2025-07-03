@@ -291,20 +291,23 @@ dotnet_diagnostic.CA2016.severity = warning
 # CA2250: Use ThrowIfCancellationRequested
 dotnet_diagnostic.CA2250.severity = error
 
-# CA2000: Dispose objects before losing scope
-dotnet_diagnostic.CA2000.severity = error
-
-# CA2025: Do not pass 'IDisposable' instances into unawaited tasks
-dotnet_diagnostic.CA2025.severity = error
-
-# CA2213: Disposable fields should be disposed
-dotnet_diagnostic.CA2213.severity = warning
-
-#CA2215: Dispose methods should call base class dispose
-dotnet_diagnostic.CA2215.severity = error
-
-# CA2216: Disposable types should declare finalizer
-dotnet_diagnostic.CA2216.severity = error
+# # CA2000: Dispose objects before losing scope
+# dotnet_diagnostic.CA2000.severity = warning
+# 
+# # CA2025: Do not pass 'IDisposable' instances into unawaited tasks
+# dotnet_diagnostic.CA2025.severity = error
+# 
+# # CA2213: Disposable fields should be disposed
+# dotnet_diagnostic.CA2213.severity = warning
+# 
+# #CA2215: Dispose methods should call base class dispose
+# dotnet_diagnostic.CA2215.severity = error
+# 
+# # CA2216: Disposable types should declare finalizer
+# dotnet_diagnostic.CA2216.severity = error
+# 
+# # CA1816: Llamar a GC.SuppressFinalize correctamente
+# dotnet_diagnostic.CA1816.severity = error
 
 #CA1511: Use ArgumentException throw helper
 dotnet_diagnostic.CA1511.severity = error
@@ -322,10 +325,7 @@ dotnet_diagnostic.CA2265.severity = error
 dotnet_diagnostic.CA1512.severity = error
 
 # CA1513: Use ObjectDisposedException throw helper
-dotnet_diagnostic.CA1513.severity = none
-
-# CA1816: Llamar a GC.SuppressFinalize correctamente
-dotnet_diagnostic.CA1816.severity = error
+dotnet_diagnostic.CA1513.severity = warning
 
 # CA2100: Revisar consultas SQL para comprobar si tienen vulnerabilidades de seguridad
 dotnet_diagnostic.CA2100.severity = suggestion
@@ -390,6 +390,85 @@ dotnet_diagnostic.CA1855.severity = error
 # CA1871: No pasar una estructura anulable a 'ArgumentNullException.ThrowIfNull'
 dotnet_diagnostic.CA1871.severity = error
 
+dotnet_diagnostic.CA1707.severity = none
+
+# Dispose created
+dotnet_diagnostic.IDISP001.severity = error
+
+# Dispose member
+dotnet_diagnostic.IDISP002.severity = error
+
+# Dispose previous before re-assigning
+dotnet_diagnostic.IDISP003.severity = error
+
+# Don't ignore created IDisposable
+dotnet_diagnostic.IDISP004.severity = error
+
+# Return type should indicate that the value should be disposed
+dotnet_diagnostic.IDISP005.severity = none
+
+# Implement IDisposable
+dotnet_diagnostic.IDISP006.severity = suggestion
+
+# Don't dispose injected
+dotnet_diagnostic.IDISP007.severity = none
+
+# Don't assign member with injected and created disposables
+dotnet_diagnostic.IDISP008.severity = none
+
+# Add IDisposable interface
+dotnet_diagnostic.IDISP009.severity = none
+
+# Call base.Dispose(disposing)
+dotnet_diagnostic.IDISP010.severity = error
+
+# Don't return disposed instance
+dotnet_diagnostic.IDISP011.severity = error
+
+# Property should not return created disposable
+dotnet_diagnostic.IDISP012.severity = none
+
+# Await in using
+dotnet_diagnostic.IDISP013.severity = error
+
+# Use a single instance of HttpClient
+dotnet_diagnostic.IDISP014.severity = error
+
+# Member should not return created and cached instance
+dotnet_diagnostic.IDISP015.severity = error
+
+# Don't use disposed instance
+dotnet_diagnostic.IDISP016.severity = error
+
+# Prefer using
+dotnet_diagnostic.IDISP017.severity = error
+
+# Call SuppressFinalize
+dotnet_diagnostic.IDISP018.severity = error
+
+# Call SuppressFinalize
+dotnet_diagnostic.IDISP019.severity = error
+
+# Call SuppressFinalize(this)
+dotnet_diagnostic.IDISP020.severity = error
+
+# Call this.Dispose(true)
+dotnet_diagnostic.IDISP021.severity = error
+
+# Call this.Dispose(false)
+dotnet_diagnostic.IDISP022.severity = error
+
+# Don't use reference types in finalizer context
+dotnet_diagnostic.IDISP023.severity = error
+
+# Don't call GC.SuppressFinalize(this) when the type is sealed and has no finalizer
+dotnet_diagnostic.IDISP024.severity = error
+
+# Class with no virtual dispose method should be sealed
+dotnet_diagnostic.IDISP025.severity = none
+
+# Class with no virtual DisposeAsyncCore method should be sealed
+dotnet_diagnostic.IDISP026.severity = none
 
 [**Migrations**]
 dotnet_diagnostic.IDE0005.severity = none

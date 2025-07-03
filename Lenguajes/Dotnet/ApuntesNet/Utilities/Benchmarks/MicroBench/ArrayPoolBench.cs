@@ -36,7 +36,7 @@ public class ArrayPoolBench
     [Benchmark]
     public void AddDataToStringMemoryPool()
     {
-        using MemoryPool<string> arrayPool = MemoryPool<string>.Shared;
+        MemoryPool<string> arrayPool = MemoryPool<string>.Shared;
         using IMemoryOwner<string> array = arrayPool.Rent(iterations);
         Span<string> span = array.Memory.Span;
         for (int i = 0; i < iterations; i++)
@@ -77,7 +77,7 @@ public class ArrayPoolBench
     {
         for (int i = 0; i < iterations; i++)
         {
-            using MemoryPool<string> arrayPool = MemoryPool<string>.Shared;
+            MemoryPool<string> arrayPool = MemoryPool<string>.Shared;
             using IMemoryOwner<string> array = arrayPool.Rent(iterations);
         }
     }
