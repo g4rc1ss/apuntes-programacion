@@ -1,8 +1,11 @@
-﻿using System.Runtime;
+﻿using System.Diagnostics;
+using System.Runtime;
 using ManageMemoryGarbageCollect;
 
 Console.WriteLine($"GC en ejecucion: IsServer? {GCSettings.IsServerGC}");
 Console.WriteLine($"Latencia configurada de GC {GCSettings.LatencyMode}");
+
+Stopwatch sw = new();
 
 // Caso 1
 // Tenemos una variable de ambito global que ocupa mucho espacio en memoria y necesitamos limpiarlo después
@@ -14,18 +17,24 @@ for (int i = 0; i < 1_000_000_00; i++)
     objetos.Add(new(0, 1, "Hi"));
 }
 
-Console.WriteLine($"Total de memoria usara en el primer bucle {getMemory():F2} MB");
-
-Console.WriteLine("Limpiamos la lista y forzamos una recolección de elementos");
+Console.WriteLine($"Total de memoria usado en el primer bucle {getMemory():F2} MB");
 objetos.Clear();
+
+sw.Restart();
 GC.Collect();
+sw.Stop();
+Console.WriteLine($"Tiempo tardado en Collects {sw.ElapsedMilliseconds} ms");
 Console.WriteLine($"Memoria después de recolectar elementos {getMemory():F2}MB");
 
 Console.WriteLine(
     "Redimensionamos la lista reservada al espacio real que ocupa y volvemos a ejecutar el GC"
 );
 objetos.TrimExcess();
+
+sw.Restart();
 GC.Collect();
+sw.Stop();
+Console.WriteLine($"Tiempo tardado en Collects {sw.ElapsedMilliseconds} ms");
 Console.WriteLine($"Memoria después de recolectar elementos {getMemory():F2}MB");
 
 // Caso 2
@@ -43,13 +52,12 @@ static void ProcesarObjetos()
 for (int i = 0; i < 5; i++)
 {
     ProcesarObjetos();
-    Console.WriteLine($"Total de memoria al salir del metodo {getMemory():F2} MB");
-
-    Console.WriteLine($"Recolectamos los elementos");
-    Console.WriteLine($"Memoria después de recolectar elementos {getMemory():F2}MB");
 }
 
+sw.Restart();
 GC.Collect();
+sw.Stop();
+Console.WriteLine($"Tiempo tardado en Collects {sw.ElapsedMilliseconds} ms");
 
 // Latency Batch
 GCSettings.LatencyMode = GCLatencyMode.Batch;
@@ -57,26 +65,24 @@ Console.WriteLine($"Latencia configurada de GC {GCSettings.LatencyMode}");
 for (int i = 0; i < 5; i++)
 {
     ProcesarObjetos();
-    Console.WriteLine($"Total de memoria al salir del metodo {getMemory():F2} MB");
-
-    Console.WriteLine($"Recolectamos los elementos");
-    Console.WriteLine($"Memoria después de recolectar elementos {getMemory():F2}MB");
 }
 
+sw.Restart();
 GC.Collect();
+sw.Stop();
+Console.WriteLine($"Tiempo tardado en Collects {sw.ElapsedMilliseconds} ms");
 
 // Latency Low
-GCSettings.LatencyMode = GCLatencyMode.LowLatency;
+GCSettings.LatencyMode = GCSettings.IsServerGC
+    ? GCLatencyMode.SustainedLowLatency
+    : GCLatencyMode.LowLatency;
 Console.WriteLine($"Latencia configurada de GC {GCSettings.LatencyMode}");
 for (int i = 0; i < 5; i++)
 {
     ProcesarObjetos();
-    Console.WriteLine($"Total de memoria al salir del metodo {getMemory():F2} MB");
-
-    Console.WriteLine($"Recolectamos los elementos");
-    Console.WriteLine($"Memoria después de recolectar elementos {getMemory():F2}MB");
 }
 
+sw.Restart();
 GC.Collect();
-
-Console.ReadKey();
+sw.Stop();
+Console.WriteLine($"Tiempo tardado en Collects {sw.ElapsedMilliseconds} ms");
