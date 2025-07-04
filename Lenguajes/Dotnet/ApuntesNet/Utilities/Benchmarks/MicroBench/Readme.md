@@ -51,21 +51,36 @@
 | StringContains               | 10.0554 ns | 0.0020 ns | 0.0018 ns |      - |         - |
 | StringSpanContains           | 12.5352 ns | 0.0288 ns | 0.0270 ns |      - |         - |
 
-# Iterate enums
-| Method          | iterations | Mean            | Error          | StdDev         | Allocated |
-|---------------- |----------- |----------------:|---------------:|---------------:|----------:|
-| NormalIteration | 1          |       0.6961 ns |      0.0010 ns |      0.0009 ns |         - |
-| SpanIteration   | 1          |       0.6969 ns |      0.0011 ns |      0.0008 ns |         - |
-| NormalIteration | 10         |      11.5359 ns |      0.0059 ns |      0.0053 ns |         - |
-| SpanIteration   | 10         |      12.6309 ns |      0.0120 ns |      0.0112 ns |         - |
-| NormalIteration | 100        |      72.1998 ns |      0.0433 ns |      0.0384 ns |         - |
-| SpanIteration   | 100        |      47.5891 ns |      0.1185 ns |      0.0990 ns |         - |
-| NormalIteration | 1000       |     671.8332 ns |      0.2448 ns |      0.2044 ns |         - |
-| SpanIteration   | 1000       |     420.2478 ns |      0.2460 ns |      0.2055 ns |         - |
-| NormalIteration | 100000     |  85,020.7882 ns |     38.6078 ns |     34.2249 ns |         - |
-| SpanIteration   | 100000     |  58,511.7862 ns |    220.6042 ns |    195.5599 ns |         - |
-| NormalIteration | 1000000    | 860,477.6285 ns | 16,333.8800 ns | 15,278.7215 ns |         - |
-| SpanIteration   | 1000000    | 621,592.1416 ns | 11,879.3045 ns | 11,111.9088 ns |         - |
+# Collections
+| Method               | iterations | Mean            | Error          | StdDev         | Allocated |
+|--------------------- |----------- |----------------:|---------------:|---------------:|----------:|
+| NormalIteration      | 1          |       0.5456 ns |      0.0004 ns |      0.0004 ns |         - |
+| SpanIteration        | 1          |       0.5385 ns |      0.0215 ns |      0.0353 ns |         - |
+| NormalIterationArray | 1          |       0.5296 ns |      0.0010 ns |      0.0008 ns |         - |
+| SpanIterationArray   | 1          |       0.8333 ns |      0.0010 ns |      0.0009 ns |         - |
+| NormalIteration      | 10         |       8.7894 ns |      0.0054 ns |      0.0045 ns |         - |
+| SpanIteration        | 10         |       9.6386 ns |      0.0060 ns |      0.0053 ns |         - |
+| NormalIterationArray | 10         |       9.6220 ns |      0.0064 ns |      0.0050 ns |         - |
+| SpanIterationArray   | 10         |       8.8167 ns |      0.1111 ns |      0.1040 ns |         - |
+| NormalIteration      | 100        |      55.9846 ns |      0.4149 ns |      0.3678 ns |         - |
+| SpanIteration        | 100        |      36.1690 ns |      0.2872 ns |      0.2686 ns |         - |
+| NormalIterationArray | 100        |      48.5630 ns |      0.2388 ns |      0.2234 ns |         - |
+| SpanIterationArray   | 100        |      36.8340 ns |      0.2533 ns |      0.2246 ns |         - |
+| NormalIteration      | 1000       |     516.1108 ns |      1.7801 ns |      1.5780 ns |         - |
+| SpanIteration        | 1000       |     322.3207 ns |      2.1539 ns |      1.7986 ns |         - |
+| NormalIterationArray | 1000       |     441.9058 ns |      5.0258 ns |      4.7011 ns |         - |
+| SpanIterationArray   | 1000       |     328.1529 ns |      5.8346 ns |      5.4577 ns |         - |
+| NormalIteration      | 100000     |  65,009.7529 ns |    654.3140 ns |    580.0323 ns |         - |
+| SpanIteration        | 100000     |  45,976.2657 ns |    734.2220 ns |    686.7917 ns |         - |
+| NormalIterationArray | 100000     |  62,100.6931 ns |    710.6661 ns |    664.7575 ns |         - |
+| SpanIterationArray   | 100000     |  45,324.6738 ns |    608.1340 ns |    568.8490 ns |         - |
+| NormalIteration      | 1000000    | 667,305.6128 ns | 13,059.3466 ns | 15,546.2245 ns |         - |
+| SpanIteration        | 1000000    | 517,338.2003 ns |  2,798.7722 ns |  2,337.1016 ns |         - |
+| NormalIterationArray | 1000000    | 616,595.4677 ns |    654.4567 ns |    580.1588 ns |         - |
+| SpanIterationArray   | 1000000    | 518,130.0658 ns |  2,471.7522 ns |  2,191.1440 ns |         - |
+
+
+
 
 # Marshal
 | Method                       | iterations | Mean           | Error         | StdDev        | Gen0    | Gen1    | Gen2    | Allocated |

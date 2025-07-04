@@ -11,6 +11,8 @@ public class CollectionsWithSpan
 
     private List<CollectionWithSpanObj> _collectionWithSpanObjs;
 
+    private CollectionWithSpanObj[] _collectionWithSpanObjsArray;
+
     [GlobalSetup]
     public void Setup()
     {
@@ -18,6 +20,7 @@ public class CollectionsWithSpan
         [
             .. Enumerable.Range(0, iterations).Select(x => new CollectionWithSpanObj()),
         ];
+        _collectionWithSpanObjsArray = [.. _collectionWithSpanObjs];
     }
 
     [Benchmark]
@@ -35,6 +38,25 @@ public class CollectionsWithSpan
         Span<CollectionWithSpanObj> collectionSpan = CollectionsMarshal.AsSpan(
             _collectionWithSpanObjs
         );
+        for (int i = 0; i < collectionSpan.Length; i++)
+        {
+            collectionSpan[i].Value = i;
+        }
+    }
+
+    [Benchmark]
+    public void NormalIterationArray()
+    {
+        for (int i = 0; i < _collectionWithSpanObjsArray.Length; i++)
+        {
+            _collectionWithSpanObjsArray[i].Value = i;
+        }
+    }
+
+    [Benchmark]
+    public void SpanIterationArray()
+    {
+        Span<CollectionWithSpanObj> collectionSpan = _collectionWithSpanObjsArray;
         for (int i = 0; i < collectionSpan.Length; i++)
         {
             collectionSpan[i].Value = i;
