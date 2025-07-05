@@ -7,14 +7,23 @@ public class UseRustInterop
 {
     public unsafe void Execute()
     {
-        MyStruct myStruct = RustLibNative.CreateStruct(1, 200.3d);
+        nint ptrVar = nint.Zero;
+        try
+        {
+            MyStruct myStruct = RustLibNative.CreateStruct(1, 200.3d);
 
-        nint ptrVar = RustLibNative.CreateStructPtr(1, 300d);
-        MyStruct structWithPointer = Unsafe.Read<MyStruct>(ptrVar.ToPointer());
-        structWithPointer.a = 2;
-        Unsafe.Write(ptrVar.ToPointer(), structWithPointer);
-
-        RustLibNative.DeleteStructPtr(ptrVar);
+            ptrVar = RustLibNative.CreateStructPtr(1, 300d);
+            MyStruct structWithPointer = Unsafe.Read<MyStruct>(ptrVar.ToPointer());
+            structWithPointer.a = 2;
+            Unsafe.Write(ptrVar.ToPointer(), structWithPointer);
+        }
+        finally
+        {
+            if (ptrVar != nint.Zero)
+            {
+                RustLibNative.DeleteStructPtr(ptrVar);
+            }
+        }
     }
 }
 
