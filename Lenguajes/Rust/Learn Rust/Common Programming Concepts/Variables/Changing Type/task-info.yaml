@@ -5,7 +5,7 @@ files:
     visible: true
     placeholders:
       - offset: 117
-        length: 29
+        length: 3
         placeholder_text: /* Something missing here! */
         initial_state:
           length: 29
@@ -13,7 +13,7 @@ files:
         initialized_from_dependency: false
         encrypted_possible_answer: 0iV8NCCPfPrcuz8qxwUXSg==
         selected: false
-        status: Unchecked
+        status: Solved
     learner_created: false
   - name: Cargo.toml
     visible: false
@@ -22,5 +22,8 @@ files:
     visible: false
     learner_created: false
 feedback_link: https://docs.google.com/forms/d/e/1FAIpQLSdfJQgjsbDA4pPGpklj3vJnKNspd9wmEHzAgh6EkoJy2IiRuw/viewform?usp=pp_url&entry.2103429047=Common+Programming+Concepts+/+Variables+/+Changing+Type
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Sat, 05 Jul 2025 22:22:20 UTC"
 record: -1

@@ -8,7 +8,7 @@ files:
     visible: true
     placeholders:
       - offset: 46
-        length: 35
+        length: 3
         placeholder_text: /*insert the type annotation here*/
         initial_state:
           length: 35
@@ -16,11 +16,14 @@ files:
         initialized_from_dependency: false
         encrypted_possible_answer: sCw8UVTDFHPQPxeqCo5bVg==
         selected: false
-        status: Unchecked
+        status: Solved
     learner_created: false
   - name: tests/tests.rs
     visible: false
     learner_created: false
 feedback_link: https://docs.google.com/forms/d/e/1FAIpQLSdfJQgjsbDA4pPGpklj3vJnKNspd9wmEHzAgh6EkoJy2IiRuw/viewform?usp=pp_url&entry.2103429047=Common+Programming+Concepts+/+Functions+/+Type+Annotation+of+a+Parameter
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Sun, 06 Jul 2025 12:20:35 UTC"
 record: -1

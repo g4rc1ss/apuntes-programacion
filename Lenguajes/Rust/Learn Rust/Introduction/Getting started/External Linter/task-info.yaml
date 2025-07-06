@@ -7,10 +7,24 @@ files:
   - name: Cargo.toml
     visible: false
     learner_created: false
-  - name: images/external-linters.png
+  - name: images/rustrover_external_linters.png
+    visible: false
+    is_binary: true
+    learner_created: false
+  - name: images/idea_external_linters.png
+    visible: false
+    is_binary: true
+    learner_created: false
+  - name: images/idea_external_linters_dark.png
+    visible: false
+    is_binary: true
+    learner_created: false
+  - name: images/rustrover_external_linters_dark.png
     visible: false
     is_binary: true
     learner_created: false
 feedback_link: https://docs.google.com/forms/d/e/1FAIpQLSdfJQgjsbDA4pPGpklj3vJnKNspd9wmEHzAgh6EkoJy2IiRuw/viewform?usp=pp_url&entry.2103429047=Introduction+/+Getting+started+/+External+Linter
-status: Unchecked
+status: Solved
+feedback:
+  time: "Sat, 05 Jul 2025 22:17:43 UTC"
 record: -1

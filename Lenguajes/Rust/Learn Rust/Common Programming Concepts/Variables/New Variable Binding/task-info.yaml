@@ -8,7 +8,7 @@ files:
     visible: true
     placeholders:
       - offset: 16
-        length: 7
+        length: 3
         placeholder_text: "//TODO:"
         initial_state:
           length: 7
@@ -16,11 +16,14 @@ files:
         initialized_from_dependency: false
         encrypted_possible_answer: 0iV8NCCPfPrcuz8qxwUXSg==
         selected: false
-        status: Unchecked
+        status: Solved
     learner_created: false
   - name: tests/tests.rs
     visible: false
     learner_created: false
 feedback_link: https://docs.google.com/forms/d/e/1FAIpQLSdfJQgjsbDA4pPGpklj3vJnKNspd9wmEHzAgh6EkoJy2IiRuw/viewform?usp=pp_url&entry.2103429047=Common+Programming+Concepts+/+Variables+/+New+Variable+Binding
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Sat, 05 Jul 2025 22:18:24 UTC"
 record: -1

@@ -8,19 +8,22 @@ files:
     visible: true
     placeholders:
       - offset: 21
-        length: 5
+        length: 3
         placeholder_text: ": i32"
         initial_state:
           length: 5
           offset: 21
         initialized_from_dependency: false
         encrypted_possible_answer: q38dtQFc7zJNQoKZOoMf9g==
-        selected: false
-        status: Unchecked
+        selected: true
+        status: Solved
     learner_created: false
   - name: tests/tests.rs
     visible: false
     learner_created: false
 feedback_link: https://docs.google.com/forms/d/e/1FAIpQLSdfJQgjsbDA4pPGpklj3vJnKNspd9wmEHzAgh6EkoJy2IiRuw/viewform?usp=pp_url&entry.2103429047=Common+Programming+Concepts+/+Variables+/+Value
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Sat, 05 Jul 2025 22:21:49 UTC"
 record: -1

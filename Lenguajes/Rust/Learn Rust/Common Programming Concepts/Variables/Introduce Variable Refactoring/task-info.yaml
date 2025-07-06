@@ -5,7 +5,7 @@ files:
     visible: true
     placeholders:
       - offset: 10
-        length: 257
+        length: 285
         placeholder_text: |-
           {
               let ten_years_ago = 1993 - 10;
@@ -21,12 +21,14 @@ files:
           offset: 10
         initialized_from_dependency: false
         encrypted_possible_answer: JIR4gmKzK9OvtJYjQ1U++uldQQWwyPwvpz7IdzyE5bOX81z01mehEives70P45RABff/i2Puez9/2VX9AOH2llI8IOzlRc8CCQw3ejb3tg44cUnRV/As71CApD4fGRBEGewcGNts6FKgevjsKDcmuerc1+oTuVB5PSbWhpy6NtEf+Tq8R5XXoCuWat3v1FTqTjz+TFE34wtCqflcczPXqZKYFJG65ueVkSX4Wi9eOd+xie1755P+x/uVrIoW0F3/TZshrWuuBdA7cGEehXksctuPyovinr5zkMFrRl+ToUXE+JOGyNvtyQnNStLmJoHjVCR9inRL4s52C315errCA9B9+MYr8nZ0AFsDpDEker/d4/niaMB0PxYxjbpIeghK
-        selected: false
-        status: Unchecked
+        selected: true
+        status: Solved
     learner_created: false
   - name: Cargo.toml
     visible: false
     learner_created: false
 feedback_link: https://docs.google.com/forms/d/e/1FAIpQLSdfJQgjsbDA4pPGpklj3vJnKNspd9wmEHzAgh6EkoJy2IiRuw/viewform?usp=pp_url&entry.2103429047=Common+Programming+Concepts+/+Variables+/+Introduce+Variable+Refactoring
-status: Unchecked
+status: Solved
+feedback:
+  time: "Sat, 05 Jul 2025 22:19:44 UTC"
 record: -1

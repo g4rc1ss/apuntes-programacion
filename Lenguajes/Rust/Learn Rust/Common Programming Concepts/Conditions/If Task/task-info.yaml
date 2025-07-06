@@ -11,16 +11,19 @@ files:
     visible: true
     placeholders:
       - offset: 43
-        length: 26
+        length: 25
         placeholder_text: //insert the solution here
         initial_state:
           length: 26
           offset: 43
         initialized_from_dependency: false
         encrypted_possible_answer: jzuo4eerrtvBqUS5olwW1XRaXSPvwiz4aG94BjyRpWE=
-        selected: false
-        status: Unchecked
+        selected: true
+        status: Solved
     learner_created: false
 feedback_link: https://docs.google.com/forms/d/e/1FAIpQLSdfJQgjsbDA4pPGpklj3vJnKNspd9wmEHzAgh6EkoJy2IiRuw/viewform?usp=pp_url&entry.2103429047=Common+Programming+Concepts+/+Conditions+/+If+Task
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Sun, 06 Jul 2025 12:24:40 UTC"
 record: -1

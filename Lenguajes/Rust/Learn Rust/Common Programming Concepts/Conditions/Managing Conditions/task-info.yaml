@@ -5,24 +5,30 @@ files:
     visible: true
     placeholders:
       - offset: 40
-        length: 64
-        placeholder_text: '!(!(number > 4 && number <= 9) && !(number > 0  && number <
-      10))'
+        length: 59
+        placeholder_text: '!(!(number > 4 && number <= 9) && !(number > 10  && number
+      < 20))'
         initial_state:
-          length: 64
+          length: 65
           offset: 40
         initialized_from_dependency: false
-        encrypted_possible_answer: I+s1wUO/Of83cJQ3ApN1tLSbikORK4aalhreJnmflXWQiKvh0u93upocxV3+7b7fEjbOGYYrWiPpv7EulqDRoA+sRsSWttEXgum3QmN52t8=
-        selected: false
-        status: Unchecked
+        encrypted_possible_answer: I+s1wUO/Of83cJQ3ApN1tLSbikORK4aalhreJnmflXWOv8J/IXn0iJcvDyWJarbbivBsJjwbhjP54MWVQjTI0rzPzQo/nEa3RuCJnYyYDfE=
+        selected: true
+        status: Solved
     learner_created: false
   - name: Cargo.toml
     visible: false
     learner_created: false
-  - name: image.png
+  - name: images/demorgan_refactor_dark.png
+    visible: false
+    is_binary: true
+    learner_created: false
+  - name: images/demorgan_refactor.png
     visible: false
     is_binary: true
     learner_created: false
 feedback_link: https://docs.google.com/forms/d/e/1FAIpQLSdfJQgjsbDA4pPGpklj3vJnKNspd9wmEHzAgh6EkoJy2IiRuw/viewform?usp=pp_url&entry.2103429047=Common+Programming+Concepts+/+Conditions+/+Managing+Conditions
-status: Unchecked
+status: Solved
+feedback:
+  time: "Sun, 06 Jul 2025 12:27:06 UTC"
 record: -1

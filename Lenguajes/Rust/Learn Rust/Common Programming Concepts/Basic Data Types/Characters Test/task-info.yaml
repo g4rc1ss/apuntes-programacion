@@ -8,7 +8,7 @@ files:
     visible: true
     placeholders:
       - offset: 280
-        length: 207
+        length: 21
         placeholder_text: |-
           // Finish this line like the example! What's your favorite character?
               // Try a letter, try a number, try a special character, try a character
@@ -19,11 +19,14 @@ files:
         initialized_from_dependency: false
         encrypted_possible_answer: d67Y/jzSuBQVISRmjxCG63Ot3SPyR6fx4BWaJ8mV4iQ=
         selected: false
-        status: Unchecked
+        status: Solved
     learner_created: false
   - name: tests/tests.rs
     visible: false
     learner_created: false
 feedback_link: https://docs.google.com/forms/d/e/1FAIpQLSdfJQgjsbDA4pPGpklj3vJnKNspd9wmEHzAgh6EkoJy2IiRuw/viewform?usp=pp_url&entry.2103429047=Common+Programming+Concepts+/+Basic+Data+Types+/+Characters+Test
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Sun, 06 Jul 2025 12:17:54 UTC"
 record: -1

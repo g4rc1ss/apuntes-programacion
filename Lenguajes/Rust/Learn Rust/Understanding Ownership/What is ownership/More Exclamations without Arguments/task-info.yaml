@@ -14,32 +14,32 @@ files:
         encrypted_possible_answer: SQy+vsKOmbkN+CoOBweHBbc3hK2q91dYSSKfiq3ptIQ=
         selected: false
         status: Unchecked
-      - offset: 91
+      - offset: 97
         length: 5
         placeholder_text: hello
         initial_state:
           length: 5
-          offset: 91
+          offset: 97
         initialized_from_dependency: false
         encrypted_possible_answer: BPrPxsoPO0ddRfXxWyDgbA==
         selected: false
         status: Unchecked
-      - offset: 243
+      - offset: 255
         length: 9
         placeholder_text: "s: String"
         initial_state:
           length: 9
-          offset: 243
+          offset: 255
         initialized_from_dependency: false
         encrypted_possible_answer: BPrPxsoPO0ddRfXxWyDgbA==
         selected: false
         status: Unchecked
-      - offset: 270
+      - offset: 282
         length: 36
         placeholder_text: /* Create the "Hello" string here */
         initial_state:
           length: 36
-          offset: 270
+          offset: 282
         initialized_from_dependency: false
         encrypted_possible_answer: 3KlpHielozCzXYz7Mc5Y1XNx0Nl2Um2fwvqgN1Ye19SggiBCdlz3qw+7R4bhvYe6
         selected: false

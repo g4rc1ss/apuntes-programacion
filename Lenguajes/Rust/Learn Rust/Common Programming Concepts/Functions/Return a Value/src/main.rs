@@ -4,5 +4,5 @@ fn main() {
 }
 
 fn square(num: i32) -> i32 {
-    /*you could type here*/ num * num;
+    return  num * num;
 }

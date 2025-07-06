@@ -41,4 +41,4 @@ additional_files:
   - name: change-notes.txt
 mode: Study
 feedback_link: https://plugins.jetbrains.com/plugin/16631-learn-rust/reviews
-yaml_version: 2
+yaml_version: 4
