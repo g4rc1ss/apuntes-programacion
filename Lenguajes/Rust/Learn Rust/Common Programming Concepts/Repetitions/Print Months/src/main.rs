@@ -4,5 +4,7 @@ fn main() {
         "July", "August", "September",
         "October", "November", "December"];
 
-    /* TODO */
+    for month in months {
+        println!("{}", month);
+    }
 }

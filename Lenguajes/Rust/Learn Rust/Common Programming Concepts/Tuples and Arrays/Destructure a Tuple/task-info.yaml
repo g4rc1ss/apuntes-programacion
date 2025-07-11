@@ -8,7 +8,7 @@ files:
     visible: true
     placeholders:
       - offset: 59
-        length: 30
+        length: 11
         placeholder_text: /*destructure the tuple here*/
         initial_state:
           length: 30
@@ -16,11 +16,14 @@ files:
         initialized_from_dependency: false
         encrypted_possible_answer: pGQSvVObzyhbKTIdEXzI/A==
         selected: false
-        status: Unchecked
+        status: Solved
     learner_created: false
   - name: tests/tests.rs
     visible: false
     learner_created: false
 feedback_link: https://docs.google.com/forms/d/e/1FAIpQLSdfJQgjsbDA4pPGpklj3vJnKNspd9wmEHzAgh6EkoJy2IiRuw/viewform?usp=pp_url&entry.2103429047=Common+Programming+Concepts+/+Tuples+and+Arrays+/+Destructure+a+Tuple
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Fri, 11 Jul 2025 18:58:41 UTC"
 record: -1

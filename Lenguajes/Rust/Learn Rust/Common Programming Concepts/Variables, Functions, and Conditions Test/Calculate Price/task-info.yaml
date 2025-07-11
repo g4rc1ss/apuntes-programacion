@@ -19,9 +19,9 @@ files:
         initialized_from_dependency: false
         encrypted_possible_answer: cQgiopiCmiERWAPUNkS7ncSNIFZD4lhnJwLBa+Xnals=
         selected: false
-        status: Unchecked
+        status: Solved
       - offset: 35
-        length: 8
+        length: 6
         placeholder_text: /*TODO*/
         initial_state:
           length: 8
@@ -29,18 +29,21 @@ files:
         initialized_from_dependency: false
         encrypted_possible_answer: 7HeDh3/EQrxj0zw7D/Yppw==
         selected: false
-        status: Unchecked
-      - offset: 50
-        length: 28
+        status: Solved
+      - offset: 111
+        length: 0
         placeholder_text: /*write your solution here*/
         initial_state:
           length: 28
           offset: 50
         initialized_from_dependency: false
         encrypted_possible_answer: V+f2qgnmxGVBvC8XJA6QSJnTV3gXqRBoXgT6QLgZds055vCB4dkphExsVYCwXWSy0AUkDJ4asPF6aIQvbDM0SLIoUmsD3846Nn3z3Uf7yf58nrRwrcFtmO6RnQJITknM
-        selected: false
-        status: Unchecked
+        selected: true
+        status: Solved
     learner_created: false
 feedback_link: https://docs.google.com/forms/d/e/1FAIpQLSdfJQgjsbDA4pPGpklj3vJnKNspd9wmEHzAgh6EkoJy2IiRuw/viewform?usp=pp_url&entry.2103429047=Common+Programming+Concepts+/+Variables+Functions+and+Conditions+Test+/+Calculate+Price
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Fri, 11 Jul 2025 18:54:29 UTC"
 record: -1
