@@ -59,7 +59,7 @@ else
         Logger.LogInformation("Weather SSR? = {0}", IsSsr);
 
         DateOnly startDate = DateOnly.FromDateTime(DateTime.Now);
-        string[] summaries = new[] { "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching" };
+        string[] summaries = ["Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"];
         _forecasts = Enumerable.Range(1, 5).Select(index => new WeatherForecast
         {
             Date = startDate.AddDays(index),
