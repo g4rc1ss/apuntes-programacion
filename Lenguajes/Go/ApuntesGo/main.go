@@ -1,11 +1,24 @@
 package main
 
+import (
+	"sync"
+	"time"
+)
+
+var wg sync.WaitGroup
+
 func main() {
 	var hola IHola
 
 	hola = Hola{}
 
-	hola.Execute()
+	wg.Add(1)
+
+	go hola.Execute()
+
+	hola.Execute2()
+
+	wg.Wait()
 
 }
 
@@ -18,10 +31,11 @@ type Hola struct {
 }
 
 func (h Hola) Execute2() {
-	//TODO implement me
-	panic("implement me")
+	println("Ejecutando")
 }
 
 func (h Hola) Execute() {
-
+	time.Sleep(10 * time.Second)
+	println("Ejecutando despues del tiempo")
+	wg.Done()
 }
