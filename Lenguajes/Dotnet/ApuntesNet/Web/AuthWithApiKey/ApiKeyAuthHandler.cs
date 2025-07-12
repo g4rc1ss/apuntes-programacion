@@ -20,7 +20,7 @@ internal class ApiKeyAuthHandler(
     {
         try
         {
-            if (Context?.GetEndpoint()?.Metadata.GetMetadata<IAuthorizeData>() is not null)
+            if (Context?.GetEndpoint()?.Metadata.GetMetadata<IAuthorizeData>() is null)
             {
                 return Task.FromResult(AuthenticateResult.NoResult());
             }
