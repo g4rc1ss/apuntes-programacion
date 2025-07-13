@@ -1,4 +1,6 @@
 using AuthWithApiKey;
+using Microsoft.OpenApi.Any;
+using Microsoft.OpenApi.Interfaces;
 using Microsoft.OpenApi.Models;
 using Scalar.AspNetCore;
 
@@ -13,6 +15,9 @@ builder.Services.AddOpenApi(options =>
     options.AddDocumentTransformer(
         (document, _, _) =>
         {
+            string tenantId = "";
+            string clientId = "";
+
             Dictionary<string, OpenApiSecurityScheme> requirements = new()
             {
                 ["Bearer"] = new OpenApiSecurityScheme
@@ -29,6 +34,30 @@ builder.Services.AddOpenApi(options =>
                     In = ParameterLocation.Header,
                     Description = "API Key",
                 },
+                ["Microsoft Login"] = new OpenApiSecurityScheme()
+                {
+                    Type = SecuritySchemeType.OAuth2,
+                    Flows = new OpenApiOAuthFlows
+                    {
+                        AuthorizationCode = new OpenApiOAuthFlow
+                        {
+                            AuthorizationUrl = new Uri(
+                                $"https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/authorize"
+                            ),
+                            TokenUrl = new Uri(
+                                $"https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token"
+                            ),
+                            Scopes = new Dictionary<string, string>
+                            {
+                                { $"api://{clientId}/data.read", "Acceso a datos" },
+                            },
+                            Extensions = new Dictionary<string, IOpenApiExtension>
+                            {
+                                { "x-usePkce", new OpenApiString("SHA-256") },
+                            },
+                        },
+                    },
+                }
             };
             document.Components ??= new OpenApiComponents();
             document.Components.SecuritySchemes = requirements;
