@@ -9,7 +9,6 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<DisposableObject>();
 
 // Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi(options =>
 {
     options.AddDocumentTransformer(
@@ -57,7 +56,7 @@ builder.Services.AddOpenApi(options =>
                             },
                         },
                     },
-                }
+                },
             };
             document.Components ??= new OpenApiComponents();
             document.Components.SecuritySchemes = requirements;
@@ -89,6 +88,11 @@ if (app.Environment.IsDevelopment())
             options.AddPreferredSecuritySchemes(Constants.API_KEY_SCHEME);
         }
     );
+    
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/openapi/v1.json", "v1");
+    });
 }
 
 app.UseHttpsRedirection();
