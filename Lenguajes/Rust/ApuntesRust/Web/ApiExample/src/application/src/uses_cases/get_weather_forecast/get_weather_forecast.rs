@@ -1,5 +1,5 @@
-use crate::application::uses_cases::get_weather_forecast::weather_forecast_dto::WeatherForecastDto;
-use crate::infraestructure::repository::weather_forecast_by_id::weather_by_id_repository::*;
+use crate::uses_cases::get_weather_forecast::weather_forecast_dto::WeatherForecastDto;
+use infraestructure::repository::weather_forecast_by_id::weather_by_id_repository::*;
 use std::io::Error;
 
 pub trait IGetWeatherForecast {
@@ -12,7 +12,7 @@ impl IGetWeatherForecast for GetWeatherForecast {
         let weather_repo_impl = WeatherForecastByIdRepositoryImpl::new();
         let weather = WeatherForecastByIdRepository::execute(&weather_repo_impl, id).await;
 
-        Ok(weather)
+        Ok(WeatherForecastDto { temperature: 20 })
     }
 }
 

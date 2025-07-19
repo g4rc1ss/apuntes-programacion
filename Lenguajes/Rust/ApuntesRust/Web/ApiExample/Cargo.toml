@@ -3,7 +3,27 @@ name = "ApiExample"
 version = "0.1.0"
 edition = "2024"
 
-[dependencies]
+[[bin]]
+name = "ApiExample"
+path = "src/main.rs"
+
+[workspace]
+members = [
+    "src/api",
+    "src/application",
+    "src/infraestructure"
+]
+
+default-members = [
+    "src/api"
+]
+
+[workspace.dependencies]
+api = { path = "src/api" }
+application = { path = "src/application" }
+infraestructure = { path = "src/infraestructure" }
 actix-web = "4.11.0"
-diesel = { version = "2.2.12", features = ["sqlite"] }
-serde = { version = "1.0.219", features = ["derive"] }
+
+[dependencies]
+api.workspace = true
+actix-web.workspace = true

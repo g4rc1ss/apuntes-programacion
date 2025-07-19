@@ -1,4 +1,4 @@
-use crate::application::uses_cases::get_weather_forecast::get_weather_forecast::{
+use application::uses_cases::get_weather_forecast::get_weather_forecast::{
     GetWeatherForecast, IGetWeatherForecast,
 };
 use actix_web::{get, web, HttpResponse};
