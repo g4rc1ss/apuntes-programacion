@@ -1,7 +1,7 @@
 use crate::application::uses_cases::get_weather_forecast::get_weather_forecast::{
     GetWeatherForecast, IGetWeatherForecast,
 };
-use actix_web::{HttpResponse, Responder, get, web};
+use actix_web::{get, web, HttpResponse};
 use serde::Serialize;
 
 #[derive(Serialize)]
@@ -12,13 +12,14 @@ struct WeatherForecastResponse {
 
 #[get("/weather-forecast-id/{id}")]
 pub async fn weather_forecast_by_id(param: web::Path<i32>) -> HttpResponse {
+    let id = param.into_inner();
 
     let get_weather_impl = GetWeatherForecast::new();
-    let weather = IGetWeatherForecast::execute(&get_weather_impl).await;
+    let weather = IGetWeatherForecast::execute(&get_weather_impl, id).await;
 
     if let Ok(_weather) = weather {
         HttpResponse::Ok().json(WeatherForecastResponse {
-            id: param.into_inner(),
+            id,
             temperature: _weather.temperature,
         })
     } else {

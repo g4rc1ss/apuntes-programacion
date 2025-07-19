@@ -1,0 +1,1 @@
+pub mod weather_forecast_entity;
