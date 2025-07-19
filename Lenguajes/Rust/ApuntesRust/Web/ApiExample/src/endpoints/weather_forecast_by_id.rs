@@ -1,0 +1,27 @@
+use crate::application::uses_cases::get_weather_forecast::get_weather_forecast::{
+    GetWeatherForecast, IGetWeatherForecast,
+};
+use actix_web::{HttpResponse, Responder, get, web};
+use serde::Serialize;
+
+#[derive(Serialize)]
+struct WeatherForecastResponse {
+    id: i32,
+    temperature: i32,
+}
+
+#[get("/weather-forecast-id/{id}")]
+pub async fn weather_forecast_by_id(param: web::Path<i32>) -> HttpResponse {
+
+    let get_weather_impl = GetWeatherForecast::new();
+    let weather = IGetWeatherForecast::execute(&get_weather_impl).await;
+
+    if let Ok(_weather) = weather {
+        HttpResponse::Ok().json(WeatherForecastResponse {
+            id: param.into_inner(),
+            temperature: _weather.temperature,
+        })
+    } else {
+        HttpResponse::NotFound().finish()
+    }
+}
