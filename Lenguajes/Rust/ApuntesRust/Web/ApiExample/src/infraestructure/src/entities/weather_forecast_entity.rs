@@ -1,7 +1,9 @@
 use diesel::{Queryable, Selectable};
+use crate::schema::weatherforecast;
 
-// #[derive(Queryable, Selectable)]
+#[derive(Queryable, Selectable)]
+#[diesel(table_name = weatherforecast)]
 pub struct WeatherForecastEntity {
-    pub(crate) id: i32,
-    pub(crate) temperature: i32,
+    pub id: i32,
+    pub temperature: Option<i32>,
 }
