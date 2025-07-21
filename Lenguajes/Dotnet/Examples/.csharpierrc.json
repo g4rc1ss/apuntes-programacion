@@ -1,0 +1,14 @@
+{
+  "printWidth": 100,
+  "useTabs": false,
+  "indentSize": 4,
+  "endOfLine": "auto",
+  "overrides": [
+    {
+      "files": "*.{csproj,props,targets,xml,config}",
+      "indentSize": 2,
+      "useTabs": false,
+      "endOfLine": "auto"
+    }
+  ]
+}
