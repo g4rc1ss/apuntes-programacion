@@ -1,19 +1,23 @@
-﻿using HttpClient? httpclient = new();
-string? http = "http";
-string? url = "localhost";
-string? port = "5031";
+﻿using NBomber.Contracts;
+using NBomber.CSharp;
 
-// var path = "normalRequest";
-// var path = "nonBlockRequest";
-string? path = "blockRequest";
+using HttpClient httpClient = new();
+ScenarioProps? scenario = Scenario
+    .Create(
+        "http_scenario",
+        async context =>
+        {
+            await httpClient.GetAsync("https://nbomber.com");
 
-Parallel.For(
-    0,
-    int.MaxValue,
-    i =>
-    {
-        Task<HttpResponseMessage>? response = httpclient.GetAsync($"{http}://{url}:{port}/{path}");
-        response.Wait();
-        Console.WriteLine(response.Result.StatusCode);
-    }
-);
+            return Response.Ok();
+        }
+    )
+    .WithLoadSimulations(
+        Simulation.Inject(
+            rate: 100,
+            interval: TimeSpan.FromSeconds(1),
+            during: TimeSpan.FromSeconds(10)
+        )
+    );
+
+NBomberRunner.RegisterScenarios(scenario).Run();
