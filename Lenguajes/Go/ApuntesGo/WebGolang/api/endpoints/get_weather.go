@@ -13,5 +13,7 @@ func GetWeather() {
 		WeatherRepository: repository,
 	}
 
-	weatherUseCase.Execute(1)
+	dto := weatherUseCase.Execute(1)
+
+	print(dto.Temperature)
 }

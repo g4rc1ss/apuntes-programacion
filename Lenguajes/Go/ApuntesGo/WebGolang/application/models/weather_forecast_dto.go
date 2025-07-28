@@ -1,3 +1,6 @@
 ﻿package models
 
-type WeatherForecastDto struct{}
+type WeatherForecastDto struct {
+	Id          int
+	Temperature int
+}

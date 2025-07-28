@@ -7,6 +7,8 @@ import (
 type WeatherForecast struct{}
 
 func (w WeatherForecast) GetById(id int) (models.WeatherForecastDto, error) {
-	//TODO implement me
-	panic("implement me")
+	return models.WeatherForecastDto{
+		id,
+		10,
+	}, nil
 }
