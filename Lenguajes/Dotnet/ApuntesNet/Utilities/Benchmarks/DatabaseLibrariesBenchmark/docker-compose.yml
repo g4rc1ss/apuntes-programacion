@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   mysql_apuntesnet:
     container_name: mysql_benchmarks

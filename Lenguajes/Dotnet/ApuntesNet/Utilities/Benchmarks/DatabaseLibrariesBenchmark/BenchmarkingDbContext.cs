@@ -5,12 +5,18 @@ namespace DatabaseLibrariesBenchmark;
 
 internal class BenchmarkingDbContext : DbContext
 {
-    public DbSet<WeatherForecast>? WeatherForecast { get; set; }
+    public DbSet<WeatherForecast> WeatherForecast { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         MySqlServerVersion? version = new(MySqlServerVersion.LatestSupportedServerVersion);
-        optionsBuilder.UseMySql(Helper.connectionString, version);
+        optionsBuilder.UseMySql(Helper.CONNECTION_STRING, version);
         base.OnConfiguring(optionsBuilder);
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<WeatherForecast>().ToTable("WeatherForecast");
+        base.OnModelCreating(modelBuilder);
     }
 }
